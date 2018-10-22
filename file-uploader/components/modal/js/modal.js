@@ -5,6 +5,7 @@
   const styles = currentDoc.querySelector('#styles');
   const template = currentDoc.querySelector('#template');
   const minimizedTemplate = currentDoc.querySelector('#minimized');
+  const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
   if (w.ShadyCSS) w.ShadyCSS.prepareTemplate(styles, 'upload-modal');
 
@@ -113,24 +114,34 @@
       }
 
       if (name === 'minimized') {
-
         if(!this.minimized) {
-          this.modal.classList.remove('fadeOutFast');
-          modalOverlay.classList.remove('fadeOutFast');
-          minimizedContainer.remove();
-          this.modal.classList.add('fadeInFast');
-          this.modal.classList.remove('hidden');
-          modalOverlay.classList.remove('hidden');
-        } else {
+          if (isIE11) {
+            minimizedContainer.remove();
+            this.modal.classList.remove('hidden');
+            modalOverlay.classList.remove('hidden');
+          }  else {
+            minimizedContainer.remove();
+            this.modal.classList.remove('hidden');
+            modalOverlay.classList.remove('hidden');
+            this.modal.classList.remove('fadeOutFast');
+            modalOverlay.classList.remove('fadeOutFast');
+            this.modal.classList.add('fadeInFast');
+          }
 
+        } else {
           this.addEventListener('xhrLoading', event => {
             this.minimizeDetail = event.detail;
             this.updateProgress(this.minimizeDetail)
           });
           this.renderMinimized();
-          this.modal.classList.remove('slideInDown');
-          this.modal.classList.add('fadeOutFast');
-          modalOverlay.classList.add('fadeOutFast');
+          if (isIE11) {
+            modalOverlay.classList.add('hidden');
+            this.modal.classList.add('hidden');
+          } else {
+            this.modal.classList.remove('slideInDown');
+            this.modal.classList.add('fadeOutFast');
+            modalOverlay.classList.add('fadeOutFast');
+          }
         this.updateProgress(this.minimizeDetail)
         }
 
@@ -202,6 +213,19 @@
     }
 
     renderFull(){
+      if (isIE11) {
+        this.shadowRoot.addEventListener('click', event => {
+          console.log(event.target.id)
+          if (event.target.id === 'minimizeButton') {
+            console.log('clik');
+            event.stopImmediatePropagation();
+            this.minimized = true
+          } else {
+            return
+          }
+        })
+      }
+
       // Get component attributes
       const titleText = this.getAttribute('titleText'),
         triggerId = this.getAttribute('triggerId'),

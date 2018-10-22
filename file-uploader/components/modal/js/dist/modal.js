@@ -15,6 +15,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   var styles = currentDoc.querySelector('#styles');
   var template = currentDoc.querySelector('#template');
   var minimizedTemplate = currentDoc.querySelector('#minimized');
+  var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
   if (w.ShadyCSS) w.ShadyCSS.prepareTemplate(styles, 'upload-modal');
 
@@ -120,24 +121,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         if (name === 'minimized') {
-
           if (!this.minimized) {
-            this.modal.classList.remove('fadeOutFast');
-            modalOverlay.classList.remove('fadeOutFast');
-            minimizedContainer.remove();
-            this.modal.classList.add('fadeInFast');
-            this.modal.classList.remove('hidden');
-            modalOverlay.classList.remove('hidden');
+            if (isIE11) {
+              minimizedContainer.remove();
+              this.modal.classList.remove('hidden');
+              modalOverlay.classList.remove('hidden');
+            } else {
+              minimizedContainer.remove();
+              this.modal.classList.remove('hidden');
+              modalOverlay.classList.remove('hidden');
+              this.modal.classList.remove('fadeOutFast');
+              modalOverlay.classList.remove('fadeOutFast');
+              this.modal.classList.add('fadeInFast');
+            }
           } else {
-
             this.addEventListener('xhrLoading', function (event) {
               _this2.minimizeDetail = event.detail;
               _this2.updateProgress(_this2.minimizeDetail);
             });
             this.renderMinimized();
-            this.modal.classList.remove('slideInDown');
-            this.modal.classList.add('fadeOutFast');
-            modalOverlay.classList.add('fadeOutFast');
+            if (isIE11) {
+              modalOverlay.classList.add('hidden');
+              this.modal.classList.add('hidden');
+            } else {
+              this.modal.classList.remove('slideInDown');
+              this.modal.classList.add('fadeOutFast');
+              modalOverlay.classList.add('fadeOutFast');
+            }
             this.updateProgress(this.minimizeDetail);
           }
 
@@ -187,6 +197,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'renderFull',
       value: function renderFull() {
         var _this4 = this;
+
+        if (isIE11) {
+          this.shadowRoot.addEventListener('click', function (event) {
+            console.log(event.target.id);
+            if (event.target.id === 'minimizeButton') {
+              console.log('clik');
+              event.stopImmediatePropagation();
+              _this4.minimized = true;
+            } else {
+              return;
+            }
+          });
+        }
 
         // Get component attributes
         var titleText = this.getAttribute('titleText'),
