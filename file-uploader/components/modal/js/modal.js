@@ -217,11 +217,12 @@
         this.shadowRoot.addEventListener('click', event => {
           console.log(event.target.id)
           if (event.target.id === 'minimizeButton') {
-            console.log('clik');
             event.stopImmediatePropagation();
             this.minimized = true
-          } else {
-            return
+          }  else if (event.target.id === 'closeButton') {
+            const eventType = event.target.dataset.event;
+            event.stopImmediatePropagation();
+            this.closeModal(eventType);
           }
         })
       }

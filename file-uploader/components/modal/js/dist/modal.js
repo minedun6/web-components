@@ -202,11 +202,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           this.shadowRoot.addEventListener('click', function (event) {
             console.log(event.target.id);
             if (event.target.id === 'minimizeButton') {
-              console.log('clik');
               event.stopImmediatePropagation();
               _this4.minimized = true;
-            } else {
-              return;
+            } else if (event.target.id === 'closeButton') {
+              var eventType = event.target.dataset.event;
+              event.stopImmediatePropagation();
+              _this4.closeModal(eventType);
             }
           });
         }

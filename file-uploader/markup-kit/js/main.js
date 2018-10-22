@@ -123,7 +123,6 @@
 
   // processes and uploads files
   function uploadFile(file) {
-
     const url = 'https://pearson-file-upload.s3.amazonaws.com/',
           xhr = new XMLHttpRequest(),
           formData = new FormData();
@@ -157,6 +156,7 @@
       }
     }
   });
+
 
   attachBtn.addEventListener('click', event => {
     realUploadInput.click();
