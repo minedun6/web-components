@@ -16,3 +16,57 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   font-style: normal;
 }
 
+.coachmark,
+.coachmark::before,
+.coachmark::after
+.coachmark *,
+.coachmark *::before,
+.coachmark *::after {
+  box-sizing: border-box;
+}
+
+.coachmark * + * {
+  margin-top: 4px;
+}
+
+.coachmark {
+  width: 280px;
+  height: auto;
+  padding: 20px 24px;
+  background-color: $iceblue;
+  color: $charcoal;
+  font: 14px/18px 'Open Sans' sans-serif;
+  overflow: auto;
+}
+
+.coachmark h2,
+.coachmark h3 {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.coachmark p {
+  margin-bottom: 0;
+}
+
+.coachmark button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow: visible;
+  text-transform: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.coachmark button.link {
+  float: right;
+  text-decoration: underline;
+  margin-top: 24px;
+}
