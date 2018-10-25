@@ -6,6 +6,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" href="css/style.css" media="all" />
+	<style>
+		.trigger {
+			margin-top: 5rem;
+			display: block;
+		}
+	</style>
 </head>
 
 <body class="">
@@ -16,22 +22,23 @@
 		</symbol>
 	</svg>
 
-	<main id="main" aria-hidden="false">
-		<div class="coachmark" data-dismiss-type="link">
-			<h2>Hello</h2>
-			<p>Lorem ipsum</p>
-			<button type="button" id="dismiss" class="dismiss-link">Dismiss</button>
-		</div>
-		<div class="coachmark" data-dismiss-type="link">
-			<h2>Hello</h2>
-			<p>Lorem ipsum</p>
-			<button type="button" id="dismiss" class="pe-icon--btn">
-				<svg aria-hidden="true" focusable="false" class="pe-icon--remove-sm-18">
-					<use xlink:href="#remove-sm-18"></use>
-				</svg>
-			</button>
-		</div>
-	</main>
+	<button type="button" id="closeBtnCoach" class="trigger">Trigger close button coachmark</button>
+	<button type="button" id="dissmissLinkCoach" class="trigger">Trigger dismiss link coachmark</button>
+
+	<div class="coachmark" data-dismiss-type="link">
+		<h2>Hello</h2>
+		<p>Lorem ipsum</p>
+		<button type="button" id="dismiss" class="dismiss-link">Dismiss</button>
+	</div>
+	<div class="coachmark" data-dismiss-type="link">
+		<h2>Hello</h2>
+		<p>Lorem ipsum</p>
+		<button type="button" id="dismiss" class="pe-icon--btn">
+			<svg aria-hidden="true" focusable="false" class="pe-icon--remove-sm-18">
+				<use xlink:href="#remove-sm-18"></use>
+			</svg>
+		</button>
+	</div>
 
 	<script src="js/dist/main.js"></script>
 </body>
