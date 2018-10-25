@@ -72,6 +72,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   display: inline-block;
   vertical-align: top;
   fill: currentColor;
+  pointer-events: none;
 }
 
 .coachmark svg[class$="18"] {
