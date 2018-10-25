@@ -7,6 +7,8 @@
 
   let focusedBeforeCoachmark;
 
+  // TODO: Handle positioning.
+
   function renderCoachmark(template, dismissType) {
     const clone = template.content.cloneNode(true),
       wrapper = clone.firstElementChild,
