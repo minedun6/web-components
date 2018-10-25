@@ -7,12 +7,12 @@
       svg = doc.querySelector('#remove-sm-18'),
       triggers = doc.querySelectorAll('button[data-type]');
 
+  var focusedBeforeCoachmark = void 0;
+
   function renderCoachmark(template, dismissType) {
     var clone = template.content.cloneNode(true),
         wrapper = clone.firstElementChild,
         dismissBtn = clone.querySelector('#dismiss');
-
-    console.log(wrapper);
 
     wrapper.setAttribute('data-dismiss-type', dismissType);
 
@@ -29,13 +29,23 @@
       dismissBtn.appendChild(svgCopy);
     }
 
+    dismissBtn.addEventListener('click', handleDismissClick);
+
     doc.body.appendChild(clone);
   }
 
   function handleTriggerClick(e) {
     var type = e.target.dataset.type;
 
+
+    focusedBeforeCoachmark = e.target;
+
     renderCoachmark(coachmarkTemplate, type);
+  }
+
+  function handleDismissClick(e) {
+    e.target.parentNode.remove();
+    focusedBeforeCoachmark.focus();
   }
 
   doc.addEventListener('DOMContentLoaded', function () {
