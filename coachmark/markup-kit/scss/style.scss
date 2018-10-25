@@ -1,5 +1,6 @@
-$iceblue: #DAF0ED;
 $charcoal: #252525;
+$iceblue: #DAF0ED;
+$mediumgray: #6a7070;
 $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/fonts' !default;
 @font-face {
   font-family: 'Open Sans';
@@ -67,7 +68,17 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   cursor: pointer;
 }
 
-.coachmark button.dismiss-cross {
+.coachmark svg[class^="pe-icon--"] {
+  display: inline-block;
+  vertical-align: top;
+  fill: currentColor;
+}
+
+.coachmark svg[class$="18"] {
+  width: 18px;
+  height: 18px;
+}
+.coachmark .pe-icon--btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -76,9 +87,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   margin-top: 0;
 }
 
-
-
-.coachmark button.dismiss-link {
+.coachmark .dismiss-link {
   float: right;
   text-decoration: underline;
   margin-top: 24px;
