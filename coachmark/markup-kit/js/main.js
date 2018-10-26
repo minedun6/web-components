@@ -9,14 +9,20 @@
 
   // TODO: Handle positioning.
 
+  function animationEnabled() {
+    return !(
+      w.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      doc.documentElement.hasAttribute('data-prefers-reduced-motion')
+    );
+  }
+
   function renderCoachmark(template, opts) {
     const clone = template.content.cloneNode(true),
       wrapper = clone.firstElementChild,
       dismissBtn = clone.querySelector('#dismiss');
 
-    let { animated, type } = opts;
-
-
+    const type = opts.type;
+    const animated = opts.animated && animationEnabled();
 
     wrapper.setAttribute('data-dismiss-type', type);
 
@@ -33,23 +39,23 @@
       dismissBtn.appendChild(svgCopy);
     }
 
+    dismissBtn.addEventListener('click', handleDismissClick);
+
     doc.body.appendChild(clone);
     
-    dismissBtn.addEventListener('click', handleDismissClick);
     dismissBtn.focus();
 
   }
   function handleTriggerClick(e) {
     focusedBeforeCoachmark = e.target;
-    
+
     const { type, animated } = e.target.dataset;
     const opts = {
       type,
       animated: animated !== undefined
     };
-    
+
     renderCoachmark(coachmarkTemplate, opts);
-    
   }
 
   function handleDismissClick(e) {
