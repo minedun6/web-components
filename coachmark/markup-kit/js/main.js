@@ -19,7 +19,7 @@
   function renderCoachmark(template, opts) {
     const clone = template.content.cloneNode(true);
     const type = opts.type;
-    
+
     wrapper = clone.firstElementChild;
     dismissBtn = clone.querySelector('#dismiss');
     animated = opts.animated && animationEnabled();
@@ -43,14 +43,7 @@
       wrapper.classList.add('animated');
       wrapper.classList.add('fadeInFast');
 
-      wrapper.addEventListener('animationend', function(e) {
-        if (e.animationName === 'fadeInFast') {
-          dismissBtn.focus();
-        }
-        if (e.animationName === 'fadeOutFast') {
-          destroyCoachmark();
-        }
-      });
+      wrapper.addEventListener('animationend', handleAnimationEnd);
     }
 
     dismissBtn.addEventListener('click', handleDismissClick);
@@ -79,10 +72,19 @@
     renderCoachmark(coachmarkTemplate, opts);
   }
 
-  function handleDismissClick(e) {
+  function handleDismissClick() {
     wrapper.classList.add('fadeOutFast');
 
     if (!animated) {
+      destroyCoachmark();
+    }
+  }
+
+  function handleAnimationEnd(e) {
+    if (e.animationName === 'fadeInFast') {
+      dismissBtn.focus();
+    }
+    if (e.animationName === 'fadeOutFast') {
       destroyCoachmark();
     }
   }

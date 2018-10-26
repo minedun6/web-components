@@ -45,14 +45,7 @@
       wrapper.classList.add('animated');
       wrapper.classList.add('fadeInFast');
 
-      wrapper.addEventListener('animationend', function (e) {
-        if (e.animationName === 'fadeInFast') {
-          dismissBtn.focus();
-        }
-        if (e.animationName === 'fadeOutFast') {
-          destroyCoachmark();
-        }
-      });
+      wrapper.addEventListener('animationend', handleAnimationEnd);
     }
 
     dismissBtn.addEventListener('click', handleDismissClick);
@@ -84,10 +77,19 @@
     renderCoachmark(coachmarkTemplate, opts);
   }
 
-  function handleDismissClick(e) {
+  function handleDismissClick() {
     wrapper.classList.add('fadeOutFast');
 
     if (!animated) {
+      destroyCoachmark();
+    }
+  }
+
+  function handleAnimationEnd(e) {
+    if (e.animationName === 'fadeInFast') {
+      dismissBtn.focus();
+    }
+    if (e.animationName === 'fadeOutFast') {
       destroyCoachmark();
     }
   }
