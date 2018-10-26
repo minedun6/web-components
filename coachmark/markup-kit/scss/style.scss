@@ -102,3 +102,58 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   text-decoration: underline;
   margin-top: 24px;
 }
+
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutFast {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeInFast {
+  animation-name: fadeInFast;
+  animation-duration: .3s;
+  transition-timing-function: ease-in;
+}
+
+.fadeOutFast {
+  animation-name: fadeOutFast;
+  animation-duration: .3s;
+  transition-timing-function: ease-out;
+}
+
+@media all and (-ms-high-contrast:none) {
+  .fadeIn {
+    animation-name: fade;
+    animation-duration: .5s;
+  }
+
+  .fadeOut {
+    animation-name: fade;
+    animation-duration: .5s;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .animated {
+    animation: unset !important;
+  }
+}
