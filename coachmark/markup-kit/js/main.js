@@ -48,8 +48,7 @@
           dismissBtn.focus();
         }
         if (e.animationName === 'fadeOutFast') {
-          focusedBeforeCoachmark.focus();
-          wrapper.remove();
+          destroyCoachmark();
         }
       });
     }
@@ -62,6 +61,12 @@
       dismissBtn.focus();
     }
   }
+
+  function destroyCoachmark() {
+    wrapper.remove();
+    focusedBeforeCoachmark.focus();
+  }
+
   function handleTriggerClick(e) {
     focusedBeforeCoachmark = e.target;
 
@@ -78,8 +83,7 @@
     wrapper.classList.add('fadeOutFast');
 
     if (!animated) {
-      focusedBeforeCoachmark.focus();
-      wrapper.remove();
+      destroyCoachmark();
     }
   }
 
