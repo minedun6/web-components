@@ -39,7 +39,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   background-color: $iceblue;
   color: $charcoal;
   font: 14px/18px 'Open Sans' sans-serif;
-  overflow: auto;
+  overflow: visible;
 }
 
 .coachmark h2,
@@ -68,6 +68,11 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   cursor: pointer;
 }
 
+.coachmark button:focus {
+  outline: 2px solid #0b73da;
+  outline-offset: 4px;
+}
+
 .coachmark svg[class^="pe-icon--"] {
   display: inline-block;
   vertical-align: top;
@@ -88,10 +93,12 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   margin-top: 0;
 }
 
+.coachmark .pe-icon--btn:focus {
+  outline-offset: 0;
+}
+
 .coachmark .dismiss-link {
   float: right;
   text-decoration: underline;
   margin-top: 24px;
 }
-
-// TODO: add Pearson focus styles
