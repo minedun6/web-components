@@ -7,7 +7,10 @@
       svg = doc.querySelector('#remove-sm-18'),
       triggers = doc.querySelectorAll('button[data-type]');
 
-  var focusedBeforeCoachmark = void 0;
+  var animated = void 0,
+      wrapper = void 0,
+      dismissBtn = void 0,
+      focusedBeforeCoachmark = void 0;
 
   // TODO: Handle positioning.
 
@@ -16,12 +19,12 @@
   }
 
   function renderCoachmark(template, opts) {
-    var clone = template.content.cloneNode(true),
-        wrapper = clone.firstElementChild,
-        dismissBtn = clone.querySelector('#dismiss');
-
+    var clone = template.content.cloneNode(true);
     var type = opts.type;
-    var animated = opts.animated && animationEnabled();
+
+    wrapper = clone.firstElementChild;
+    dismissBtn = clone.querySelector('#dismiss');
+    animated = opts.animated && animationEnabled();
 
     wrapper.setAttribute('data-dismiss-type', type);
 
@@ -38,11 +41,28 @@
       dismissBtn.appendChild(svgCopy);
     }
 
+    if (animated) {
+      wrapper.classList.add('animated');
+      wrapper.classList.add('fadeInFast');
+
+      wrapper.addEventListener('animationend', function (e) {
+        if (e.animationName === 'fadeInFast') {
+          dismissBtn.focus();
+        }
+        if (e.animationName === 'fadeOutFast') {
+          focusedBeforeCoachmark.focus();
+          wrapper.remove();
+        }
+      });
+    }
+
     dismissBtn.addEventListener('click', handleDismissClick);
 
     doc.body.appendChild(clone);
 
-    dismissBtn.focus();
+    if (!animated) {
+      dismissBtn.focus();
+    }
   }
   function handleTriggerClick(e) {
     focusedBeforeCoachmark = e.target;
@@ -60,8 +80,12 @@
   }
 
   function handleDismissClick(e) {
-    focusedBeforeCoachmark.focus();
-    e.target.parentNode.remove();
+    wrapper.classList.add('fadeOutFast');
+
+    if (!animated) {
+      focusedBeforeCoachmark.focus();
+      wrapper.remove();
+    }
   }
 
   doc.addEventListener('DOMContentLoaded', function () {
