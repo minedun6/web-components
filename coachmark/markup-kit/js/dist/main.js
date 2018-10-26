@@ -11,19 +11,23 @@
 
   // TODO: Handle positioning.
 
-  function renderCoachmark(template, dismissType) {
+  function renderCoachmark(template, opts) {
     var clone = template.content.cloneNode(true),
         wrapper = clone.firstElementChild,
         dismissBtn = clone.querySelector('#dismiss');
 
-    wrapper.setAttribute('data-dismiss-type', dismissType);
+    var animated = opts.animated,
+        type = opts.type;
 
-    if (dismissType === 'link') {
+
+    wrapper.setAttribute('data-dismiss-type', type);
+
+    if (type === 'link') {
       dismissBtn.classList.add('dismiss-link');
       dismissBtn.textContent = 'Dismiss';
     }
 
-    if (dismissType === 'button') {
+    if (type === 'button') {
       var svgCopy = svg.cloneNode(true);
       svgCopy.removeAttribute('style');
 
@@ -37,12 +41,18 @@
     dismissBtn.focus();
   }
   function handleTriggerClick(e) {
-    var type = e.target.dataset.type;
-
-
     focusedBeforeCoachmark = e.target;
 
-    renderCoachmark(coachmarkTemplate, type);
+    var _e$target$dataset = e.target.dataset,
+        type = _e$target$dataset.type,
+        animated = _e$target$dataset.animated;
+
+    var opts = {
+      type: type,
+      animated: animated !== undefined
+    };
+
+    renderCoachmark(coachmarkTemplate, opts);
   }
 
   function handleDismissClick(e) {
