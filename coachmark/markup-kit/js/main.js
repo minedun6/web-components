@@ -29,11 +29,12 @@
       dismissBtn.appendChild(svgCopy);
     }
 
-    dismissBtn.addEventListener('click', handleDismissClick);
-
     doc.body.appendChild(clone);
-  }
+    
+    dismissBtn.addEventListener('click', handleDismissClick);
+    dismissBtn.focus();
 
+  }
   function handleTriggerClick(e) {
     const { type } = e.target.dataset;
 
@@ -43,8 +44,8 @@
   }
 
   function handleDismissClick(e) {
-    e.target.parentNode.remove();
     focusedBeforeCoachmark.focus();
+    e.target.parentNode.remove();
   }
 
   doc.addEventListener('DOMContentLoaded', function() {
