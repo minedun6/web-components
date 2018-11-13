@@ -1,0 +1,132 @@
+// only import the necessary modules outlined in the spec you are working on, do not load all of elements
+// These are the base modules necessary for loading the rest of the component styles
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/functions";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/normalize";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/variables";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/color";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/html-tags";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/font-face";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/type";
+
+
+/*Tooltip Setup*/
+.container-tooltip {
+    width: 280px;
+    height: 200px;
+    margin: 25px 0 25px 30px;
+    float: left;
+    h4 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+}
+
+.pe-icon--calendar-24 {
+	color: $neutral-two;
+}
+
+/*TOOLTIP OVER TEXT*/
+
+/*Text Button Setup*/
+.tooltip-text-btn {
+    background: none;
+    border: 0;
+}
+
+.date-picker-icon {
+	background-image: url(icons/calendar-18.svg), none;
+}
+
+/*Tooltip Text*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #4a4a4a;
+        color: $primary-three;
+        text-align: center;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;        
+    }
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltiptext.right {
+    top: -5px;
+    left: 105%;
+}
+
+.tooltiptext.right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #4a4a4a transparent transparent;
+}
+
+.tooltiptext.left {
+    top: -5px;
+    right: 105%;
+}
+
+.tooltiptext.left::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #4a4a4a;
+}
+
+.tooltiptext.top {
+    width: 120px;
+    bottom: 100%;
+    left: calc(50% - 5px);
+    margin-left: -60px;
+}
+
+.tooltiptext.top::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #4a4a4a transparent transparent transparent;
+}
+
+.tooltiptext.bottom {
+    width: 120px;
+    top: 100%;
+    left: calc(50% - 7px);
+    margin-left: -60px;
+}
+
+.tooltiptext.bottom::after{
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #4a4a4a transparent;
+}
