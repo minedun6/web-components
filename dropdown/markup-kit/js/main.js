@@ -65,14 +65,16 @@
     }
   }, true);
 
-  focusableElements.forEach((button, index) => {
+  Array.prototype.forEach.call(focusableElements, (button, index) => {
     button.setAttribute('data-index', index);
     button.addEventListener('click', event => {
       const isChecked = button.getAttribute('aria-checked'),
         multiSelect = dropdownMenu.hasAttribute('multiselect');
 
       if (multiSelect === false) {
-        event.target.setAttribute('aria-checked', 'false');
+        Array.prototype.forEach.call(focusableElements, element => {
+          element.setAttribute('aria-checked', 'false');
+        });
         button.setAttribute('aria-checked', 'true');
         closeDropdown();
       } else {
@@ -119,5 +121,6 @@
         lastFocusableElement.focus();
       }
     });
-  });
+  })
+
 })();
