@@ -5,9 +5,25 @@
     svg = doc.querySelector('#remove-sm-18'),
     triggers = doc.querySelectorAll('button[data-type]');
 
-  let animated, wrapper, dismissBtn, focusedBeforeCoachmark;
+  let animated, coachmarkEl, dismissBtn, focusedBeforeCoachmark;
 
   // TODO: Handle positioning.
+
+  function setPosition(el, anchor) {
+    const anchorRect = anchor.getBoundingClientRect();
+    const coachPosition = {
+      top: anchorRect.top + w.pageYOffset,
+      left: anchorRect.left + w.pageXOffset,
+      bottom: anchorRect.bottom + w.pageYOffset,
+      right: anchorRect.right + w.pageXOffset,
+      get computedTop() {
+        return this.top - el.scrollHeight;
+      }
+    };
+
+    el.style.left = coachPosition.left + 'px';
+    el.style.top = coachPosition.computedTop + 'px';
+  }
 
   function animationEnabled() {
     return !(
@@ -20,11 +36,11 @@
     const clone = template.content.cloneNode(true);
     const type = opts.type;
 
-    wrapper = clone.firstElementChild;
+    coachmarkEl = clone.firstElementChild;
     dismissBtn = clone.querySelector('#dismiss');
     animated = opts.animated && animationEnabled();
 
-    wrapper.setAttribute('data-dismiss-type', type);
+    coachmarkEl.setAttribute('data-dismiss-type', type);
 
     if (type === 'link') {
       dismissBtn.classList.add('dismiss-link');
@@ -40,15 +56,16 @@
     }
 
     if (animated) {
-      wrapper.classList.add('animated');
-      wrapper.classList.add('fadeInFast');
+      coachmarkEl.classList.add('animated');
+      coachmarkEl.classList.add('fadeInFast');
 
-      wrapper.addEventListener('animationend', handleAnimationEnd);
+      coachmarkEl.addEventListener('animationend', handleAnimationEnd);
     }
 
     dismissBtn.addEventListener('click', handleDismissClick);
 
     doc.body.appendChild(clone);
+    setPosition(coachmarkEl, focusedBeforeCoachmark);
 
     if (!animated) {
       dismissBtn.focus();
@@ -56,7 +73,7 @@
   }
 
   function destroyCoachmark() {
-    wrapper.remove();
+    coachmarkEl.remove();
     focusedBeforeCoachmark.focus();
   }
 
@@ -73,7 +90,7 @@
   }
 
   function handleDismissClick() {
-    wrapper.classList.add('fadeOutFast');
+    coachmarkEl.classList.add('fadeOutFast');
 
     if (!animated) {
       destroyCoachmark();
