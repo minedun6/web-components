@@ -14,9 +14,10 @@
 
   let animated, coachmarkEl, dismissBtn, focusedBeforeCoachmark;
 
-  // TODO: Handle positioning.
-
+  
   function setPosition(el, anchor) {
+
+    // TODO: Handle complex position scenarios
     const anchorRect = anchor.getBoundingClientRect();
     const coachPosition = {
       top: anchorRect.top + w.pageYOffset,
