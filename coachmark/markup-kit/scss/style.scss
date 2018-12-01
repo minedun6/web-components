@@ -42,8 +42,37 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   overflow: visible;
 }
 
-.coachmark h2,
-.coachmark h3 {
+.coachmark-content {
+  position: relative;
+}
+
+.coachmark-content:after, .coachmark-content:before {
+	top: calc(100% + 20px);
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.coachmark-content:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: $iceblue;
+	border-width: 8px;
+  margin-left: -8px;
+}
+
+.coachmark-content:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: $iceblue;;
+	border-width: 14px;
+	margin-left: -14px;
+}
+
+.coachmark-content h2,
+.coachmark-content h3 {
   font-family: inherit;
   font-size: inherit;
   font-weight: 600;
@@ -52,11 +81,11 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   margin-bottom: 0;
 }
 
-.coachmark p {
+.coachmark-content p {
   margin-bottom: 0;
 }
 
-.coachmark button {
+.coachmark-content button {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -68,37 +97,36 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   cursor: pointer;
 }
 
-.coachmark button:focus {
+.coachmark-content button:focus {
   outline: 2px solid #0b73da;
   outline-offset: 4px;
 }
 
-.coachmark svg[class^="pe-icon--"] {
+.coachmark-content svg[class^="pe-icon--"] {
   display: inline-block;
   vertical-align: top;
   fill: currentColor;
   pointer-events: none;
 }
 
-.coachmark svg[class$="18"] {
+.coachmark-content svg[class$="18"] {
   width: 18px;
   height: 18px;
 }
-.coachmark .pe-icon--btn {
+.coachmark-content .pe-icon--btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -20px;
+  right: -20px;
   width: 44px;
   height: 44px;
   margin-top: 0;
 }
 
-.coachmark .pe-icon--btn:focus {
+.coachmark-content .pe-icon--btn:focus {
   outline-offset: 0;
 }
 
-.coachmark .dismiss-link {
-  float: right;
+.coachmark-content .dismiss-link {
   text-decoration: underline;
   margin-top: 24px;
 }
