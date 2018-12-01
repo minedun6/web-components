@@ -23,8 +23,8 @@
     );
   }
 
-  const coachmarkTemplate = doc.querySelector('#template'),
-    svg = doc.querySelector('#remove-sm-18');
+  const template = doc.querySelector('#template'),
+    closeImg = doc.querySelector('#remove-sm-18');
 
 
   /**
@@ -78,7 +78,7 @@
       wrap(coachmark.dismissBtn, pseudoFloatWrapper);
     }
     if (type === 'button') {
-      let svgCopy = svg.cloneNode(true);
+      let svgCopy = closeImg.cloneNode(true);
       svgCopy.removeAttribute('style');
 
       coachmark.dismissBtn.classList.add('pe-icon--btn');
@@ -116,7 +116,7 @@
       animated: animated !== undefined
     };
 
-    renderCoachmark(coachmarkTemplate, opts);
+    renderCoachmark(template, opts);
   }
 
   function handleDismissClick() {
