@@ -102,14 +102,14 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   outline-offset: 4px;
 }
 
-.coachmark-content svg[class^="pe-icon--"] {
+.coachmark-content img[class^="pe-icon--"] {
   display: inline-block;
   vertical-align: top;
   fill: currentColor;
   pointer-events: none;
 }
 
-.coachmark-content svg[class$="18"] {
+.coachmark-content img[class$="18"] {
   width: 18px;
   height: 18px;
 }
