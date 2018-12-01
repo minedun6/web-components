@@ -1,6 +1,13 @@
 (function(w, doc) {
   'use strict';
 
+  function animationEnabled() {
+    return !(
+      w.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      doc.documentElement.hasAttribute('data-prefers-reduced-motion')
+    );
+  }
+
   const coachmarkTemplate = doc.querySelector('#template'),
     svg = doc.querySelector('#remove-sm-18'),
     triggers = doc.querySelectorAll('button[data-type]');
@@ -23,13 +30,6 @@
 
     el.style.left = coachPosition.left + 'px';
     el.style.top = coachPosition.computedTop + 'px';
-  }
-
-  function animationEnabled() {
-    return !(
-      w.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      doc.documentElement.hasAttribute('data-prefers-reduced-motion')
-    );
   }
 
   function renderCoachmark(template, opts) {
