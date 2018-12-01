@@ -1,6 +1,21 @@
 (function(w, doc) {
   'use strict';
 
+  /**
+   * Wraps an element inside another.
+   * @param {HTMLElement} el The element to wrap
+   * @param {HTMLElement} wrapper The element to be wrapped
+   */
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
+  /**
+   * Determine if animations should run.
+   * Checks for `prefers-reduced-motion media query`, 
+   * as well as `data-prefers-reduced-motion` attribute on the html element.
+   */
   function animationEnabled() {
     return !(
       w.matchMedia('(prefers-reduced-motion: reduce)').matches ||
@@ -44,11 +59,15 @@
     coachmarkEl.setAttribute('data-dismiss-type', type);
 
     if (type === 'link') {
+      const pseudoFloatWrapper = doc.createElement('div');
+      pseudoFloatWrapper.style.textAlign = 'right';
+
       dismissBtn.classList.add('dismiss-link');
       dismissBtn.textContent = 'Dismiss';
-    }
 
-    if (type === 'button') {
+      wrap(dismissBtn, pseudoFloatWrapper);
+    }
+    if (type === 'button') { 
       let svgCopy = svg.cloneNode(true);
       svgCopy.removeAttribute('style');
 
