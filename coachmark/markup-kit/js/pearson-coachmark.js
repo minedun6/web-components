@@ -26,14 +26,22 @@
   const coachmarkTemplate = doc.querySelector('#template'),
     svg = doc.querySelector('#remove-sm-18');
 
+
+  /**
+   * @property {HTMLElement} mainEl The root coachmark element
+   * @property {HTMLElement} dismissBtn The button that closes the coachmark 
+   * @property {HTMLElement} trigger The element that opened the coachmark
+   * @property {Boolean} isAnimated Whether transitions animate
+   */
   const coachmark = {
-    main: undefined,
+    mainEl: undefined,
     dismissBtn: undefined,
     trigger: undefined,
     isAnimated: undefined
   };
 
   function setPosition(el, anchor) {
+
     // TODO: Handle complex position scenarios
     const anchorRect = anchor.getBoundingClientRect();
     const coachPosition = {
