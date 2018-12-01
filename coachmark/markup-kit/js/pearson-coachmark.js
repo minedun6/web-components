@@ -13,7 +13,7 @@
 
   /**
    * Determine if animations should run.
-   * Checks for `prefers-reduced-motion media query`, 
+   * Checks for `prefers-reduced-motion media query`,
    * as well as `data-prefers-reduced-motion` attribute on the html element.
    */
   function animationEnabled() {
@@ -24,14 +24,16 @@
   }
 
   const coachmarkTemplate = doc.querySelector('#template'),
-    svg = doc.querySelector('#remove-sm-18'),
-    triggers = doc.querySelectorAll('button[data-type]');
+    svg = doc.querySelector('#remove-sm-18');
 
-  let animated, coachmarkEl, dismissBtn, focusedBeforeCoachmark;
+  const coachmark = {
+    main: undefined,
+    dismissBtn: undefined,
+    trigger: undefined,
+    isAnimated: undefined
+  };
 
-  
   function setPosition(el, anchor) {
-
     // TODO: Handle complex position scenarios
     const anchorRect = anchor.getBoundingClientRect();
     const coachPosition = {
@@ -52,53 +54,53 @@
     const clone = template.content.cloneNode(true);
     const type = opts.type;
 
-    coachmarkEl = clone.firstElementChild;
-    dismissBtn = clone.querySelector('#dismiss');
-    animated = opts.animated && animationEnabled();
+    coachmark.mainEl = clone.firstElementChild;
+    coachmark.dismissBtn = clone.querySelector('#dismiss');
+    coachmark.isAnimated = opts.animated && animationEnabled();
 
-    coachmarkEl.setAttribute('data-dismiss-type', type);
+    coachmark.mainEl.setAttribute('data-dismiss-type', type);
 
     if (type === 'link') {
       const pseudoFloatWrapper = doc.createElement('div');
       pseudoFloatWrapper.style.textAlign = 'right';
 
-      dismissBtn.classList.add('dismiss-link');
-      dismissBtn.textContent = 'Dismiss';
+      coachmark.dismissBtn.classList.add('dismiss-link');
+      coachmark.dismissBtn.textContent = 'Dismiss';
 
-      wrap(dismissBtn, pseudoFloatWrapper);
+      wrap(coachmark.dismissBtn, pseudoFloatWrapper);
     }
-    if (type === 'button') { 
+    if (type === 'button') {
       let svgCopy = svg.cloneNode(true);
       svgCopy.removeAttribute('style');
 
-      dismissBtn.classList.add('pe-icon--btn');
-      dismissBtn.appendChild(svgCopy);
+      coachmark.dismissBtn.classList.add('pe-icon--btn');
+      coachmark.dismissBtn.appendChild(svgCopy);
     }
 
-    if (animated) {
-      coachmarkEl.classList.add('animated');
-      coachmarkEl.classList.add('fadeInFast');
+    if (coachmark.isAnimated) {
+      coachmark.mainEl.classList.add('coachmark.isAnimated');
+      coachmark.mainEl.classList.add('fadeInFast');
 
-      coachmarkEl.addEventListener('animationend', handleAnimationEnd);
+      coachmark.mainEl.addEventListener('animationend', handleAnimationEnd);
     }
 
-    dismissBtn.addEventListener('click', handleDismissClick);
+    coachmark.dismissBtn.addEventListener('click', handleDismissClick);
 
     doc.body.appendChild(clone);
-    setPosition(coachmarkEl, focusedBeforeCoachmark);
+    setPosition(coachmark.mainEl, coachmark.trigger);
 
-    if (!animated) {
-      dismissBtn.focus();
+    if (!coachmark.isAnimated) {
+      coachmark.dismissBtn.focus();
     }
   }
 
   function destroyCoachmark() {
-    coachmarkEl.remove();
-    focusedBeforeCoachmark.focus();
+    coachmark.mainEl.remove();
+    coachmark.trigger.focus();
   }
 
   function handleTriggerClick(e) {
-    focusedBeforeCoachmark = e.target;
+    coachmark.trigger = e.target;
 
     const { type, animated } = e.target.dataset;
     const opts = {
@@ -110,16 +112,16 @@
   }
 
   function handleDismissClick() {
-    coachmarkEl.classList.add('fadeOutFast');
+    coachmark.mainEl.classList.add('fadeOutFast');
 
-    if (!animated) {
+    if (!coachmark.isAnimated) {
       destroyCoachmark();
     }
   }
 
   function handleAnimationEnd(e) {
     if (e.animationName === 'fadeInFast') {
-      dismissBtn.focus();
+      coachmark.dismissBtn.focus();
     }
     if (e.animationName === 'fadeOutFast') {
       destroyCoachmark();
@@ -127,6 +129,8 @@
   }
 
   doc.addEventListener('DOMContentLoaded', function() {
+    const triggers = doc.querySelectorAll('button[data-type]');
+
     triggers.forEach(function(trigger) {
       trigger.addEventListener('click', handleTriggerClick);
     });
