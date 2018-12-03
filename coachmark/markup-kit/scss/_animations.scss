@@ -1,0 +1,54 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeInFast {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.fadeOutFast {
+  animation-name: fadeOut;
+  animation-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+@media all and (-ms-high-contrast: none) {
+  .fadeInFast {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+  }
+
+  .fadeOutFast {
+    animation-name: fadeOut;
+    animation-duration: 0.5s;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .animated {
+    animation: unset !important;
+  }
+}
