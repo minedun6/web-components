@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Pearson Web Component</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- loads web component polyfills -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+	<!-- load the web component script -->
+	<script src="js/dist/pearson-dropdown.js"></script>
+
+</head>
+
+<body>
+	<pearson-dropdown title="Hello I'm a title" buttonText="I'm a shadow button!">
+		<p>Hello, im an HTML elmement passed into the component</p>
+	</pearson-dropdown>
+</body>
+
+</html>
