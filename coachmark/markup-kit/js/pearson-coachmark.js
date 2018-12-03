@@ -154,10 +154,11 @@
   }
 
   function handleAnimationEnd(e) {
-    if (e.animationName === 'fadeIn') {
+    const { animationName } = e;
+    if (animationName === 'fadeIn') {
       coachmark.dismissBtn.focus();
     }
-    if (e.animationName === 'fadeOut') {
+    if (animationName === 'fadeOut') {
       destroyCoachmark();
     }
   }

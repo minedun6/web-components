@@ -19,7 +19,8 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
 
 .coachmark,
 .coachmark::before,
-.coachmark::after .coachmark *,
+.coachmark::after,
+.coachmark *,
 .coachmark *::before,
 .coachmark *::after {
   box-sizing: border-box;
