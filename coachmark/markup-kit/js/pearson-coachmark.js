@@ -36,8 +36,8 @@
 			<div class="coachmark-content">
 				<h2 id="coachmark-title">Hello</h2>
         <p id="coachmark-body">Lorem ipsum</p>
-        </div>
 				<button type="button" id="dismiss"></button>
+        </div>
 		</div>
   `;
   const CLOSE_IMG_ICON = `
@@ -59,8 +59,8 @@
   const coachmark = {
     trigger: undefined,
     mainEl: undefined,
-    body: undefined,
-    title: undefined,
+    bodyEl: undefined,
+    titleEl: undefined,
     dismissBtn: undefined,
     isAnimated: undefined
   };
@@ -85,13 +85,17 @@
 
   function renderCoachmark(template, opts) {
     const clone = template.content.cloneNode(true);
-    const type = opts.type;
+    const { body, title, type } = opts;
 
     coachmark.mainEl = clone.firstElementChild;
+    coachmark.titleEl = clone.querySelector('#coachmark-title');
+    coachmark.bodyEl = clone.querySelector('#coachmark-body');
     coachmark.dismissBtn = clone.querySelector('#dismiss');
     coachmark.isAnimated = opts.animated && animationEnabled();
 
     coachmark.mainEl.setAttribute('data-dismiss-type', type);
+    coachmark.titleEl.textContent = title;
+    coachmark.bodyEl.textContent = body;
 
     if (type === 'link') {
       const pseudoFloatWrapper = doc.createElement('div');
@@ -104,11 +108,11 @@
     }
     if (type === 'button') {
       // TODO: change to input type=image
-
-      coachmark.dismissBtn.setAttribute('aria-label', 'Close coachmark');
       coachmark.dismissBtn.classList.add('pe-icon--btn');
       coachmark.dismissBtn.innerHTML = CLOSE_IMG_ICON;
     }
+
+    coachmark.dismissBtn.setAttribute('aria-label', `Close ${title}`);
 
     if (coachmark.isAnimated) {
       coachmark.mainEl.classList.add('coachmark.isAnimated');
@@ -135,7 +139,7 @@
   function handleTriggerClick(e) {
     coachmark.trigger = e.target;
 
-    const opts = e.targetdataset;
+    const opts = e.target.dataset;
     opts.animated = opts.animated !== undefined;
 
     renderCoachmark(template, opts);
