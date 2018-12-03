@@ -115,7 +115,7 @@
     coachmark.dismissBtn.setAttribute('aria-label', `Close ${title}`);
 
     if (coachmark.isAnimated) {
-      coachmark.mainEl.classList.add('coachmark.isAnimated');
+      coachmark.mainEl.classList.add('animated');
       coachmark.mainEl.classList.add('fadeInFast');
 
       coachmark.mainEl.addEventListener('animationend', handleAnimationEnd);
@@ -154,10 +154,10 @@
   }
 
   function handleAnimationEnd(e) {
-    if (e.animationName === 'fadeInFast') {
+    if (e.animationName === 'fadeIn') {
       coachmark.dismissBtn.focus();
     }
-    if (e.animationName === 'fadeOutFast') {
+    if (e.animationName === 'fadeOut') {
       destroyCoachmark();
     }
   }

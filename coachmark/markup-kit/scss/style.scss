@@ -131,7 +131,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   margin-top: 24px;
 }
 
-@keyframes fadeInFast {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -141,7 +141,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   }
 }
 
-@keyframes fadeOutFast {
+@keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -157,25 +157,25 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
 }
 
 .fadeInFast {
-  animation-name: fadeInFast;
+  animation-name: fadeIn;
   animation-duration: 0.3s;
   transition-timing-function: ease-in;
 }
 
 .fadeOutFast {
-  animation-name: fadeOutFast;
+  animation-name: fadeOut;
   animation-duration: 0.3s;
   transition-timing-function: ease-out;
 }
 
 @media all and (-ms-high-contrast: none) {
-  .fadeIn {
-    animation-name: fade;
+  .fadeInFast {
+    animation-name: fadeIn;
     animation-duration: 0.5s;
   }
 
-  .fadeOut {
-    animation-name: fade;
+  .fadeOutFast {
+    animation-name: fadeOut;
     animation-duration: 0.5s;
   }
 }
