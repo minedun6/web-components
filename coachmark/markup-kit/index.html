@@ -6,8 +6,28 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="./dist/css/style.css" media="all" />
     <style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html, body {
+				padding: 0;
+				margin: 0;
+				height: 100%;
+			}
+
+			html {
+				font: 100%/1.25 sans-serif;
+			}
+
+			body {
+				width: 90%;
+				max-width: 40rem;
+				margin: 5rem auto;
+			}
+
       .trigger {
-        margin-top: 5rem;
+        margin-top: 15rem;
         display: block;
       }
     </style>
@@ -15,6 +35,7 @@
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
   </head>
   <body>
+		<h1>Pearson Coachmarks</h1>
     <button
       type="button"
       id="closeBtnCoach"
