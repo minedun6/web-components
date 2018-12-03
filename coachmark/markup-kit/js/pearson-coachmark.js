@@ -49,15 +49,19 @@
 
 
   /**
-   * @property {HTMLElement} mainEl The root coachmark element
-   * @property {HTMLElement} dismissBtn The button that closes the coachmark 
    * @property {HTMLElement} trigger The element that opened the coachmark
+   * @property {HTMLElement} mainEl The root coachmark element
+   * @property {HTMLElement} title The title element
+   * @property {HTMLElement} body The body element containing the message
+   * @property {HTMLElement} dismissBtn The button that closes the coachmark 
    * @property {Boolean} isAnimated Whether transitions animate
    */
   const coachmark = {
-    mainEl: undefined,
-    dismissBtn: undefined,
     trigger: undefined,
+    mainEl: undefined,
+    body: undefined,
+    title: undefined,
+    dismissBtn: undefined,
     isAnimated: undefined
   };
 
@@ -131,9 +135,9 @@
   function handleTriggerClick(e) {
     coachmark.trigger = e.target;
 
-    const opts = e.target.dataset;
+    const opts = e.targetdataset;
     opts.animated = opts.animated !== undefined;
-    
+
     renderCoachmark(template, opts);
   }
 
