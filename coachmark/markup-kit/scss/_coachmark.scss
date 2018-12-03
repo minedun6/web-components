@@ -92,6 +92,7 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  color: inherit;
   overflow: visible;
   text-transform: none;
   background: transparent;
@@ -105,17 +106,6 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   outline-offset: 4px;
 }
 
-.coachmark-content img[class^='pe-icon--'] {
-  display: inline-block;
-  vertical-align: top;
-  fill: currentColor;
-  pointer-events: none;
-}
-
-.coachmark-content img[class$='18'] {
-  width: 18px;
-  height: 18px;
-}
 .coachmark-content .pe-icon--btn {
   position: absolute;
   top: -20px;
@@ -132,4 +122,16 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
 .coachmark-content .dismiss-link {
   text-decoration: underline;
   margin-top: 24px;
+}
+
+.coachmark-content img[class^='pe-icon--'] {
+  display: inline-block;
+  vertical-align: top;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.coachmark-content img[class$='18'] {
+  width: 18px;
+  height: 18px;
 }
