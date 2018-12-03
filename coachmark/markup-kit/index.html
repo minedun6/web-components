@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Pearson Coachmarks</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="./dist/css/style.css" media="all" />
+    <style>
+      .trigger {
+        margin-top: 5rem;
+        display: block;
+      }
+    </style>
 
-<head>
-	<title>Pearson Coachmarks</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" href="./dist/css/style.css" media="all" />
-	<style>
-		.trigger {
-			margin-top: 5rem;
-			display: block;
-		}
-	</style>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+  </head>
+  <body>
+    <button
+      type="button"
+      id="closeBtnCoach"
+      class="trigger"
+      data-title="Hello"
+      data-body="how are you"
+      data-type="button"
+      data-animated
+    >
+      Trigger close button coachmark
+    </button>
+    <button
+      type="button"
+      id="dissmissLinkCoach"
+      class="trigger"
+      data-title="Coacmark with link-style button"
+      data-body="I am a coachmark with a link-style button"
+      data-type="link"
+      data-animated
+    >
+      Trigger dismiss link coachmark
+    </button>
 
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
-</head>
-<body>
-	<button type="button" id="closeBtnCoach" class="trigger" data-title="Hello" data-body="how are you" data-type="button" data-animated>Trigger close button coachmark</button>
-	<button type="button"id="dissmissLinkCoach" class="trigger" data-title="Coacmark with link-style button" data-body="I am a coachmark with a link-style button" data-type="link" data-animated>Trigger dismiss link coachmark</button>
-
-	<script src="./dist/js/pearson-coachmark.js"></script>
-</body>
-
+    <script src="./dist/js/pearson-coachmark.js"></script>
+  </body>
 </html>
