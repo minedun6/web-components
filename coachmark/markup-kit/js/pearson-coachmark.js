@@ -25,12 +25,19 @@
 
   const template = doc.createElement('template');
   template.innerHTML = `
-  <div id="coachmark" class="coachmark" data-dismiss-type="">
+  <div 
+    id="coachmark"
+    class="coachmark" 
+    role="dialog"
+    aria-labelledby="coachmark-title"
+    aria-describedby="coachmark-body"
+    data-dismiss-type=""
+    >
 			<div class="coachmark-content">
-				<h2>Hello</h2>
-				<p>Lorem ipsum</p>
+				<h2 id="coachmark-title">Hello</h2>
+        <p id="coachmark-body">Lorem ipsum</p>
+        </div>
 				<button type="button" id="dismiss"></button>
-			</div>
 		</div>
   `;
   const CLOSE_IMG_ICON = `
