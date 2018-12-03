@@ -6,6 +6,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width" />
 
+	<style>
+		html,
+		body {
+			margin: 0;
+		}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/fonts/opensans-regular.woff2') format('woff2'),
+    url('https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/fonts/opensans-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+	</style>
+
 	<!-- loads web component polyfills -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
@@ -15,7 +30,6 @@
 	<script src="js/dist/pearson-dropdown.js"></script>
 
 </head>
-
 <body>
 	<pearson-dropdown title="Hello I'm a title" buttonText="I'm a shadow button!">
 		<p>Hello, im an HTML elmement passed into the component</p>
