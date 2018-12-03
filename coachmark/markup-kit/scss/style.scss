@@ -1,26 +1,25 @@
 $charcoal: #252525;
-$iceblue: #DAF0ED;
+$iceblue: #daf0ed;
 $mediumgray: #6a7070;
 $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/fonts' !default;
 @font-face {
   font-family: 'Open Sans';
   src: url('#{$pe-fonts-path}/opensans-regular.woff2') format('woff2'),
-       url('#{$pe-fonts-path}/opensans-regular.woff') format('woff');
+    url('#{$pe-fonts-path}/opensans-regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Open Sans';
   src: url('#{$pe-fonts-path}/opensans-semibold.woff2') format('woff2'),
-       url('#{$pe-fonts-path}/opensans-semibold.woff') format('woff');
+    url('#{$pe-fonts-path}/opensans-semibold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
 }
 
 .coachmark,
 .coachmark::before,
-.coachmark::after
-.coachmark *,
+.coachmark::after .coachmark *,
 .coachmark *::before,
 .coachmark *::after {
   box-sizing: border-box;
@@ -46,29 +45,30 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   position: relative;
 }
 
-.coachmark-content:after, .coachmark-content:before {
-	top: calc(100% + 20px);
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
+.coachmark-content:after,
+.coachmark-content:before {
+  top: calc(100% + 20px);
+  left: 50%;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 .coachmark-content:after {
-	border-color: rgba(136, 183, 213, 0);
-	border-top-color: $iceblue;
-	border-width: 8px;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $iceblue;
+  border-width: 8px;
   margin-left: -8px;
 }
 
 .coachmark-content:before {
-	border-color: rgba(194, 225, 245, 0);
-	border-top-color: $iceblue;;
-	border-width: 14px;
-	margin-left: -14px;
+  border-color: rgba(194, 225, 245, 0);
+  border-top-color: $iceblue;
+  border-width: 14px;
+  margin-left: -14px;
 }
 
 .coachmark-content h2,
@@ -102,14 +102,14 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
   outline-offset: 4px;
 }
 
-.coachmark-content img[class^="pe-icon--"] {
+.coachmark-content img[class^='pe-icon--'] {
   display: inline-block;
   vertical-align: top;
   fill: currentColor;
   pointer-events: none;
 }
 
-.coachmark-content img[class$="18"] {
+.coachmark-content img[class$='18'] {
   width: 18px;
   height: 18px;
 }
@@ -158,25 +158,25 @@ $pe-fonts-path: 'https://unpkg.com/@pearson-components/elements-sdk@1.6.1/build/
 
 .fadeInFast {
   animation-name: fadeInFast;
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   transition-timing-function: ease-in;
 }
 
 .fadeOutFast {
   animation-name: fadeOutFast;
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   transition-timing-function: ease-out;
 }
 
-@media all and (-ms-high-contrast:none) {
+@media all and (-ms-high-contrast: none) {
   .fadeIn {
     animation-name: fade;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
   }
 
   .fadeOut {
     animation-name: fade;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
   }
 }
 
