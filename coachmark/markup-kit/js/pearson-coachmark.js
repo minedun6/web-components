@@ -131,12 +131,9 @@
   function handleTriggerClick(e) {
     coachmark.trigger = e.target;
 
-    const { type, animated } = e.target.dataset;
-    const opts = {
-      type,
-      animated: animated !== undefined
-    };
-
+    const opts = e.target.dataset;
+    opts.animated = opts.animated !== undefined;
+    
     renderCoachmark(template, opts);
   }
 
