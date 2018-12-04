@@ -58,12 +58,16 @@
 
 
   /**
+   * Colletion of global information about the coachmark,
+   * will be filled out as code runs.
    * @property {HTMLElement} trigger The element that opened the coachmark
    * @property {HTMLElement} mainEl The root coachmark element
    * @property {HTMLElement} title The title element
    * @property {HTMLElement} body The body element containing the message
    * @property {HTMLElement} dismissBtn The button that closes the coachmark 
    * @property {Boolean} isAnimated Whether transitions animate
+   * @see renderCoachmark
+   * @see handleTriggerClick
    */
   const coachmark = {
     trigger: undefined,
@@ -116,7 +120,6 @@
       wrap(coachmark.dismissBtn, pseudoFloatWrapper);
     }
     if (type === 'button') {
-      // TODO: change to input type=image
       coachmark.dismissBtn.classList.add('pe-icon--btn');
       coachmark.dismissBtn.innerHTML = CLOSE_SVG;
     }
