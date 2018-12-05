@@ -55,13 +55,14 @@ $pe-color-white-gray: #f5f5f5;
   top: -27px;
   z-index: 10;
   overflow: hidden;
-  span {
-    width: 100%;
-    text-align: center;
-  }
-  button {
-    margin-left: 12px;
-  }
+}
+
+.mobile-group span {
+  width: 100%;
+  text-align: center;
+}
+.mobile-group button {
+  margin-left: 12px;
 }
 
 .dropdown-menu {
