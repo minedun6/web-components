@@ -123,15 +123,6 @@ $pe-color-white-gray: #f5f5f5;
         }
       }
     }
-    &.divider {
-      border-bottom: 1px solid $pe-color-concrete;
-      padding-bottom: 8px;
-      margin: 0 25px;
-
-      + li {
-        margin-top: 8px;
-      }
-    }
   }
 }
 
