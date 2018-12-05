@@ -61,6 +61,7 @@ $pe-color-white-gray: #f5f5f5;
   width: 100%;
   text-align: center;
 }
+
 .mobile-group button {
   margin-left: 12px;
 }
@@ -75,56 +76,59 @@ $pe-color-white-gray: #f5f5f5;
   top: 16px;
   background-color: $pe-color-white;
   position: absolute;
-  li {
-    button[aria-checked='false'] {
-      svg {
-        display: none;
-      }
-    }
+}
 
-    button[aria-checked='true'] {
-      svg {
-        display: inline-block;
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-          top: 4px;
-        }
-      }
-    }
+.dropdown-menu li.seperator {
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid $pe-color-alto;
+}
 
-    &.seperator {
-      padding-bottom: 6px;
-      margin-bottom: 6px;
-      border-bottom: 1px solid $pe-color-alto;
-    }
-    button {
-      position: relative;
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      width: 100%;
-      color: $pe-color-charcoal;
-      text-align: left;
-      padding: 0;
-      &:hover {
-        background-color: $pe-color-moonlight;
-      }
+.dropdown-menu button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  color: $pe-color-charcoal;
+  text-align: left;
+  padding: 0;
+}
 
-      svg {
-        position: absolute;
-        left: 12px;
-      }
-      .option-text {
-        display: inline-flex;
-        margin: 5px 24px 5px 34px;
-        width: 100%;
-        @media (max-width: 480px) {
-          font-size: 16px;
-          margin: 12px 42px 12px 42px;
-        }
-      }
+.dropdown-menu button:hover {
+  background-color: $pe-color-moonlight;
+}
+
+.dropdown-menu button[aria-checked='false'] svg {
+  display: none;
+}
+
+.dropdown-menu button[aria-checked='true'] svg {
+  display: inline-block;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .dropdown-menu button[aria-checked='true'] svg {
+      top: 4px;
     }
   }
+
+.dropdown-menu svg {
+  position: absolute;
+  left: 12px;
 }
+
+.dropdown-menu .option-text {
+  display: inline-flex;
+  margin: 5px 24px 5px 34px;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin: 12px 42px 12px 42px;
+  }
+}
+
 
 @media (min-width: 480px) {
   .mobile-group {
@@ -142,6 +146,7 @@ $pe-color-white-gray: #f5f5f5;
     width: 100%;
     display: flex;
   }
+
   .dropdown-menu {
     width: 100%;
     top: 44px;
