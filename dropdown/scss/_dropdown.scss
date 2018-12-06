@@ -176,7 +176,9 @@ svg[class$='18'] {
   padding: 0;
 }
 
-.dropdown-menu button:hover {
+.dropdown-menu button:hover,
+.dropdown-menu button:focus
+ {
   background-color: $pe-color-moonlight;
 }
 
