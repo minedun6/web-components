@@ -223,14 +223,45 @@ ${DROPDOWN_OPEN_SVG}
       }
     }
 
-    _openMenu() {}
+    _toggleMenu() {
+      this.isOpen = !this.isOpen;
+    }
 
-    _closeMenu() {}
+    _openMenu() {
+      console.log('opening menu');
+      setFocusToFirstChild(this.menu);
+    }
 
-    _onTriggerClick(e) {}
+    _closeMenu() {
+      console.log('closing menu');
+      this.trigger.focus();
+    }
 
+    _onTriggerClick(e) {
+      this._toggleMenu();
+    }
 
-    connectedCallback() {}
+    attributeChangedCallback(name, oldValue, newValue) {
+      switch (name) {
+        case 'open': {
+          const willOpen = newValue !== null;
+
+          if (willOpen) {
+            this._openMenu();
+          } else {
+            this._closeMenu();
+          }
+        }
+          break;
+      
+        default:
+          break;
+      }
+    }
+
+    connectedCallback() {
+      this.trigger.addEventListener('click', this._onTriggerClick);
+    }
 
     diconnectedCallback() {}
   }

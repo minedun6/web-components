@@ -94,17 +94,52 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }
 
     _createClass(Dropdown, [{
+      key: '_toggleMenu',
+      value: function _toggleMenu() {
+        this.isOpen = !this.isOpen;
+      }
+    }, {
       key: '_openMenu',
-      value: function _openMenu() {}
+      value: function _openMenu() {
+        console.log('opening menu');
+        setFocusToFirstChild(this.menu);
+      }
     }, {
       key: '_closeMenu',
-      value: function _closeMenu() {}
+      value: function _closeMenu() {
+        console.log('closing menu');
+        this.trigger.focus();
+      }
     }, {
       key: '_onTriggerClick',
-      value: function _onTriggerClick(e) {}
+      value: function _onTriggerClick(e) {
+        this._toggleMenu();
+      }
+    }, {
+      key: 'attributeChangedCallback',
+      value: function attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+          case 'open':
+            {
+              var willOpen = newValue !== null;
+
+              if (willOpen) {
+                this._openMenu();
+              } else {
+                this._closeMenu();
+              }
+            }
+            break;
+
+          default:
+            break;
+        }
+      }
     }, {
       key: 'connectedCallback',
-      value: function connectedCallback() {}
+      value: function connectedCallback() {
+        this.trigger.addEventListener('click', this._onTriggerClick);
+      }
     }, {
       key: 'diconnectedCallback',
       value: function diconnectedCallback() {}
