@@ -1,6 +1,8 @@
 $pe-color-alto: #d9d9d9;
 $pe-color-charcoal: #252525;
 $pe-color-concrete: #c7c7c7;
+$pe-color-digital-grass-green: #038238;
+$pe-color-medium-gray: #6a7070;
 $pe-color-moonlight: #e9e9e9;
 $pe-color-white: #ffffff;
 $pe-color-white-gray: #f5f5f5;
@@ -53,8 +55,12 @@ button:focus::after {
 svg[class^='pe-icon--'] {
   display: inline-block;
   vertical-align: top;
-  fill: currentColor;
+  fill: $pe-color-medium-gray;
   pointer-events: none;
+}
+
+svg[class^='pe-icon--check'] {
+  fill: $pe-color-digital-grass-green;
 }
 
 svg[class$='18'] {
