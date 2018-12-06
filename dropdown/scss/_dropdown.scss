@@ -12,11 +12,33 @@ $pe-color-white-gray: #f5f5f5;
   color: inherit;
 }
 
-*:focus {
+/**
+ * RESETS
+ */
+
+ button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  overflow: visible;
+  text-transform: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:focus {
   outline: none;
 }
 
-*:focus::after {
+button:focus::after {
   border: 2px solid #0b73da;
   content: '';
   position: absolute;
@@ -28,140 +50,21 @@ $pe-color-white-gray: #f5f5f5;
   z-index: 1;
 }
 
-:host {
-  font: 14px/18px 'Open Sans', 'Calibri', 'Tahoma', sans-serif;
-  color: $pe-color-charcoal;
-}
-
-.dropdown-trigger {
-  z-index: 9;
-}
-
-.dropdown-wrapper {
-  position: absolute;
-  z-index: 10;
-  margin-top: -9px;
-  // display: none;
-  -ms-overflow-style: none;
-}
-
-.mobile-group {
-  background: $pe-color-white-gray;
-  border-bottom: 1px solid $pe-color-moonlight;
-  display: inline-flex;
-  width: 100%;
-  padding: 24px;
-  position: relative;
-  top: -27px;
-  z-index: 10;
-  overflow: hidden;
-}
-
-.mobile-group span {
-  width: 100%;
-  text-align: center;
-}
-
-.mobile-group button {
-  margin-left: 12px;
-}
-
-.dropdown-menu {
-  list-style-type: none;
-  padding: 1em 0;
-  border: 1px solid $pe-color-alto;
-  border-radius: 2px;
-  width: 220px;
-  margin-top: 0;
-  top: 16px;
-  background-color: $pe-color-white;
-  position: absolute;
-}
-
-.dropdown-menu li.seperator {
-  padding-bottom: 6px;
-  margin-bottom: 6px;
-  border-bottom: 1px solid $pe-color-alto;
-}
-
-.dropdown-menu button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  width: 100%;
-  color: $pe-color-charcoal;
-  text-align: left;
-  padding: 0;
-}
-
-.dropdown-menu button:hover {
-  background-color: $pe-color-moonlight;
-}
-
-.dropdown-menu button[aria-checked='false'] svg {
-  display: none;
-}
-
-.dropdown-menu button[aria-checked='true'] svg {
+svg[class^='pe-icon--'] {
   display: inline-block;
+  vertical-align: top;
+  fill: currentColor;
+  pointer-events: none;
 }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .dropdown-menu button[aria-checked='true'] svg {
-      top: 4px;
-    }
-  }
-
-.dropdown-menu svg {
-  position: absolute;
-  left: 12px;
+svg[class$='18'] {
+  width: 18px;
+  height: 18px;
 }
 
-.dropdown-menu .option-text {
-  display: inline-flex;
-  margin: 5px 24px 5px 34px;
-  width: 100%;
-
-  @media (max-width: 480px) {
-    font-size: 16px;
-    margin: 12px 42px 12px 42px;
-  }
-}
-
-
-@media (min-width: 480px) {
-  .mobile-group {
-    display: none;
-  }
-
-  .dropdown-menu {
-    max-height: 300px;
-    overflow: scroll;
-  }
-}
-
-@media (max-width: 480px) {
-  .dropdown-wrapper {
-    width: 100%;
-    display: flex;
-  }
-
-  .dropdown-menu {
-    width: 100%;
-    top: 44px;
-    border: 0;
-    height: 100vh;
-  }
-}
-
-.truncate {
-  max-width: 100%;
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/**
+ * REUSED PEARSON STYLES
+ */
 
 .pe-link--btn {
   text-decoration: underline;
@@ -196,32 +99,147 @@ $pe-color-white-gray: #f5f5f5;
   margin-left: 0.5em;
 }
 
-button {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-  overflow: visible;
-  text-transform: none;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+/**
+ * COMPONENT STYLES
+ */
+
+:host {
+  font: 14px/18px 'Open Sans', 'Calibri', 'Tahoma', sans-serif;
+  color: $pe-color-charcoal;
 }
 
-button::-moz-focus-inner {
-  border-style: none;
+.dropdown-trigger {
+  z-index: 9;
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  z-index: 10;
+  margin-top: -9px;
+  // display: none;
+}
+
+.mobile-group {
+  background: $pe-color-white-gray;
+  border-bottom: 1px solid $pe-color-moonlight;
+  display: inline-flex;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  top: -27px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.mobile-group span {
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-group button {
+  margin-left: 12px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  list-style-type: none;
+  padding: 1em 0;
+  border: 1px solid $pe-color-alto;
+  border-radius: 2px;
+  width: 220px;
+  margin-top: 0;
+  top: 16px;
+  background-color: $pe-color-white;
+  overflow-x: visible;
+}
+
+.dropdown-menu li.seperator {
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid $pe-color-alto;
+}
+
+.dropdown-menu button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  color: $pe-color-charcoal;
+  text-align: left;
   padding: 0;
 }
 
-svg[class^='pe-icon--'] {
+.dropdown-menu button:hover {
+  background-color: $pe-color-moonlight;
+}
+
+.dropdown-menu button:focus::after {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dropdown-menu button[aria-checked='false'] svg {
+  display: none;
+}
+
+.dropdown-menu button[aria-checked='true'] svg {
   display: inline-block;
-  vertical-align: top;
-  fill: currentColor;
-  pointer-events: none;
 }
 
-svg[class$='18'] {
-  width: 18px;
-  height: 18px;
+.truncate {
+  max-width: 100%;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .dropdown-menu button[aria-checked='true'] svg {
+      top: 4px;
+    }
+  }
+
+.dropdown-menu svg {
+  position: absolute;
+  left: 12px;
+}
+
+.dropdown-menu .option-text {
+  display: inline-flex;
+  margin: 5px 24px 5px 34px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .mobile-group {
+    display: none;
+  }
+
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown-wrapper {
+    width: 100%;
+    display: flex;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    top: 44px;
+    border: 0;
+    height: 100vh;
+  }
+
+  .dropdown-menu .option-text {
+    font-size: 16px;
+    margin: 12px 42px 12px 42px;
+  }
 }
