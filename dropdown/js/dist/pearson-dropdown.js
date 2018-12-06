@@ -20,9 +20,45 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
   if (w.ShadyCSS) w.ShadyCSS.prepareTemplate(template, 'pearson-dropdown');
 
-  /** Any helper functions that do not need to be part of the class
-   * can be declared here, before the class is defined.
+  // A selector for targeting all elements that could receive
+  // browser focus.
+  // @see getFocusableChildren
+  var FOCUSABLE_ELEMENTS = '\n  a[href]:not([tabindex^="-"]):not([inert]),\n  area[href]:not([tabindex^="-"]):not([inert]),\n  input:not([disabled]):not([inert]),\n  select:not([disabled]):not([inert]),\n  textarea:not([disabled]):not([inert]),\n  button:not([disabled]):not([inert]),\n  iframe:not([tabindex^="-"]):not([inert]),\n  audio:not([tabindex^="-"]):not([inert]),\n  video:not([tabindex^="-"]):not([inert]),\n  [contenteditable]:not([tabindex^="-"]):not([inert]),\n  [tabindex]:not([inert])',
+      TAB_KEY = 9,
+      ESCAPE_KEY = 27;
+
+  /**
+   * Get the current active element in the browser, regardless of whether it is in Light DOM or Shadow DOM
    */
+  function getDeepActiveElement() {
+    var a = doc.activeElement;
+    while (a && a.shadowRoot && a.shadowRoot.activeElement) {
+      a = a.shadowRoot.activeElement;
+    }
+    return a;
+  }
+  /**
+   * Get all focusable children of a DOM node, excluding children that are too small to be seen by the user.
+   * @param {HTMLElement} node
+   * @returns HTMLElement
+   */
+  function getFocusableChildren(node) {
+    var focusableChildren = node.querySelectorAll(FOCUSABLE_ELEMENTS);
+    return Array.prototype.filter.call(focusableChildren, function (child) {
+      return !!(child.offsetWidth || child.offsetHeight || child.getClientRects().length);
+    });
+  }
+  /**
+   * Set the browser focus to the first child of a node OR to a child that has the `autotofocus` attribute.
+   * @param {HTMLElement} node
+   */
+  function setFocusToFirstChild(node) {
+    var focusableChildren = getFocusableChildren(node),
+        focusableChild = node.querySelector('[autofocus]') || focusableChildren[0];
+    if (focusableChild) {
+      focusableChild.focus();
+    }
+  }
 
   var Dropdown = function (_HTMLElement) {
     _inherits(Dropdown, _HTMLElement);

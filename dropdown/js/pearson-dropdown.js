@@ -135,9 +135,61 @@ ${DROPDOWN_OPEN_SVG}
 
   if (w.ShadyCSS) w.ShadyCSS.prepareTemplate(template, 'pearson-dropdown');
 
-  /** Any helper functions that do not need to be part of the class
-   * can be declared here, before the class is defined.
+    // A selector for targeting all elements that could receive
+  // browser focus.
+  // @see getFocusableChildren
+  const FOCUSABLE_ELEMENTS = `
+  a[href]:not([tabindex^="-"]):not([inert]),
+  area[href]:not([tabindex^="-"]):not([inert]),
+  input:not([disabled]):not([inert]),
+  select:not([disabled]):not([inert]),
+  textarea:not([disabled]):not([inert]),
+  button:not([disabled]):not([inert]),
+  iframe:not([tabindex^="-"]):not([inert]),
+  audio:not([tabindex^="-"]):not([inert]),
+  video:not([tabindex^="-"]):not([inert]),
+  [contenteditable]:not([tabindex^="-"]):not([inert]),
+  [tabindex]:not([inert])`,
+    TAB_KEY = 9,
+    ESCAPE_KEY = 27;
+
+  /**
+   * Get the current active element in the browser, regardless of whether it is in Light DOM or Shadow DOM
    */
+  function getDeepActiveElement() {
+    let a = doc.activeElement;
+    while (a && a.shadowRoot && a.shadowRoot.activeElement) {
+      a = a.shadowRoot.activeElement;
+    }
+    return a;
+  }
+  /**
+   * Get all focusable children of a DOM node, excluding children that are too small to be seen by the user.
+   * @param {HTMLElement} node
+   * @returns HTMLElement
+   */
+  function getFocusableChildren(node) {
+    const focusableChildren = node.querySelectorAll(FOCUSABLE_ELEMENTS);
+    return Array.prototype.filter.call(focusableChildren, function(child) {
+      return !!(
+        child.offsetWidth ||
+        child.offsetHeight ||
+        child.getClientRects().length
+      );
+    });
+  }
+  /**
+   * Set the browser focus to the first child of a node OR to a child that has the `autotofocus` attribute.
+   * @param {HTMLElement} node
+   */
+  function setFocusToFirstChild(node) {
+    const focusableChildren = getFocusableChildren(node),
+      focusableChild =
+        node.querySelector('[autofocus]') || focusableChildren[0];
+    if (focusableChild) {
+      focusableChild.focus();
+    }
+  }
 
   class Dropdown extends HTMLElement {
     constructor() {
