@@ -1,7 +1,7 @@
 (function(w, doc) {
   'use strict';
 
-  const DROPDOWN_CHEVRON_SVG = `
+  const DROPDOWN_OPEN_SVG = `
   <svg
     version = "1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@
     />
   </svg>`;
 
-  const CHECK_ICON_IMG = `
+  const CHECMARK_SVG = `
   <svg
     version = "1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
   class="text-icon pe-icon--btn"
 >
   Introduction to Science
-${DROPDOWN_CHEVRON_SVG}
+${DROPDOWN_OPEN_SVG}
 </button>
 <div class="dropdown-wrapper animated">
   <div class="mobile-group">
@@ -69,7 +69,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option One</span>
       </button>
     </li>
@@ -79,7 +79,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option Two</span>
       </button>
     </li>
@@ -89,7 +89,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option Three</span>
       </button>
     </li>
@@ -99,7 +99,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option Four</span>
       </button>
     </li>
@@ -109,7 +109,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option Five</span>
       </button>
     </li>
@@ -119,7 +119,7 @@ ${DROPDOWN_CHEVRON_SVG}
         role="menuitemradio"
         aria-checked="false"
       >
-        ${CHECK_ICON_IMG}
+        ${CHECMARK_SVG}
         <span class="option-text">Option Six</span>
       </button>
     </li>
