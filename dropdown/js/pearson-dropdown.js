@@ -28,6 +28,17 @@
     />
   </svg>`;
 
+  const REMOVE_LG_SVG = `
+  <svg
+    version = "1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    class="pe-icon--remove-lg-18"
+    viewBox="0 0 18 18"
+  >
+    <path d="M10.415,9.0014 L17.709,1.7074 C18.1,1.3164 18.1,0.6834 17.709,0.2934 C17.318,-0.0976 16.686,-0.0976 16.295,0.2934 L9.001,7.5874 L1.707,0.2934 C1.316,-0.0976 0.684,-0.0976 0.293,0.2934 C-0.098,0.6834 -0.098,1.3164 0.293,1.7074 L7.587,9.0014 L0.293,16.2954 C-0.098,16.6864 -0.098,17.3194 0.293,17.7094 C0.488,17.9054 0.744,18.0024 1,18.0024 C1.256,18.0024 1.512,17.9054 1.707,17.7094 L9.001,10.4154 L16.295,17.7094 C16.49,17.9054 16.746,18.0024 17.002,18.0024 C17.258,18.0024 17.514,17.9054 17.709,17.7094 C18.1,17.3194 18.1,16.6864 17.709,16.2954 L10.415,9.0014 Z"/>
+`;
+
 
   const template = doc.createElement('template');
   template.innerHTML = `
@@ -54,12 +65,7 @@ ${DROPDOWN_OPEN_SVG}
       class="pe-icon--btn"
       aria-label="close dropdown"
     >
-      <svg focusable="false" class="pe-icon--remove-lg-18" aria-hidden="">
-        <use
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xlink:href="#remove-lg-18"
-        ></use>
-      </svg>
+      ${REMOVE_LG_SVG}
     </button>
   </div>
   <ul role="menu" class="dropdown-menu pe-label hidden">
@@ -121,7 +127,7 @@ ${DROPDOWN_OPEN_SVG}
       >
         ${CHECMARK_SVG}
         <span class="option-text">Option Six</span>
-      </button>
+      </button> 
     </li>
   </ul>
 </div>
