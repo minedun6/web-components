@@ -122,7 +122,13 @@ svg[class$='18'] {
   position: absolute;
   z-index: 10;
   margin-top: -9px;
-  // display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+:host([open]) .dropdown-wrapper {
+  visibility: visible;
+  opacity: 1;
 }
 
 .mobile-group {
