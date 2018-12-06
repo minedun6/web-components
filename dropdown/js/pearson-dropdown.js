@@ -205,6 +205,8 @@ ${DROPDOWN_OPEN_SVG}
       this.menu = clone.querySelector('#dropdownMenu');
 
       this._onTriggerClick = this._onTriggerClick.bind(this);
+      this._onDocClick = this._onDocClick.bind(this);
+      this._onKeyDown = this._onKeyDown.bind(this);
 
       this.shadowRoot.appendChild(clone);
     }
@@ -237,8 +239,18 @@ ${DROPDOWN_OPEN_SVG}
       this.trigger.focus();
     }
 
-    _onTriggerClick(e) {
+    _onTriggerClick() {
       this._toggleMenu();
+    }
+
+    _onDocClick() {
+      if (!this.isOpen) return;
+
+      this._toggleMenu();
+    }
+
+    _onKeyDown(e) {
+      console.log(`pressed ${e.keyCode}`);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -261,9 +273,15 @@ ${DROPDOWN_OPEN_SVG}
 
     connectedCallback() {
       this.trigger.addEventListener('click', this._onTriggerClick);
+      this.wrapper.addEventListener('keydown', this._onKeyDown);
+
+      doc.addEventListener('click', this._onDocClick, true);
     }
 
-    diconnectedCallback() {}
+    diconnectedCallback() {
+      doc.removeEventListener('click', this._onDocClick);
+
+    }
   }
   customElements.define('pearson-dropdown', Dropdown);
 })(window, document);

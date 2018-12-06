@@ -88,6 +88,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this.menu = clone.querySelector('#dropdownMenu');
 
       _this._onTriggerClick = _this._onTriggerClick.bind(_this);
+      _this._onDocClick = _this._onDocClick.bind(_this);
+      _this._onKeyDown = _this._onKeyDown.bind(_this);
 
       _this.shadowRoot.appendChild(clone);
       return _this;
@@ -112,8 +114,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       }
     }, {
       key: '_onTriggerClick',
-      value: function _onTriggerClick(e) {
+      value: function _onTriggerClick() {
         this._toggleMenu();
+      }
+    }, {
+      key: '_onDocClick',
+      value: function _onDocClick() {
+        if (!this.isOpen) return;
+
+        this._toggleMenu();
+      }
+    }, {
+      key: '_onKeyDown',
+      value: function _onKeyDown(e) {
+        console.log('pressed ' + e.keyCode);
       }
     }, {
       key: 'attributeChangedCallback',
@@ -139,10 +153,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'connectedCallback',
       value: function connectedCallback() {
         this.trigger.addEventListener('click', this._onTriggerClick);
+        this.wrapper.addEventListener('keydown', this._onKeyDown);
+
+        doc.addEventListener('click', this._onDocClick, true);
       }
     }, {
       key: 'diconnectedCallback',
-      value: function diconnectedCallback() {}
+      value: function diconnectedCallback() {
+        doc.removeEventListener('click', this._onDocClick);
+      }
     }, {
       key: 'isOpen',
       get: function get() {
