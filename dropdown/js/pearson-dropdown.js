@@ -39,7 +39,6 @@
     <path d="M10.415,9.0014 L17.709,1.7074 C18.1,1.3164 18.1,0.6834 17.709,0.2934 C17.318,-0.0976 16.686,-0.0976 16.295,0.2934 L9.001,7.5874 L1.707,0.2934 C1.316,-0.0976 0.684,-0.0976 0.293,0.2934 C-0.098,0.6834 -0.098,1.3164 0.293,1.7074 L7.587,9.0014 L0.293,16.2954 C-0.098,16.6864 -0.098,17.3194 0.293,17.7094 C0.488,17.9054 0.744,18.0024 1,18.0024 C1.256,18.0024 1.512,17.9054 1.707,17.7094 L9.001,10.4154 L16.295,17.7094 C16.49,17.9054 16.746,18.0024 17.002,18.0024 C17.258,18.0024 17.514,17.9054 17.709,17.7094 C18.1,17.3194 18.1,16.6864 17.709,16.2954 L10.415,9.0014 Z"/>
 `;
 
-
   const template = doc.createElement('template');
   template.innerHTML = `
   <style>
@@ -135,22 +134,15 @@ ${DROPDOWN_OPEN_SVG}
 
   if (w.ShadyCSS) w.ShadyCSS.prepareTemplate(template, 'pearson-dropdown');
 
-    // A selector for targeting all elements that could receive
+  // A selector for targeting all elements that could receive
   // browser focus.
   // @see getFocusableChildren
-  const FOCUSABLE_ELEMENTS = `
-  a[href]:not([tabindex^="-"]):not([inert]),
-  area[href]:not([tabindex^="-"]):not([inert]),
-  input:not([disabled]):not([inert]),
-  select:not([disabled]):not([inert]),
-  textarea:not([disabled]):not([inert]),
-  button:not([disabled]):not([inert]),
-  iframe:not([tabindex^="-"]):not([inert]),
-  audio:not([tabindex^="-"]):not([inert]),
-  video:not([tabindex^="-"]):not([inert]),
-  [contenteditable]:not([tabindex^="-"]):not([inert]),
-  [tabindex]:not([inert])`,
+  const FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])',
     TAB_KEY = 9,
+    LEFT_KEY = 37,
+    UP_KEY = 38,
+    RIGHT_KEY = 39,
+    DOWN_KEY = 40,
     ESCAPE_KEY = 27;
 
   /**
@@ -197,20 +189,14 @@ ${DROPDOWN_OPEN_SVG}
       this.attachShadow({ mode: 'open' });
 
       const clone = template.content.cloneNode(true);
-      
+
       /** After all this, we can append our clone to the shadowRoot */
       this.shadowRoot.appendChild(clone);
-
     }
 
-    connectedCallback() {
+    connectedCallback() {}
 
-    }
-
-    diconnectedCallback() {
-
-    }
-
+    diconnectedCallback() {}
   }
   customElements.define('pearson-dropdown', Dropdown);
 })(window, document);

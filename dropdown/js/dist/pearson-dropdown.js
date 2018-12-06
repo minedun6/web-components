@@ -23,8 +23,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   // A selector for targeting all elements that could receive
   // browser focus.
   // @see getFocusableChildren
-  var FOCUSABLE_ELEMENTS = '\n  a[href]:not([tabindex^="-"]):not([inert]),\n  area[href]:not([tabindex^="-"]):not([inert]),\n  input:not([disabled]):not([inert]),\n  select:not([disabled]):not([inert]),\n  textarea:not([disabled]):not([inert]),\n  button:not([disabled]):not([inert]),\n  iframe:not([tabindex^="-"]):not([inert]),\n  audio:not([tabindex^="-"]):not([inert]),\n  video:not([tabindex^="-"]):not([inert]),\n  [contenteditable]:not([tabindex^="-"]):not([inert]),\n  [tabindex]:not([inert])',
+  var FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])',
       TAB_KEY = 9,
+      LEFT_KEY = 37,
+      UP_KEY = 38,
+      RIGHT_KEY = 39,
+      DOWN_KEY = 40,
       ESCAPE_KEY = 27;
 
   /**
@@ -74,7 +78,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
       /** After all this, we can append our clone to the shadowRoot */
       _this.shadowRoot.appendChild(clone);
-
       return _this;
     }
 
