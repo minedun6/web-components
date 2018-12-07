@@ -64,6 +64,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }
   }
 
+  /**
+     * Wraps an element inside another.
+     * @param {HTMLElement} el The element to wrap
+     * @param {HTMLElement} wrapper The element to be wrapped
+     */
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
   var Dropdown = function (_HTMLElement) {
     _inherits(Dropdown, _HTMLElement);
 
@@ -105,10 +115,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_decorateList',
       value: function _decorateList(listNode) {
+        listNode.classList.add('dropdown-menu');
+        listNode.setAttribute('role', 'none');
+
         var firstChild = listNode.firstElementChild;
         var node = firstChild;
         while (firstChild && node) {
-          console.log(node);
+
+          node.innerHTML = '\n          <button\n            class="pe-link--btn"\n            role="menuitemradio"\n          >\n          ' + CHECMARK_SVG + '\n          <span class="option-text">' + node.textContent + '</span>\n          </button>\n        ';
+          // const button = doc.createElement('button');
+          // button.addCllass('pe-link--btn');
+          // button.
+          // button.textContent = node.textContent;
+          // node.replaceChild(button, node.firstChild)
+
           node = node.nextElementSibling;
         }
       }

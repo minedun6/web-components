@@ -128,7 +128,15 @@ ${DROPDOWN_OPEN_SVG}
     }
   }
 
-
+/**
+   * Wraps an element inside another.
+   * @param {HTMLElement} el The element to wrap
+   * @param {HTMLElement} wrapper The element to be wrapped
+   */
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
 
   class Dropdown extends HTMLElement {
     static get observedAttributes() {
@@ -172,10 +180,28 @@ ${DROPDOWN_OPEN_SVG}
     }
 
     _decorateList(listNode){
+      listNode.classList.add('dropdown-menu')
+      listNode.setAttribute('role', 'none');
+
       let firstChild = listNode.firstElementChild;
       let node = firstChild;
       while(firstChild && node) {
-        console.log(node);
+
+        node.innerHTML = (`
+          <button
+            class="pe-link--btn"
+            role="menuitemradio"
+          >
+          ${CHECMARK_SVG}
+          <span class="option-text">${node.textContent}</span>
+          </button>
+        `);
+        // const button = doc.createElement('button');
+        // button.addCllass('pe-link--btn');
+        // button.
+        // button.textContent = node.textContent;
+        // node.replaceChild(button, node.firstChild)
+
         node = node.nextElementSibling;
       }
     }
