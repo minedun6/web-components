@@ -184,6 +184,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
+      key: '_selectOption',
+      value: function _selectOption(option) {
+        console.log('selecting ' + option);
+      }
+    }, {
       key: 'attributeChangedCallback',
       value: function attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {

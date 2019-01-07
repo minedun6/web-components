@@ -253,6 +253,10 @@ ${DROPDOWN_OPEN_SVG}
       }
     }
 
+    _selectOption(option) {
+      console.log(`selecting ${option}`);
+    }
+
     attributeChangedCallback(name, oldValue, newValue) {
       switch (name) {
         case 'open': {
