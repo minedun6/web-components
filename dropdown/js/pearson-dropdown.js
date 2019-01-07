@@ -84,13 +84,12 @@ ${DROPDOWN_OPEN_SVG}
   // A selector for targeting all elements that could receive
   // browser focus.
   // @see getFocusableChildren
-  const FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])',
-    TAB_KEY = 9,
-    LEFT_KEY = 37,
+  const FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])';
+  const RETURN = 13,
     UP_KEY = 38,
-    RIGHT_KEY = 39,
     DOWN_KEY = 40,
-    ESCAPE_KEY = 27;
+    ESCAPE_KEY = 27,
+    SPACEBAR = 32;
 
   /**
    * Get the current active element in the browser, regardless of whether it is in Light DOM or Shadow DOM
@@ -227,7 +226,7 @@ ${DROPDOWN_OPEN_SVG}
     _onKeyDown(e) {
       const { which } = e;
 
-      if (which === 13 || which === 32) {
+      if (which ===  RETURN || which === SPACEBAR) {
         this._checkOption(getDeepActiveElement());
         return;
       }
@@ -238,8 +237,8 @@ ${DROPDOWN_OPEN_SVG}
 
       const index = this.options.indexOf(e.target);
       const dirMap = {
-        38: index - 1,
-        40: index + 1
+        [UP_KEY]: index - 1,
+        [DOWN_KEY]: index + 1
       };
 
       let dir = which in dirMap ? dirMap[which] : null;

@@ -1,5 +1,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23,13 +25,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   // A selector for targeting all elements that could receive
   // browser focus.
   // @see getFocusableChildren
-  var FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])',
-      TAB_KEY = 9,
-      LEFT_KEY = 37,
+  var FOCUSABLE_ELEMENTS = 'button:not([disabled]):not([inert])';
+  var RETURN = 13,
       UP_KEY = 38,
-      RIGHT_KEY = 39,
       DOWN_KEY = 40,
-      ESCAPE_KEY = 27;
+      ESCAPE_KEY = 27,
+      SPACEBAR = 32;
 
   /**
    * Get the current active element in the browser, regardless of whether it is in Light DOM or Shadow DOM
@@ -155,10 +156,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_onKeyDown',
       value: function _onKeyDown(e) {
+        var _dirMap;
+
         var which = e.which;
 
 
-        if (which === 13 || which === 32) {
+        if (which === RETURN || which === SPACEBAR) {
           this._checkOption(getDeepActiveElement());
           return;
         }
@@ -168,10 +171,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var lastOption = this.options[optionLen - 1];
 
         var index = this.options.indexOf(e.target);
-        var dirMap = {
-          38: index - 1,
-          40: index + 1
-        };
+        var dirMap = (_dirMap = {}, _defineProperty(_dirMap, UP_KEY, index - 1), _defineProperty(_dirMap, DOWN_KEY, index + 1), _dirMap);
 
         var dir = which in dirMap ? dirMap[which] : null;
         var nextOption = this.options[dir];
