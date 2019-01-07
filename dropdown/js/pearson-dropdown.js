@@ -196,6 +196,7 @@ ${DROPDOWN_OPEN_SVG}
 
         node = node.nextElementSibling;
       }
+      this.options = getFocusableChildren(listNode);
       this.wrapper.appendChild(listNode);
     }
 
@@ -224,7 +225,10 @@ ${DROPDOWN_OPEN_SVG}
     }
 
     _onKeyDown(e) {
-      console.log(`pressed ${e.keyCode}`);
+      const firstOption = this.options[0];
+      const lastOption = this.options[this.options.length - 1];
+
+      const index = this.options.indexOf(e.target);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

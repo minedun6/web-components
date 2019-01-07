@@ -120,6 +120,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
           node = node.nextElementSibling;
         }
+        this.options = getFocusableChildren(listNode);
         this.wrapper.appendChild(listNode);
       }
     }, {
@@ -154,7 +155,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_onKeyDown',
       value: function _onKeyDown(e) {
-        console.log('pressed ' + e.keyCode);
+        var firstOption = this.options[0];
+        var lastOption = this.options[this.options.length - 1];
+
+        var index = this.options.indexOf(e.target);
       }
     }, {
       key: 'attributeChangedCallback',
