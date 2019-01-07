@@ -158,6 +158,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var which = e.which;
 
 
+        if (which === 13 || which === 32) {
+          this._checkOption(getDeepActiveElement());
+          return;
+        }
+
         var optionLen = this.options.length;
         var firstOption = this.options[0];
         var lastOption = this.options[optionLen - 1];
@@ -184,9 +189,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: '_selectOption',
-      value: function _selectOption(option) {
-        console.log('selecting ' + option);
+      key: '_checkOption',
+      value: function _checkOption(option) {
+        Array.prototype.forEach.call(this.options, function (opt) {
+          if (opt === option) {
+            opt.setAttribute('aria-checked', 'true');
+          } else {
+            opt.removeAttribute('aria-checked');
+          }
+        });
       }
     }, {
       key: 'attributeChangedCallback',

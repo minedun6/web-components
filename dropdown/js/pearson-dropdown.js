@@ -227,6 +227,11 @@ ${DROPDOWN_OPEN_SVG}
     _onKeyDown(e) {
       const { which } = e;
 
+      if (which === 13 || which === 32) {
+        this._checkOption(getDeepActiveElement());
+        return;
+      }
+
       const optionLen = this.options.length;
       const firstOption = this.options[0];
       const lastOption = this.options[optionLen - 1];
@@ -253,8 +258,14 @@ ${DROPDOWN_OPEN_SVG}
       }
     }
 
-    _selectOption(option) {
-      console.log(`selecting ${option}`);
+    _checkOption(option) {
+      Array.prototype.forEach.call(this.options, function (opt) {
+        if (opt === option) {
+          opt.setAttribute('aria-checked', 'true');
+        } else {
+          opt.removeAttribute('aria-checked');
+        }
+      });
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
