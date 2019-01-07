@@ -155,6 +155,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_onKeyDown',
       value: function _onKeyDown(e) {
+        var which = e.which;
+
+
         var optionLen = this.options.length;
         var firstOption = this.options[0];
         var lastOption = this.options[optionLen - 1];
@@ -165,7 +168,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           40: index + 1
         };
 
-        var dir = e.which in dirMap ? dirMap[e.which] : null;
+        var dir = which in dirMap ? dirMap[which] : null;
         var nextOption = this.options[dir];
 
         if (nextOption) {

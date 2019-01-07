@@ -225,6 +225,8 @@ ${DROPDOWN_OPEN_SVG}
     }
 
     _onKeyDown(e) {
+      const { which } = e;
+
       const optionLen = this.options.length;
       const firstOption = this.options[0];
       const lastOption = this.options[optionLen - 1];
@@ -235,7 +237,7 @@ ${DROPDOWN_OPEN_SVG}
         40: index + 1
       };
 
-      let dir = e.which in dirMap ? dirMap[e.which] : null;
+      let dir = which in dirMap ? dirMap[which] : null;
       let nextOption = this.options[dir];
 
       if (nextOption) {
