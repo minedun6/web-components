@@ -231,31 +231,30 @@ ${DROPDOWN_OPEN_SVG}
         return;
       }
 
+      const currentIdx = this.options.indexOf(e.target);
+
       const idxMap = {
-        [UP_KEY]: index - 1,
-        [DOWN_KEY]: index + 1
+        [UP_KEY]: currentIdx - 1,
+        [DOWN_KEY]: currentIdx + 1
       };
-
-      const optionLen = this.options.length;
-      const firstOption = this.options[0];
-      const lastOption = this.options[optionLen - 1];
       
-      const index = this.options.indexOf(e.target);
       let nextIdx = key in idxMap ? idxMap[key] : null;
+      let nextOption;
+
+      if(this.options[nextIdx]) {
+        nextOption = this.options[nextIdx];
+      }
       
-      let nextOption = this.options[nextIdx];
-
-      if (nextOption) {
-        nextOption.focus();
-      }
-
       if (nextIdx === - 1) {
-        lastOption.focus();
+        nextOption = this.options[this.options.length];
+      }
+      
+      if (nextIdx === this.options.length) {
+        nextOption = this.options[0];
       }
 
-      if (nextIdx === optionLen) {
-        firstOption.focus();
-      }
+      nextOption.focus();
+      e.preventDefault();
     }
 
     _checkOption(option) {

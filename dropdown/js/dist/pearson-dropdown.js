@@ -165,28 +165,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           return;
         }
 
-        var idxMap = (_idxMap = {}, _defineProperty(_idxMap, UP_KEY, index - 1), _defineProperty(_idxMap, DOWN_KEY, index + 1), _idxMap);
+        var currentIdx = this.options.indexOf(e.target);
 
-        var optionLen = this.options.length;
-        var firstOption = this.options[0];
-        var lastOption = this.options[optionLen - 1];
+        var idxMap = (_idxMap = {}, _defineProperty(_idxMap, UP_KEY, currentIdx - 1), _defineProperty(_idxMap, DOWN_KEY, currentIdx + 1), _idxMap);
 
-        var index = this.options.indexOf(e.target);
         var nextIdx = key in idxMap ? idxMap[key] : null;
+        var nextOption = void 0;
 
-        var nextOption = this.options[nextIdx];
-
-        if (nextOption) {
-          nextOption.focus();
+        if (this.options[nextIdx]) {
+          nextOption = this.options[nextIdx];
         }
 
         if (nextIdx === -1) {
-          lastOption.focus();
+          nextOption = this.options[this.options.length];
         }
 
-        if (nextIdx === optionLen) {
-          firstOption.focus();
+        if (nextIdx === this.options.length) {
+          nextOption = this.options[0];
         }
+
+        nextOption.focus();
+        e.preventDefault();
       }
     }, {
       key: '_checkOption',
