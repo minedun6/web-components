@@ -225,10 +225,30 @@ ${DROPDOWN_OPEN_SVG}
     }
 
     _onKeyDown(e) {
+      const optionLen = this.options.length;
       const firstOption = this.options[0];
-      const lastOption = this.options[this.options.length - 1];
+      const lastOption = this.options[optionLen - 1];
 
       const index = this.options.indexOf(e.target);
+      const dirMap = {
+        38: index - 1,
+        40: index + 1
+      };
+
+      let dir = e.which in dirMap ? dirMap[e.which] : null;
+      let nextOption = this.options[dir];
+
+      if (nextOption) {
+        nextOption.focus();
+      }
+
+      if (dir === - 1) {
+        lastOption.focus();
+      }
+
+      if (dir === optionLen) {
+        firstOption.focus();
+      }
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

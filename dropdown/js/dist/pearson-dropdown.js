@@ -155,10 +155,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_onKeyDown',
       value: function _onKeyDown(e) {
+        var optionLen = this.options.length;
         var firstOption = this.options[0];
-        var lastOption = this.options[this.options.length - 1];
+        var lastOption = this.options[optionLen - 1];
 
         var index = this.options.indexOf(e.target);
+        var dirMap = {
+          38: index - 1,
+          40: index + 1
+        };
+
+        var dir = e.which in dirMap ? dirMap[e.which] : null;
+        var nextOption = this.options[dir];
+
+        if (nextOption) {
+          nextOption.focus();
+        }
+
+        if (dir === -1) {
+          lastOption.focus();
+        }
+
+        if (dir === optionLen) {
+          firstOption.focus();
+        }
       }
     }, {
       key: 'attributeChangedCallback',
