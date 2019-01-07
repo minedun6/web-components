@@ -224,9 +224,9 @@ ${DROPDOWN_OPEN_SVG}
     }
 
     _onKeyDown(e) {
-      const { which } = e;
+      const key = e.which;
 
-      if (which ===  RETURN || which === SPACEBAR) {
+      if (key ===  RETURN || key === SPACEBAR) {
         this._checkOption(getDeepActiveElement());
         return;
       }
@@ -241,7 +241,7 @@ ${DROPDOWN_OPEN_SVG}
         [DOWN_KEY]: index + 1
       };
 
-      let dir = which in dirMap ? dirMap[which] : null;
+      let dir = key in dirMap ? dirMap[key] : null;
       let nextOption = this.options[dir];
 
       if (nextOption) {

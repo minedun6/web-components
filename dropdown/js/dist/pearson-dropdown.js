@@ -158,10 +158,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       value: function _onKeyDown(e) {
         var _dirMap;
 
-        var which = e.which;
+        var key = e.which;
 
-
-        if (which === RETURN || which === SPACEBAR) {
+        if (key === RETURN || key === SPACEBAR) {
           this._checkOption(getDeepActiveElement());
           return;
         }
@@ -173,7 +172,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         var index = this.options.indexOf(e.target);
         var dirMap = (_dirMap = {}, _defineProperty(_dirMap, UP_KEY, index - 1), _defineProperty(_dirMap, DOWN_KEY, index + 1), _dirMap);
 
-        var dir = which in dirMap ? dirMap[which] : null;
+        var dir = key in dirMap ? dirMap[key] : null;
         var nextOption = this.options[dir];
 
         if (nextOption) {
