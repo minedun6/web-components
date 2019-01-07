@@ -156,7 +156,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: '_onKeyDown',
       value: function _onKeyDown(e) {
-        var _dirMap;
+        var _idxMap;
 
         var key = e.which;
 
@@ -165,25 +165,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           return;
         }
 
+        var idxMap = (_idxMap = {}, _defineProperty(_idxMap, UP_KEY, index - 1), _defineProperty(_idxMap, DOWN_KEY, index + 1), _idxMap);
+
         var optionLen = this.options.length;
         var firstOption = this.options[0];
         var lastOption = this.options[optionLen - 1];
 
         var index = this.options.indexOf(e.target);
-        var dirMap = (_dirMap = {}, _defineProperty(_dirMap, UP_KEY, index - 1), _defineProperty(_dirMap, DOWN_KEY, index + 1), _dirMap);
+        var nextIdx = key in idxMap ? idxMap[key] : null;
 
-        var dir = key in dirMap ? dirMap[key] : null;
-        var nextOption = this.options[dir];
+        var nextOption = this.options[nextIdx];
 
         if (nextOption) {
           nextOption.focus();
         }
 
-        if (dir === -1) {
+        if (nextIdx === -1) {
           lastOption.focus();
         }
 
-        if (dir === optionLen) {
+        if (nextIdx === optionLen) {
           firstOption.focus();
         }
       }

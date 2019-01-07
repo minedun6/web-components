@@ -231,28 +231,29 @@ ${DROPDOWN_OPEN_SVG}
         return;
       }
 
-      const optionLen = this.options.length;
-      const firstOption = this.options[0];
-      const lastOption = this.options[optionLen - 1];
-
-      const index = this.options.indexOf(e.target);
-      const dirMap = {
+      const idxMap = {
         [UP_KEY]: index - 1,
         [DOWN_KEY]: index + 1
       };
 
-      let dir = key in dirMap ? dirMap[key] : null;
-      let nextOption = this.options[dir];
+      const optionLen = this.options.length;
+      const firstOption = this.options[0];
+      const lastOption = this.options[optionLen - 1];
+      
+      const index = this.options.indexOf(e.target);
+      let nextIdx = key in idxMap ? idxMap[key] : null;
+      
+      let nextOption = this.options[nextIdx];
 
       if (nextOption) {
         nextOption.focus();
       }
 
-      if (dir === - 1) {
+      if (nextIdx === - 1) {
         lastOption.focus();
       }
 
-      if (dir === optionLen) {
+      if (nextIdx === optionLen) {
         firstOption.focus();
       }
     }
