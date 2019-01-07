@@ -32,9 +32,11 @@
 
       function focusDate(date) {
         unfocusAll(calendar);
-        grid.setAttribute("aria-activedescendant", date.id);
-        date.setAttribute("tabindex","0");
-        date.focus();
+        if (date !== undefined) {
+          grid.setAttribute("aria-activedescendant", date.id);
+          date.setAttribute("tabindex","0");
+          date.focus();
+        }
       }
 
 
