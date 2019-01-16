@@ -1,0 +1,118 @@
+.timepicker-container {
+  min-width:150px;
+  position:relative;
+  max-width:400px;
+  font-family: 'Open Sans', Calibri, Tahoma, sans-serif;
+  &.error {
+    input {
+      border-color: $pe-color-strawberry-red;
+    }
+    label {
+      color: $pe-color-strawberry-red;
+    }
+  }
+  .timepicker {
+    position: relative;
+
+    input {
+      padding-right: calc(14px + 18px + 14px);
+      text-transform: uppercase;
+    }
+
+    .pe-textInput--basic.error {
+      border-color: $pe-color-strawberry-red;
+    }
+
+    .pe-icon-wrapper {
+      color: #6a7070;
+      position: absolute;
+      right: 14px;
+      bottom: calc(50% - 12px);
+    }
+  }
+  .pe-textLabelInput__label {
+    &.error {
+      color: $pe-color-strawberry-red;
+    }
+  }
+
+  .error-msg {
+    color: $pe-color-strawberry-red;
+    margin-top:1px;
+    margin-bottom:0;
+    font-size: 12px;
+    line-height: 18px;
+
+  }
+
+  .pe-dropdown-container {
+    width:220px;
+    position:absolute;
+    top:68px;
+
+    .itemList {
+      margin:0;
+      padding:12px 0;
+      list-style-type: none;
+      width:218px;
+      max-height:300px;
+      overflow-y:auto;
+      border: 1px solid $pe-color-concrete;
+      border-radius:2px;
+      background-color: #ffffff;
+
+      .item {
+        padding: 4px 24px;
+        position:relative;
+        display:block;
+        width:100%;
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size:14px;
+        .pe-icon-wrapper {
+          color: #6a7070;
+          position:absolute;
+          left:6px;
+          display:none;
+        }
+
+        &:hover {
+          background-color: $pe-color-moonlight;
+        }
+        &:focus {
+          background-color: $pe-color-moonlight;
+          outline:0;
+
+          &:after {
+            border: 2px solid $pe-focus-color;
+            content: "";
+            position: absolute;
+            border-radius: 4px;
+            width: calc(100%);
+            height: calc(100% + 4px);
+            top: -2px;
+            left: 0;
+            z-index: 1;
+          }
+        }
+
+      }
+
+      &.with-selection {
+        .pe-itemList-item {
+          padding: 4px 24px 4px 34px;
+        }
+      }
+    }
+  }
+}
+.in-view {
+  background-color: #e9e9e9;
+}
+
+#inputAriaId {
+  display:none;
+}
+.error #inputAriaId {
+  display:block;
+}

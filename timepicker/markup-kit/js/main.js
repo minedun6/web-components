@@ -52,6 +52,7 @@
     Array.prototype.forEach.call(focusableElements, (el, index) => {
       el.setAttribute('data-index', index);
     });
+
     // main function controlling the dropdown menu
     function selectTime (node) {
       const icon = node.querySelector('.pe-icon-wrapper');
@@ -99,46 +100,46 @@
       }
     }
     // sets focus based on element previously selected
-    function focusListItem () {
-      const selected = returnSelectedNode(list);
-      if (selected === null) {
-        firstFocusableElement.focus();
-        timepicker.classList.remove('error');
-      } else {
-        selected.focus();
-      }
-    }
+    // function focusListItem () {
+    //   const selected = returnSelectedNode(list);
+    //   if (selected === null) {
+    //     firstFocusableElement.focus();
+    //     timepicker.classList.remove('error');
+    //   } else {
+    //     selected.focus();
+    //   }
+    // }
     // closes dropdown when click is outside of component
-    doc.addEventListener('click', event => {
-      if (dropdown.style.display === 'block') {
-        if (event.target !== input) {
-          closeDropdown(dropdown, input);
-        }
-      }
-    });
+    // doc.addEventListener('click', event => {
+    //   if (dropdown.style.display === 'block') {
+    //     if (event.target !== input) {
+    //       closeDropdown(dropdown, input);
+    //     }
+    //   }
+    // });
     // closes dropdown on escape keypress
-    doc.addEventListener('keydown', event => {
-      if (event.keyCode === 27) {
-        dropdown.style.display = 'none';
-        input.setAttribute('aria-expanded', false);
-        input.focus();
-      }
-    });
+    // doc.addEventListener('keydown', event => {
+    //   if (event.keyCode === 27) {
+    //     dropdown.style.display = 'none';
+    //     input.setAttribute('aria-expanded', false);
+    //     input.focus();
+    //   }
+    // });
     // opens the dropdown menu and sets position of selected element
-    input.addEventListener('click', event => {
-      const readOnly = input.getAttribute('readonly');
-      if (!readOnly) {
-        const selected = returnSelectedNode(list);
-        dropdown.style.display = 'block';
-        event.target.setAttribute('aria-expanded', true);
-        if ((input.value.length > 6) && (selected !== null)) {
-          selected.scrollIntoView();
-        }
-      } else {
-        return true
-      }
-
-    });
+    // input.addEventListener('click', event => {
+    //   const readOnly = input.getAttribute('readonly');
+    //   if (!readOnly) {
+    //     const selected = returnSelectedNode(list);
+    //     dropdown.style.display = 'block';
+    //     event.target.setAttribute('aria-expanded', true);
+    //     if ((input.value.length > 6) && (selected !== null)) {
+    //       selected.scrollIntoView();
+    //     }
+    //   } else {
+    //     return true
+    //   }
+    //
+    // });
     // on blur time is validated and selected in menu
     input.addEventListener('blur', event => {
       if (event.relatedTarget === null  && !isIE11) {
@@ -187,7 +188,6 @@
       const nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
         prevItem = parseInt(event.target.getAttribute('data-index')) - 1;
       event.preventDefault();
-      console.log(event.keyCode)
       switch(event.keyCode) {
         case 9:
             input.focus();
