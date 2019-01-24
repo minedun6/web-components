@@ -27,7 +27,7 @@
       color: #6a7070;
       position: absolute;
       right: 14px;
-      bottom: calc(50% - 12px);
+      bottom: calc(50% - 14px);
     }
   }
   .pe-textLabelInput__label {
@@ -116,4 +116,11 @@
 }
 .error #inputAriaId {
   display:block;
+}
+
+@media all and (-ms-high-contrast:none) {
+  .pe-icon-wrapper {
+    width:20px;
+    height:23px;
+  }
 }
