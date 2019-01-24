@@ -16,30 +16,26 @@
 		<!-- load the web component script -->
 		<!-- RENAME THIS FILE DURING DEVELOPMENT -->
 		<!-- e.g., 'pearson-alert' -->
-    <script src="js/dist/progress-indicator.js"></script>
-    <style>
-      progress-indicator {
-
-        margin:2em;
-      }
-    </style>
+    <script src="js/dist/progress-bar.js"></script>
   </head>
   <body>
-    <progress-indicator type="loading" progress="25" max="100" alignment="center"></progress-indicator>
-    <progress-indicator type="standard" progress="50" max="100" alignment="center" text="Question 2 of 4"></progress-indicator>
-    <button>Start progress bar</button>
+    <h2>Standard progress indicator</h2>
+    <pearson-progress-bar type="standard" progress="50" max="100" alignment="center" text="Question 2 of 4"></pearson-progress-bar>
+    <h2>Active progress indicator</h2>
+    <pearson-progress-bar type="loading" max="100" alignment="center"></pearson-progress-bar>
+    <button style="margin-top:1rem">Start progress bar</button>
 
   <script>
     const loader = document.querySelector('[type="loading"]');
     const startBtn = document.querySelector('button');
     let progress = loader.getAttribute('progress');
     let count = parseInt(progress);
-    
+
     startBtn.addEventListener('click', function (e) {
       setInterval( function (event) {
       if (count < 100) {
         count++;
-        loader.progress = count.toString();
+        loader.progress = count;
       } else {
         return
       }
