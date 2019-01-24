@@ -115,7 +115,8 @@
   display:none;
 }
 .error #inputAriaId {
-  display:block;
+  display: flex;
+  align-items: center;
 }
 
 @media all and (-ms-high-contrast:none) {
