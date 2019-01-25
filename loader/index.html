@@ -33,9 +33,9 @@
       outputRegion.innerHTML = '';
 
       outputRegion.appendChild(loadingIndicator);
-      setTimeout(() => {
+      setTimeout(function() {
         loadingIndicator.loaded = true;
-        setTimeout(() => {
+        setTimeout(function() {
           outputRegion.innerHTML = MOCK_SERVER_DATA
         }, 250);
       }, 1500);
@@ -49,7 +49,7 @@
       outputRegion.innerHTML = '';
 
       outputRegion.appendChild(copyIndicator);
-      setTimeout(() => {
+      setTimeout(function() {
         copyIndicator.loaded = true;
       }, 1500);
     }

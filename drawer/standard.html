@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Standard Drawer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+    <!-- DO NOT DELETE -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+    
+    <!-- loads web component polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+		<!-- load the web component script -->
+    <script src="js/dist/pearson-drawer.js"></script>
+  </head>
+
+  <body>
+    <main>
+      <button type="button" id="pearsonDrawerTrigger">Open standard drawer</button>
+    </main>
+    <pearson-drawer id="pearsonDrawer">
+      <h3 slot="title" class="title">Help Topics</h3>
+      <div slot="content" class="content">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci vel necessitatibus amet, enim cumque cum est facilis dolores optio doloremque quibusdam quas a dolorum? Nobis doloremque tempora alias laborum mollitia?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quas dignissimos qui, inventore, quam, harum quo atque similique recusandae non molestias id dolores pariatur. Asperiores cum fugit quis qui eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, rerum? <a href="#foo">Voluptatem</a> dolorum ad et quia veniam quas debitis expedita eos eligendi ipsam, cumque neque id temporibus voluptatum alias nihil natus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta cupiditate ex deserunt natus inventore, nihil laborum esse commodi dignissimos autem animi alias laudantium iure beatae eum adipisci, eos harum! Deleniti?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, explicabo repudiandae fugiat dolore officia corporis, quia pariatur corrupti odit aliquam debitis iure! Quam exercitationem error dolorem autem quasi consequuntur aperiam.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam optio tenetur dolor sed eos voluptate quibusdam natus, sit corrupti! Cumque, atque nulla tempora unde quibusdam voluptatibus eveniet dolores. Earum, libero.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam corporis, incidunt illo sunt dolor odio architecto quo ad aperiam temporibus amet nostrum officia corrupti vitae quis, ducimus magni omnis minus!</p>
+      </div>
+    </pearson-drawer>
+    <script>
+    const openBtn = document.querySelector('#pearsonDrawerTrigger');
+    const drawer = document.querySelector('#pearsonDrawer');
+
+    openBtn.addEventListener('click', function (e) {
+      drawer.open = true;
+    });
+    </script>
+  </body>
+</html>

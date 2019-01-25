@@ -1,0 +1,142 @@
+:host {
+  box-sizing: border-box;
+  position: fixed;
+  display: block;
+  font-family: 14px/18px 'Open Sans', 'Calibri', 'Tahoma', sans-serif;
+  color: #252525;
+  padding: 20px;
+  padding-top: 25px;
+  height: 100%;
+  width: 320px;
+  top: 0;
+  right: -320px;
+  bottom: 0;
+  border-left: 1px solid #d9d9d9;
+  border-bottom: 30px solid #fff;
+  box-shadow: 0px 0px 5px 0px rgba(199, 199, 199, 1);
+}
+
+:host(:not(.animated)) {
+  visibility: hidden;
+}
+
+:host([open]:not(.animated)) {
+  visibility: visible;
+  right: 0;
+}
+
+@media (prefers-reduced-motion) {
+  :host(:not([open])) {
+    visibility: hidden;
+  }
+
+  :host([open]) {
+    visibility: visible;
+    right: 0;
+  }
+}
+
+:host *,
+:host *::after,
+:host *::before {
+  box-sizing: border-box;
+}
+
+:host button.close,
+:host button.back {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 0;
+  cursor: pointer;
+  background: none;
+  height: 44px;
+  width: 44px;
+}
+
+:host button.back {
+  right: initial;
+  width: auto;
+}
+
+:host button.back svg {
+  margin-right: 1px;
+}
+
+::slotted(.title) {
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+::slotted(.title:focus) {
+  box-shadow: none;
+  outline: 2px solid #0b73da;
+  outline-offset: 4px;
+}
+
+.header,
+.content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header {
+  border-bottom: 1px solid #d9d9d9;
+  height: 44px;
+}
+
+.content-scroll-wrapper {
+  height: calc(100% - 30px);
+  overflow-y: auto;
+}
+
+.content {
+  position: relative;
+  margin-top: 25px;
+}
+
+.pe-icon--btn {
+  position: relative;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.pe-icon--btn:focus {
+  outline: 0;
+}
+
+.pe-icon--btn:focus::after {
+  border: 2px solid #0b73da;
+  content: '';
+  position: absolute;
+  border-radius: 4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  top: -4px;
+  left: -4px;
+  z-index: 1;
+}
+
+.pe-icon--btn > * {
+  pointer-events: none;
+}
+
+.soft-shadow--bottom {
+  box-shadow: 0 12px 5px -10px rgba(199, 199, 199, 0.7);
+}
+
+svg[class^='pe-icon--'] {
+  display: inline-block;
+  vertical-align: top;
+  fill: #6a7070;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}

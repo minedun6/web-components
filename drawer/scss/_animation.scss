@@ -1,0 +1,48 @@
+@keyframes slideInRight {
+  0% {
+    right: -320px;
+  }
+  
+  100% {
+    right: 0px;
+    // TODO: create separate animation for visibility!  
+    visibility: visible;
+  }
+}
+
+
+@keyframes slideOutRight {
+  0% {
+    right: 0;
+  }
+  
+  100% {
+    right: -320px;
+    // visibility: hidden;
+  }
+}
+
+:host(.slideInRight) {
+  animation-name: slideInRight;
+  // display: flex;
+
+}
+
+:host(.slideOutRight) {
+  animation-name: slideOutRight;
+}
+
+:host(.animated) {
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+
+}
+
+@media (prefers-reduced-motion) {
+  :host(.animated) {
+    -webkit-animation: unset !important;
+    animation: unset !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+}
