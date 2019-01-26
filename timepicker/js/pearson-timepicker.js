@@ -261,15 +261,6 @@
       }
     }
 
-    onDocClick(event) {
-      event.stopImmediatePropagation();
-      if (this.list.childNodes.length > 1) {
-        if (event.target !== this) {
-          this.closeMenu();
-        }
-      }
-    }
-
     onMouseDown(event) {
       event.stopImmediatePropagation();
       const nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
@@ -406,7 +397,6 @@
       this.validateTime = this.validateTime.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
       this.onMouseDown = this.onMouseDown.bind(this);
-      this.onDocClick = this.onDocClick.bind(this);
       this.onInputBlur = this.onInputBlur.bind(this);
       this.onInputClick = this.onInputClick.bind(this);
     }
@@ -436,7 +426,7 @@
         this.selectTime(event.target, this.list);
       });
 
-      doc.addEventListener('click', this.onDocClick);
+      this.addEventListener('focusout', this.closeMenu);
       doc.addEventListener('keydown', this.onMouseDown);
     }
 

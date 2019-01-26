@@ -145,16 +145,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: 'onDocClick',
-      value: function onDocClick(event) {
-        event.stopImmediatePropagation();
-        if (this.list.childNodes.length > 1) {
-          if (event.target !== this) {
-            this.closeMenu();
-          }
-        }
-      }
-    }, {
       key: 'onMouseDown',
       value: function onMouseDown(event) {
         event.stopImmediatePropagation();
@@ -383,7 +373,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this2.validateTime = _this2.validateTime.bind(_this2);
       _this2.closeMenu = _this2.closeMenu.bind(_this2);
       _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
-      _this2.onDocClick = _this2.onDocClick.bind(_this2);
       _this2.onInputBlur = _this2.onInputBlur.bind(_this2);
       _this2.onInputClick = _this2.onInputClick.bind(_this2);
       return _this2;
@@ -418,7 +407,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           _this3.selectTime(event.target, _this3.list);
         });
 
-        doc.addEventListener('click', this.onDocClick);
+        this.addEventListener('focusout', this.closeMenu);
         doc.addEventListener('keydown', this.onMouseDown);
       }
     }, {
