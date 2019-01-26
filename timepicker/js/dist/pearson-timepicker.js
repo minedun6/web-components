@@ -145,6 +145,140 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
+      key: 'closeMenuOnBodyClick',
+      value: function closeMenuOnBodyClick(event) {
+        event.stopImmediatePropagation();
+        if (this.list.childNodes.length > 1) {
+          if (event.target !== this) {
+            this.closeMenu();
+          }
+        }
+      }
+    }, {
+      key: 'onMouseDown',
+      value: function onMouseDown(event) {
+        console.log(event.currentTarget.tagName);
+        event.stopImmediatePropagation();
+        var nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
+            prevItem = parseInt(event.target.getAttribute('data-index')) - 1,
+            focusableElements = getFocusableElements(this.list),
+            firstFocusableElement = focusableElements[0],
+            lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+        if (event.currentTarget.tagName === 'INPUT') {
+          this.hoverTime(filterSelected(this.list, this.input.value));
+          switch (event.keyCode) {
+            case 27:
+              if (this.open === 'true') {
+                this.openState = 'false';
+                this.input.focus();
+              }
+              break;
+            case 8:
+              this.container.classList.add();
+              removeIcons(this.list);
+              break;
+            case 13:
+              if (this.open === 'true') {
+                if (filterSelected(this.list, this.input.value) === null) {
+                  this.container.classList.add('error');
+                  removeIcons(this.list);
+                } else {
+                  filterSelected(this.list, this.input.value).click();
+                }
+              } else {
+                this.validateTime();
+                if (this.valid === 'true') {
+                  this.selectedState = this.input.value;
+                } else {
+                  return false;
+                }
+              }
+              break;
+            case 40:
+              event.preventDefault();
+              if (this.open === 'true') {
+                this.focusListItem();
+              } else if (this.open === 'false') {
+                this.openState = 'true';
+              }
+              break;
+          }
+        } else {
+          switch (event.keyCode) {
+            case 27:
+              if (this.open === 'true') {
+                this.openState = 'false';
+                this.input.focus();
+              }
+              break;
+            case 9:
+              this.input.focus();
+              this.openState = 'false';
+              break;
+            case 40:
+              if (this.shadowRoot.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+              } else {
+                if (focusableElements[nextItem] !== undefined) {
+                  focusableElements[nextItem].focus();
+                } else {
+                  return;
+                }
+              }
+              break;
+            case 38:
+              if (this.shadowRoot.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+              } else {
+                if (focusableElements[prevItem] !== undefined) {
+                  focusableElements[prevItem].focus();
+                } else {
+                  return;
+                }
+              }
+              break;
+            case 32:
+              event.target.click();
+              break;
+            case 13:
+              event.target.click();
+              event.preventDefault();
+              event.stopImmediatePropagation();
+              break;
+            case 36:
+              firstFocusableElement.focus();
+              break;
+            case 35:
+              lastFocusableElement.focus();
+              break;
+          }
+        }
+      }
+    }, {
+      key: 'inputOnBlur',
+      value: function inputOnBlur(event) {
+        if (event.relatedTarget === null && !isIE11) {
+          if (!this.readOnly) {
+            this.validateTime();
+            if (this.valid === 'true') {
+              if (filterSelected(this.list, this.input.value) !== null) {
+                filterSelected(this.list, this.input.value).click();
+              }
+            }
+          } else if (isIE11) {
+            this.validateTime();
+          }
+        }
+      }
+    }, {
+      key: 'inputOnClick',
+      value: function inputOnClick() {
+        if (!this.readOnly) {
+          this.openState = 'true';
+        }
+      }
+    }, {
       key: 'disabled',
       get: function get() {
         return this.hasAttribute('disabled');
@@ -249,6 +383,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this2.hoverTime = _this2.hoverTime.bind(_this2);
       _this2.validateTime = _this2.validateTime.bind(_this2);
       _this2.closeMenu = _this2.closeMenu.bind(_this2);
+      _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
+      _this2.closeMenuOnBodyClick = _this2.closeMenuOnBodyClick.bind(_this2);
+      _this2.inputOnBlur = _this2.inputOnBlur.bind(_this2);
+      _this2.inputOnClick = _this2.inputOnClick.bind(_this2);
       return _this2;
     }
 
@@ -271,85 +409,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           this.readOnlyState = true;
         }
 
-        this.input.addEventListener('click', function (event) {
-          if (!_this3.readOnly) {
-            _this3.openState = 'true';
-          }
-        });
+        this.input.addEventListener('click', this.inputOnClick);
+        this.input.addEventListener('keydown', this.onMouseDown);
+        this.input.addEventListener('blur', this.inputOnBlur);
 
-        this.input.addEventListener('keydown', function (event) {
+        this.list.addEventListener('keydown', this.onMouseDown);
+        this.list.addEventListener('click', function (event) {
           event.stopImmediatePropagation();
-          _this3.hoverTime(filterSelected(_this3.list, _this3.input.value));
-          switch (event.keyCode) {
-            case 27:
-              if (_this3.open === 'true') {
-                _this3.openState = 'false';
-                _this3.input.focus();
-              }
-              break;
-            case 8:
-              _this3.container.classList.add();
-              removeIcons(_this3.list);
-              break;
-            case 13:
-              if (_this3.open === 'true') {
-                if (filterSelected(_this3.list, _this3.input.value) === null) {
-                  _this3.container.classList.add('error');
-                  removeIcons(_this3.list);
-                } else {
-                  filterSelected(_this3.list, _this3.input.value).click();
-                }
-              } else {
-                _this3.validateTime();
-                if (_this3.valid === 'true') {
-                  _this3.selectedState = _this3.input.value;
-                } else {
-                  return false;
-                }
-              }
-              break;
-            case 40:
-              event.preventDefault();
-              if (_this3.open === 'true') {
-                _this3.focusListItem();
-              } else if (_this3.open === 'false') {
-                _this3.openState = 'true';
-              }
-              break;
-          }
+          _this3.selectTime(event.target, _this3.list);
         });
 
-        this.input.addEventListener('blur', function (event) {
-          if (event.relatedTarget === null && !isIE11) {
-            if (!_this3.readOnly) {
-              _this3.validateTime();
-              if (_this3.valid === 'true') {
-                if (filterSelected(_this3.list, _this3.input.value) !== null) {
-                  filterSelected(_this3.list, _this3.input.value).click();
-                }
-              }
-            } else if (isIE11) {
-              _this3.validateTime();
-            }
-          }
-        });
-
-        doc.addEventListener('click', function (event) {
-          event.stopImmediatePropagation();
-          if (_this3.list.childNodes.length > 1) {
-            if (event.target !== _this3) {
-              _this3.closeMenu();
-            }
-          }
-        });
-
-        doc.addEventListener('keydown', function (event) {
-          if (event.keyCode === 27) {
-            _this3.openState = 'false';
-            _this3.input.focus();
-            console.log('hi');
-          }
-        });
+        doc.addEventListener('click', this.closeMenuOnBodyClick);
+        doc.addEventListener('keydown', this.onMouseDown);
       }
     }, {
       key: 'attributeChangedCallback',
@@ -384,69 +455,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                 selectedNode.setAttribute('aria-selected', true);
                 selectedIcon.style.display = 'block';
               }
-
-              this.list.addEventListener('click', function (event) {
-                event.stopImmediatePropagation();
-                _this4.selectTime(event.target, _this4.list);
-              });
-
-              this.list.addEventListener('keydown', function (event) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-                var nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
-                    prevItem = parseInt(event.target.getAttribute('data-index')) - 1,
-                    focusableElements = getFocusableElements(_this4.list),
-                    firstFocusableElement = focusableElements[0],
-                    lastFocusableElement = focusableElements[focusableElements.length - 1];
-                switch (event.keyCode) {
-                  case 27:
-                    if (_this4.open === 'true') {
-                      _this4.openState = 'false';
-                      _this4.input.focus();
-                    }
-                    break;
-                  case 9:
-                    _this4.input.focus();
-                    _this4.openState = 'false';
-                    break;
-                  case 40:
-                    if (_this4.shadowRoot.activeElement === lastFocusableElement) {
-                      firstFocusableElement.focus();
-                    } else {
-                      if (focusableElements[nextItem] !== undefined) {
-                        focusableElements[nextItem].focus();
-                      } else {
-                        return;
-                      }
-                    }
-                    break;
-                  case 38:
-                    if (_this4.shadowRoot.activeElement === firstFocusableElement) {
-                      lastFocusableElement.focus();
-                    } else {
-                      if (focusableElements[prevItem] !== undefined) {
-                        focusableElements[prevItem].focus();
-                      } else {
-                        return;
-                      }
-                    }
-                    break;
-                  case 32:
-                    event.target.click();
-                    break;
-                  case 13:
-                    event.target.click();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    break;
-                  case 36:
-                    firstFocusableElement.focus();
-                    break;
-                  case 35:
-                    lastFocusableElement.focus();
-                    break;
-                }
-              });
             }
             if (newValue === 'false') {
               this.dropdown.remove();

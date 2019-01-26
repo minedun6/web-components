@@ -249,50 +249,27 @@
       }
     }
 
-
-    constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
-      const clone = template.content.cloneNode(true),
-        dropdownTemplate = dropdown.content.cloneNode(true);
-
-      this.input = clone.querySelector('input');
-      this.label = clone.querySelector('label');
-      this.container = clone.querySelector('.timepicker-container');
-      this.list = dropdownTemplate.querySelector('ul');
-      this.dropdown = dropdownTemplate.querySelector('#dropDown');
-      this.shadowRoot.appendChild(clone);
-      this.selectTime = this.selectTime.bind(this);
-      this.hoverTime = this.hoverTime.bind(this);
-      this.validateTime = this.validateTime.bind(this);
-      this.closeMenu = this.closeMenu.bind(this)
+    closeMenuOnBodyClick (event) {
+      event.stopImmediatePropagation();
+      if (this.list.childNodes.length > 1) {
+        if (event.target !== this) {
+          this.closeMenu();
+        }
+      }
     }
 
-    connectedCallback() {
-      if (this.hours === '12') {
-        this.labelState = "Select time (HH:MM AM/PM)"
-      } else {
-        this.labelState = "Select time (HH:MM)"
-      }
+    onMouseDown (event) {
+      console.log(event.currentTarget.tagName)
+      event.stopImmediatePropagation();
+      const nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
+        prevItem = parseInt(event.target.getAttribute('data-index')) - 1,
+        focusableElements = getFocusableElements(this.list),
+        firstFocusableElement = focusableElements[0],
+        lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-      if (this.disabled) {
-        this.disabledState = true
-      }
-
-      if (this.readOnly) {
-        this.readOnlyState = true
-      }
-
-      this.input.addEventListener('click', event => {
-        if (!this.readOnly) {
-          this.openState = 'true';
-        }
-      });
-
-      this.input.addEventListener('keydown', event => {
-        event.stopImmediatePropagation();
+      if (event.currentTarget.tagName === 'INPUT') {
         this.hoverTime(filterSelected(this.list, this.input.value));
-        switch (event.keyCode) {
+          switch (event.keyCode) {
           case 27:
             if (this.open === 'true') {
               this.openState = 'false';
@@ -328,41 +305,128 @@
               this.openState = 'true';
             }
             break;
-        }
-      });
-
-      this.input.addEventListener('blur', event => {
-        if (event.relatedTarget === null  && !isIE11) {
-          if (!this.readOnly) {
-            this.validateTime();
-            if (this.valid === 'true') {
-              if (filterSelected(this.list, this.input.value) !== null) {
-                filterSelected(this.list, this.input.value).click();
+          }
+      } else {
+        switch (event.keyCode){
+          case 27:
+            if (this.open === 'true') {
+              this.openState = 'false';
+              this.input.focus();
+            }
+            break;
+          case 9:
+            this.input.focus();
+            this.openState = 'false'
+            break;
+          case 40:
+            if (this.shadowRoot.activeElement === lastFocusableElement) {
+              firstFocusableElement.focus();
+            } else {
+              if (focusableElements[nextItem] !== undefined) {
+                focusableElements[nextItem].focus();
+              } else {
+                return
               }
             }
-          } else if (isIE11) {
-            this.validateTime();
-          }
+            break;
+          case 38:
+            if (this.shadowRoot.activeElement === firstFocusableElement) {
+              lastFocusableElement.focus();
+            } else {
+              if (focusableElements[prevItem] !== undefined) {
+                focusableElements[prevItem].focus();
+              } else {
+                return
+              }
+            }
+            break;
+          case 32:
+            event.target.click();
+            break;
+          case 13:
+            event.target.click();
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            break;
+          case 36:
+            firstFocusableElement.focus();
+            break;
+          case 35:
+            lastFocusableElement.focus();
+            break;
         }
-      });
+      }
+    }
 
-      doc.addEventListener('click', event => {
+    inputOnBlur (event) {
+      if (event.relatedTarget === null  && !isIE11) {
+        if (!this.readOnly) {
+          this.validateTime();
+          if (this.valid === 'true') {
+            if (filterSelected(this.list, this.input.value) !== null) {
+              filterSelected(this.list, this.input.value).click();
+            }
+          }
+        } else if (isIE11) {
+          this.validateTime();
+        }
+      }
+    }
+
+    inputOnClick () {
+      if (!this.readOnly) {
+        this.openState = 'true';
+      }
+    }
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+      const clone = template.content.cloneNode(true),
+        dropdownTemplate = dropdown.content.cloneNode(true);
+
+      this.input = clone.querySelector('input');
+      this.label = clone.querySelector('label');
+      this.container = clone.querySelector('.timepicker-container');
+      this.list = dropdownTemplate.querySelector('ul');
+      this.dropdown = dropdownTemplate.querySelector('#dropDown');
+      this.shadowRoot.appendChild(clone);
+      this.selectTime = this.selectTime.bind(this);
+      this.hoverTime = this.hoverTime.bind(this);
+      this.validateTime = this.validateTime.bind(this);
+      this.closeMenu = this.closeMenu.bind(this);
+      this.onMouseDown = this.onMouseDown.bind(this);
+      this.closeMenuOnBodyClick = this.closeMenuOnBodyClick.bind(this);
+      this.inputOnBlur = this.inputOnBlur.bind(this);
+      this.inputOnClick = this.inputOnClick.bind(this);
+    }
+
+    connectedCallback() {
+      if (this.hours === '12') {
+        this.labelState = "Select time (HH:MM AM/PM)"
+      } else {
+        this.labelState = "Select time (HH:MM)"
+      }
+
+      if (this.disabled) {
+        this.disabledState = true
+      }
+
+      if (this.readOnly) {
+        this.readOnlyState = true
+      }
+
+      this.input.addEventListener('click', this.inputOnClick);
+      this.input.addEventListener('keydown',  this.onMouseDown);
+      this.input.addEventListener('blur', this.inputOnBlur);
+
+      this.list.addEventListener('keydown',this.onMouseDown);
+      this.list.addEventListener('click', event => {
         event.stopImmediatePropagation();
-        if (this.list.childNodes.length > 1) {
-          if (event.target !== this) {
-            this.closeMenu();
-          }
-        }
+        this.selectTime(event.target, this.list)
       });
 
-      doc.addEventListener('keydown', event => {
-        if (event.keyCode === 27) {
-          this.openState = 'false';
-          this.input.focus();
-          console.log('hi')
-
-        }
-      });
+      doc.addEventListener('click', this.closeMenuOnBodyClick);
+      doc.addEventListener('keydown', this.onMouseDown);
 
     }
 
@@ -395,69 +459,6 @@
               selectedNode.setAttribute('aria-selected', true);
               selectedIcon.style.display = 'block';
             }
-
-            this.list.addEventListener('click', event => {
-              event.stopImmediatePropagation();
-              this.selectTime(event.target, this.list)
-            })
-
-            this.list.addEventListener('keydown', event => {
-              event.preventDefault();
-              event.stopImmediatePropagation();
-              const nextItem = parseInt(event.target.getAttribute('data-index')) + 1,
-                prevItem = parseInt(event.target.getAttribute('data-index')) - 1,
-                focusableElements = getFocusableElements(this.list),
-                firstFocusableElement = focusableElements[0],
-                lastFocusableElement = focusableElements[focusableElements.length - 1];
-              switch(event.keyCode) {
-                case 27:
-                  if (this.open === 'true') {
-                    this.openState = 'false';
-                    this.input.focus();
-                  }
-                  break;
-                case 9:
-                  this.input.focus();
-                  this.openState = 'false'
-                  break;
-                case 40:
-                  if (this.shadowRoot.activeElement === lastFocusableElement) {
-                    firstFocusableElement.focus();
-                  } else {
-                    if (focusableElements[nextItem] !== undefined) {
-                      focusableElements[nextItem].focus();
-                    } else {
-                      return
-                    }
-                  }
-                  break;
-                case 38:
-                  if (this.shadowRoot.activeElement === firstFocusableElement) {
-                    lastFocusableElement.focus();
-                  } else {
-                    if (focusableElements[prevItem] !== undefined) {
-                      focusableElements[prevItem].focus();
-                    } else {
-                      return
-                    }
-                  }
-                  break;
-                case 32:
-                  event.target.click();
-                  break;
-                case 13:
-                  event.target.click();
-                  event.preventDefault();
-                  event.stopImmediatePropagation();
-                  break;
-                case 36:
-                  firstFocusableElement.focus();
-                  break;
-                case 35:
-                  lastFocusableElement.focus();
-                  break;
-              }
-            });
           }
           if (newValue === 'false') {
             this.dropdown.remove();
