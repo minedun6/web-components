@@ -261,7 +261,7 @@
       }
     }
 
-    closeMenuOnBodyClick(event) {
+    onDocClick(event) {
       event.stopImmediatePropagation();
       if (this.list.childNodes.length > 1) {
         if (event.target !== this) {
@@ -369,7 +369,7 @@
       }
     }
 
-    inputOnBlur(event) {
+    onInputBlur(event) {
       if (event.relatedTarget === null && !isIE11) {
         if (!this.readOnly) {
           this.validateTime();
@@ -384,7 +384,7 @@
       }
     }
 
-    inputOnClick() {
+    onInputClick() {
       if (!this.readOnly) {
         this.openState = 'true';
       }
@@ -406,9 +406,9 @@
       this.validateTime = this.validateTime.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
       this.onMouseDown = this.onMouseDown.bind(this);
-      this.closeMenuOnBodyClick = this.closeMenuOnBodyClick.bind(this);
-      this.inputOnBlur = this.inputOnBlur.bind(this);
-      this.inputOnClick = this.inputOnClick.bind(this);
+      this.onDocClick = this.onDocClick.bind(this);
+      this.onInputBlur = this.onInputBlur.bind(this);
+      this.onInputClick = this.onInputClick.bind(this);
     }
 
     connectedCallback() {
@@ -426,9 +426,9 @@
         this.readOnlyState = true;
       }
 
-      this.input.addEventListener('click', this.inputOnClick);
+      this.input.addEventListener('click', this.onInputClick);
       this.input.addEventListener('keydown', this.onMouseDown);
-      this.input.addEventListener('blur', this.inputOnBlur);
+      this.input.addEventListener('blur', this.onInputBlur);
 
       this.list.addEventListener('keydown', this.onMouseDown);
       this.list.addEventListener('click', event => {
@@ -436,7 +436,7 @@
         this.selectTime(event.target, this.list);
       });
 
-      doc.addEventListener('click', this.closeMenuOnBodyClick);
+      doc.addEventListener('click', this.onDocClick);
       doc.addEventListener('keydown', this.onMouseDown);
     }
 

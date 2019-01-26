@@ -145,8 +145,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: 'closeMenuOnBodyClick',
-      value: function closeMenuOnBodyClick(event) {
+      key: 'onDocClick',
+      value: function onDocClick(event) {
         event.stopImmediatePropagation();
         if (this.list.childNodes.length > 1) {
           if (event.target !== this) {
@@ -255,8 +255,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: 'inputOnBlur',
-      value: function inputOnBlur(event) {
+      key: 'onInputBlur',
+      value: function onInputBlur(event) {
         if (event.relatedTarget === null && !isIE11) {
           if (!this.readOnly) {
             this.validateTime();
@@ -271,8 +271,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: 'inputOnClick',
-      value: function inputOnClick() {
+      key: 'onInputClick',
+      value: function onInputClick() {
         if (!this.readOnly) {
           this.openState = 'true';
         }
@@ -383,9 +383,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this2.validateTime = _this2.validateTime.bind(_this2);
       _this2.closeMenu = _this2.closeMenu.bind(_this2);
       _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
-      _this2.closeMenuOnBodyClick = _this2.closeMenuOnBodyClick.bind(_this2);
-      _this2.inputOnBlur = _this2.inputOnBlur.bind(_this2);
-      _this2.inputOnClick = _this2.inputOnClick.bind(_this2);
+      _this2.onDocClick = _this2.onDocClick.bind(_this2);
+      _this2.onInputBlur = _this2.onInputBlur.bind(_this2);
+      _this2.onInputClick = _this2.onInputClick.bind(_this2);
       return _this2;
     }
 
@@ -408,9 +408,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           this.readOnlyState = true;
         }
 
-        this.input.addEventListener('click', this.inputOnClick);
+        this.input.addEventListener('click', this.onInputClick);
         this.input.addEventListener('keydown', this.onMouseDown);
-        this.input.addEventListener('blur', this.inputOnBlur);
+        this.input.addEventListener('blur', this.onInputBlur);
 
         this.list.addEventListener('keydown', this.onMouseDown);
         this.list.addEventListener('click', function (event) {
@@ -418,7 +418,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           _this3.selectTime(event.target, _this3.list);
         });
 
-        doc.addEventListener('click', this.closeMenuOnBodyClick);
+        doc.addEventListener('click', this.onDocClick);
         doc.addEventListener('keydown', this.onMouseDown);
       }
     }, {
