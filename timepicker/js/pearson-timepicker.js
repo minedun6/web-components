@@ -378,16 +378,22 @@
       this.attachShadow({ mode: 'open' });
       const clone = template.content.cloneNode(true);
 
+      // UI elements
       this.input = clone.querySelector('input');
       this.label = clone.querySelector('label');
       this.container = clone.querySelector('.timepicker-container');
       this.list = clone.querySelector('ul');
       this.dropdown = clone.querySelector('#dropDown');
+
       this.shadowRoot.appendChild(clone);
+
+      // Private functions essential to component behavior
       this.selectTime = this.selectTime.bind(this);
       this.hoverTime = this.hoverTime.bind(this);
       this.validateTime = this.validateTime.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
+
+      // Event handlers
       this.onMouseDown = this.onMouseDown.bind(this);
       this.onInputBlur = this.onInputBlur.bind(this);
       this.onInputClick = this.onInputClick.bind(this);

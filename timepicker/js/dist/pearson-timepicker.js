@@ -355,16 +355,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this2.attachShadow({ mode: 'open' });
       var clone = template.content.cloneNode(true);
 
+      // UI elements
       _this2.input = clone.querySelector('input');
       _this2.label = clone.querySelector('label');
       _this2.container = clone.querySelector('.timepicker-container');
       _this2.list = clone.querySelector('ul');
       _this2.dropdown = clone.querySelector('#dropDown');
+
       _this2.shadowRoot.appendChild(clone);
+
+      // Private functions essential to component behavior
       _this2.selectTime = _this2.selectTime.bind(_this2);
       _this2.hoverTime = _this2.hoverTime.bind(_this2);
       _this2.validateTime = _this2.validateTime.bind(_this2);
       _this2.closeMenu = _this2.closeMenu.bind(_this2);
+
+      // Event handlers
       _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
       _this2.onInputBlur = _this2.onInputBlur.bind(_this2);
       _this2.onInputClick = _this2.onInputClick.bind(_this2);
