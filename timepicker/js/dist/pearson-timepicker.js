@@ -254,13 +254,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'openMenu',
       value: function openMenu() {
         if (!this.readOnly) {
-          this.openState = 'true';
+          this.open = 'true';
         }
       }
     }, {
       key: 'closeMenu',
       value: function closeMenu() {
-        this.openState = 'false';
+        this.open = 'false';
       }
     }, {
       key: 'disabled',
@@ -286,6 +286,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'open',
       get: function get() {
         return this.getAttribute('open');
+      },
+      set: function set(open) {
+        this.setAttribute('open', open);
       }
     }, {
       key: 'hours',
@@ -325,11 +328,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'readOnlyValueState',
       set: function set(value) {
         this.input.value = value;
-      }
-    }, {
-      key: 'openState',
-      set: function set(open) {
-        this.setAttribute('open', open);
       }
     }, {
       key: 'selectedState',

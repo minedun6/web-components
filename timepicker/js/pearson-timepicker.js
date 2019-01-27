@@ -155,6 +155,10 @@
       return this.getAttribute('open');
     }
 
+    set open(open) {
+      this.setAttribute('open', open);
+    }
+
     get hours() {
       return this.getAttribute('hours');
     }
@@ -185,10 +189,6 @@
 
     set readOnlyValueState(value) {
       this.input.value = value;
-    }
-
-    set openState(open) {
-      this.setAttribute('open', open);
     }
 
     set selectedState(selected) {
@@ -368,11 +368,11 @@
 
     openMenu() {
       if (!this.readOnly) {
-        this.openState = 'true';
+        this.open = 'true';
       }
     }
     closeMenu() {
-      this.openState = 'false';
+      this.open = 'false';
     
     }
 
