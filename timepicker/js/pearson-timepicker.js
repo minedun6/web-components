@@ -3,7 +3,6 @@
   // Create a template element
   const template = doc.createElement('template'),
     timeItem = doc.createElement('template'),
-    dropdown = doc.createElement('template'),
     isIE11 = !!window.MSInputMethodContext && !!document.documentMode,
     checkIcon = `
       <svg
@@ -32,16 +31,6 @@
         <path d="M9.99994044,10.5 C9.99994044,10.776 9.77594044,11 9.49994044,11 L8.49994044,11 C8.22394044,11 7.99994044,10.776 7.99994044,10.5 L7.99994044,7.5 C7.99994044,7.224 8.22394044,7 8.49994044,7 L9.49994044,7 C9.77594044,7 9.99994044,7.224 9.99994044,7.5 L9.99994044,10.5 Z M9.99994044,13.5 C9.99994044,13.776 9.77594044,14 9.49994044,14 L8.49994044,14 C8.22394044,14 7.99994044,13.776 7.99994044,13.5 L7.99994044,12.5 C7.99994044,12.224 8.22394044,12 8.49994044,12 L9.49994044,12 C9.77594044,12 9.99994044,12.224 9.99994044,12.5 L9.99994044,13.5 Z M15.9460591,15.275 L9.44500379,2.276 C9.26100222,1.908 8.73899778,1.908 8.55499621,2.276 L2.05394089,15.275 C1.88693947,15.607 2.12794152,16 2.49894468,16 L15.5010553,16 C15.8720585,16 16.1130605,15.607 15.9460591,15.275 Z"/>
     </svg>`;
 
-  //Styles must be copied from the css file
-  // and pasted between the style tags below
-
-  dropdown.innerHTML = `
-    <div id="dropDown" class="pe-dropdown-container animated animateIn">
-      <ul id="itemList" class="itemList" role="listbox" tabindex="0" data-selected data-time-type="12 hour">
-      </ul>
-    </div>
-  `;
-
   timeItem.innerHTML = `
     <li class="item" role="option" tabindex="-1" aria-selected="false" data-time="6:00 AM">
       <span class="pe-icon-wrapper">
@@ -68,6 +57,10 @@
     ${warningIcon}
     Enter a valid time.
   </p>
+  <div id="dropDown" class="pe-dropdown-container animated animateIn">
+    <ul id="itemList" class="itemList" role="listbox" tabindex="0" data-selected data-time-type="12 hour">
+    </ul>
+  </div>
 </div>
 `;
 
@@ -383,14 +376,13 @@
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
-      const clone = template.content.cloneNode(true),
-        dropdownTemplate = dropdown.content.cloneNode(true);
+      const clone = template.content.cloneNode(true);
 
       this.input = clone.querySelector('input');
       this.label = clone.querySelector('label');
       this.container = clone.querySelector('.timepicker-container');
-      this.list = dropdownTemplate.querySelector('ul');
-      this.dropdown = dropdownTemplate.querySelector('#dropDown');
+      this.list = clone.querySelector('ul');
+      this.dropdown = clone.querySelector('#dropDown');
       this.shadowRoot.appendChild(clone);
       this.selectTime = this.selectTime.bind(this);
       this.hoverTime = this.hoverTime.bind(this);
