@@ -323,6 +323,7 @@
                 return;
               }
             }
+            event.preventDefault();
             break;
           case 38:
             if (this.shadowRoot.activeElement === firstFocusableElement) {
@@ -334,6 +335,7 @@
                 return;
               }
             }
+            event.preventDefault();
             break;
           case 32:
             event.target.click();

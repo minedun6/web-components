@@ -209,6 +209,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                   return;
                 }
               }
+              event.preventDefault();
               break;
             case 38:
               if (this.shadowRoot.activeElement === firstFocusableElement) {
@@ -220,6 +221,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                   return;
                 }
               }
+              event.preventDefault();
               break;
             case 32:
               event.target.click();
