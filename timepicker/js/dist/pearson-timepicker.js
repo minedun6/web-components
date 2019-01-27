@@ -80,12 +80,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     _inherits(TimePicker, _HTMLElement);
 
     _createClass(TimePicker, [{
-      key: 'closeMenu',
-      value: function closeMenu() {
-        this.openState = 'false';
-        this.list.innerHTML = '';
-      }
-    }, {
       key: 'selectTime',
       value: function selectTime(node, list) {
         var icon = node.querySelector('.pe-icon-wrapper');
@@ -257,11 +251,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
       }
     }, {
-      key: 'onInputClick',
-      value: function onInputClick() {
+      key: 'openMenu',
+      value: function openMenu() {
         if (!this.readOnly) {
           this.openState = 'true';
         }
+      }
+    }, {
+      key: 'closeMenu',
+      value: function closeMenu() {
+        this.openState = 'false';
       }
     }, {
       key: 'disabled',
@@ -370,12 +369,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       _this2.selectTime = _this2.selectTime.bind(_this2);
       _this2.hoverTime = _this2.hoverTime.bind(_this2);
       _this2.validateTime = _this2.validateTime.bind(_this2);
+      _this2.openMenu = _this2.openMenu.bind(_this2);
       _this2.closeMenu = _this2.closeMenu.bind(_this2);
 
       // Event handlers
       _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
       _this2.onInputBlur = _this2.onInputBlur.bind(_this2);
-      _this2.onInputClick = _this2.onInputClick.bind(_this2);
       return _this2;
     }
 
@@ -398,7 +397,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           this.readOnlyState = true;
         }
 
-        this.input.addEventListener('click', this.onInputClick);
+        this.input.addEventListener('click', this.openMenu);
         this.input.addEventListener('keydown', this.onMouseDown);
         this.input.addEventListener('blur', this.onInputBlur);
 

@@ -198,11 +198,6 @@
     set validState(valid) {
       this.setAttribute('valid', valid);
     }
-
-    closeMenu() {
-      this.openState = 'false';
-      this.list.innerHTML = '';
-    }
     
     selectTime(node, list) {
       const icon = node.querySelector('.pe-icon-wrapper');
@@ -371,11 +366,16 @@
       }
     }
 
-    onInputClick() {
+    openMenu() {
       if (!this.readOnly) {
         this.openState = 'true';
       }
     }
+    closeMenu() {
+      this.openState = 'false';
+    
+    }
+    
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -394,12 +394,12 @@
       this.selectTime = this.selectTime.bind(this);
       this.hoverTime = this.hoverTime.bind(this);
       this.validateTime = this.validateTime.bind(this);
+      this.openMenu = this.openMenu.bind(this);
       this.closeMenu = this.closeMenu.bind(this);
 
       // Event handlers
       this.onMouseDown = this.onMouseDown.bind(this);
       this.onInputBlur = this.onInputBlur.bind(this);
-      this.onInputClick = this.onInputClick.bind(this);
     }
 
     connectedCallback() {
@@ -417,7 +417,7 @@
         this.readOnlyState = true;
       }
 
-      this.input.addEventListener('click', this.onInputClick);
+      this.input.addEventListener('click', this.openMenu);
       this.input.addEventListener('keydown', this.onMouseDown);
       this.input.addEventListener('blur', this.onInputBlur);
 
