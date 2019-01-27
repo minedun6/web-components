@@ -203,6 +203,7 @@
       this.openState = 'false';
       this.list.innerHTML = '';
     }
+    
     selectTime(node, list) {
       const icon = node.querySelector('.pe-icon-wrapper');
       removeIcons(list);
