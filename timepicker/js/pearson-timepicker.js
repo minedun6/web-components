@@ -263,7 +263,7 @@
         switch (event.keyCode) {
           case 27:
             if (this.open === 'true') {
-              this.openState = 'false';
+              this.closeMenu();
               this.input.focus();
             }
             break;
@@ -293,7 +293,7 @@
             if (this.open === 'true') {
               this.focusListItem();
             } else if (this.open === 'false') {
-              this.openState = 'true';
+              this.openMenu();
             }
             break;
         }
@@ -301,13 +301,13 @@
         switch (event.keyCode) {
           case 27:
             if (this.open === 'true') {
-              this.openState = 'false';
+              this.closeMenu();
               this.input.focus();
             }
             break;
           case 9:
             this.input.focus();
-            this.openState = 'false';
+            this.closeMenu();
             break;
           case 40:
             if (this.shadowRoot.activeElement === lastFocusableElement) {
@@ -375,7 +375,7 @@
       this.openState = 'false';
     
     }
-    
+
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
