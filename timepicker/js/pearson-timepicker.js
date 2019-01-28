@@ -405,7 +405,8 @@
       if (this.readOnly) {
         this.readOnlyState = true;
       }
-
+      
+      this.input.addEventListener('click', this.openMenu);
       this.input.addEventListener('focus', this.openMenu);
       this.input.addEventListener('keydown', this.onMouseDown);
       this.input.addEventListener('blur', this.onInputBlur);
