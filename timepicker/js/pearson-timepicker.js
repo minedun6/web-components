@@ -176,7 +176,7 @@
       return this.getAttribute('valid');
     }
 
-    set disabledState(bool) {
+    set disabled(bool) {
       this.input.setAttribute('disabled', bool);
       this.readOnlyValueState = this.readOnlyValue;
     }
@@ -185,7 +185,7 @@
       this.label.innerHTML = text;
     }
 
-    set readOnlyState(bool) {
+    set readOnly(bool) {
       this.input.setAttribute('readonly', bool);
       this.input.classList.remove('pe-textInput--basic');
       this.input.classList.add('pe-textInput--input_readonly');
@@ -399,11 +399,11 @@
       }
 
       if (this.disabled) {
-        this.disabledState = true;
+        this.disabled = true;
       }
 
       if (this.readOnly) {
-        this.readOnlyState = true;
+        this.readOnly = true;
       }
       
       this.input.addEventListener('click', this.openMenu);

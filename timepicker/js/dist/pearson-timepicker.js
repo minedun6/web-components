@@ -258,6 +258,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'disabled',
       get: function get() {
         return this.hasAttribute('disabled');
+      },
+      set: function set(bool) {
+        this.input.setAttribute('disabled', bool);
+        this.readOnlyValueState = this.readOnlyValue;
       }
     }, {
       key: 'readOnlyValue',
@@ -268,6 +272,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
       key: 'readOnly',
       get: function get() {
         return this.hasAttribute('readonly');
+      },
+      set: function set(bool) {
+        this.input.setAttribute('readonly', bool);
+        this.input.classList.remove('pe-textInput--basic');
+        this.input.classList.add('pe-textInput--input_readonly');
+        this.readOnlyValueState = this.readOnlyValue;
       }
     }, {
       key: 'selected',
@@ -298,23 +308,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         return this.getAttribute('valid');
       }
     }, {
-      key: 'disabledState',
-      set: function set(bool) {
-        this.input.setAttribute('disabled', bool);
-        this.readOnlyValueState = this.readOnlyValue;
-      }
-    }, {
       key: 'labelState',
       set: function set(text) {
         this.label.innerHTML = text;
-      }
-    }, {
-      key: 'readOnlyState',
-      set: function set(bool) {
-        this.input.setAttribute('readonly', bool);
-        this.input.classList.remove('pe-textInput--basic');
-        this.input.classList.add('pe-textInput--input_readonly');
-        this.readOnlyValueState = this.readOnlyValue;
       }
     }, {
       key: 'readOnlyValueState',
@@ -380,11 +376,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
 
         if (this.disabled) {
-          this.disabledState = true;
+          this.disabled = true;
         }
 
         if (this.readOnly) {
-          this.readOnlyState = true;
+          this.readOnly = true;
         }
 
         this.input.addEventListener('click', this.openMenu);
