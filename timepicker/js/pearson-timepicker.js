@@ -203,7 +203,7 @@
     set validState(valid) {
       this.setAttribute('valid', valid);
     }
-    
+
     selectTime(node, list) {
       const icon = node.querySelector('.pe-icon-wrapper');
       removeIcons(list);
@@ -228,7 +228,7 @@
 
     validateTime() {
       const expToTest = TIME_FORMAT_REGEX[this.hours];
-      
+
       this.validState = expToTest.test(this.input.value);
     }
 
@@ -309,8 +309,6 @@
             } else {
               if (focusableElements[nextItem] !== undefined) {
                 focusableElements[nextItem].focus();
-              } else {
-                return;
               }
             }
             event.preventDefault();
@@ -321,8 +319,6 @@
             } else {
               if (focusableElements[prevItem] !== undefined) {
                 focusableElements[prevItem].focus();
-              } else {
-                return;
               }
             }
             event.preventDefault();
@@ -367,7 +363,6 @@
     }
     closeMenu() {
       this.open = 'false';
-    
     }
 
     constructor() {

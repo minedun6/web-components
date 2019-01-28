@@ -195,8 +195,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
               } else {
                 if (focusableElements[nextItem] !== undefined) {
                   focusableElements[nextItem].focus();
-                } else {
-                  return;
                 }
               }
               event.preventDefault();
@@ -207,8 +205,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
               } else {
                 if (focusableElements[prevItem] !== undefined) {
                   focusableElements[prevItem].focus();
-                } else {
-                  return;
                 }
               }
               event.preventDefault();
