@@ -121,6 +121,11 @@
     return li;
   }
 
+  const TIME_FORMAT_REGEX = {
+    '12': /^([0-1][0-2]|\d):[0-5][0-9]\s(PM|AM|am|pm)$/,
+    '24': /^([01]\d|2[0-3]):?([0-5]\d)$/
+  };
+
   class TimePicker extends HTMLElement {
     static get observedAttributes() {
       return [
@@ -222,20 +227,9 @@
     }
 
     validateTime() {
-      function isValids(_this) {
-        const type = _this.hours;
-        let isValid;
-        if (type === '24') {
-          isValid = /^([01]\d|2[0-3]):?([0-5]\d)$/.test(_this.input.value);
-          return isValid;
-        } else {
-          isValid = /^([0-1][0-2]|\d):[0-5][0-9]\s(PM|AM|am|pm)$/.test(
-            _this.input.value
-          );
-          return isValid;
-        }
-      }
-      this.validState = isValids(this);
+      const expToTest = TIME_FORMAT_REGEX[this.hours];
+      
+      this.validState = expToTest.test(this.input.value);
     }
 
     focusListItem() {

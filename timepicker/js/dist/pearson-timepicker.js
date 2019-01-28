@@ -76,6 +76,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     return li;
   }
 
+  var TIME_FORMAT_REGEX = {
+    '12': /^([0-1][0-2]|\d):[0-5][0-9]\s(PM|AM|am|pm)$/,
+    '24': /^([01]\d|2[0-3]):?([0-5]\d)$/
+  };
+
   var TimePicker = function (_HTMLElement) {
     _inherits(TimePicker, _HTMLElement);
 
@@ -106,18 +111,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: 'validateTime',
       value: function validateTime() {
-        function isValids(_this) {
-          var type = _this.hours;
-          var isValid = void 0;
-          if (type === '24') {
-            isValid = /^([01]\d|2[0-3]):?([0-5]\d)$/.test(_this.input.value);
-            return isValid;
-          } else {
-            isValid = /^([0-1][0-2]|\d):[0-5][0-9]\s(PM|AM|am|pm)$/.test(_this.input.value);
-            return isValid;
-          }
-        }
-        this.validState = isValids(this);
+        var expToTest = TIME_FORMAT_REGEX[this.hours];
+
+        this.validState = expToTest.test(this.input.value);
       }
     }, {
       key: 'focusListItem',
@@ -349,37 +345,37 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     function TimePicker() {
       _classCallCheck(this, TimePicker);
 
-      var _this2 = _possibleConstructorReturn(this, (TimePicker.__proto__ || Object.getPrototypeOf(TimePicker)).call(this));
+      var _this = _possibleConstructorReturn(this, (TimePicker.__proto__ || Object.getPrototypeOf(TimePicker)).call(this));
 
-      _this2.attachShadow({ mode: 'open' });
+      _this.attachShadow({ mode: 'open' });
       var clone = template.content.cloneNode(true);
 
       // UI elements
-      _this2.input = clone.querySelector('input');
-      _this2.label = clone.querySelector('label');
-      _this2.container = clone.querySelector('.timepicker-container');
-      _this2.list = clone.querySelector('ul');
-      _this2.dropdown = clone.querySelector('#dropDown');
+      _this.input = clone.querySelector('input');
+      _this.label = clone.querySelector('label');
+      _this.container = clone.querySelector('.timepicker-container');
+      _this.list = clone.querySelector('ul');
+      _this.dropdown = clone.querySelector('#dropDown');
 
-      _this2.shadowRoot.appendChild(clone);
+      _this.shadowRoot.appendChild(clone);
 
       // Private functions essential to component behavior
-      _this2.selectTime = _this2.selectTime.bind(_this2);
-      _this2.hoverTime = _this2.hoverTime.bind(_this2);
-      _this2.validateTime = _this2.validateTime.bind(_this2);
-      _this2.openMenu = _this2.openMenu.bind(_this2);
-      _this2.closeMenu = _this2.closeMenu.bind(_this2);
+      _this.selectTime = _this.selectTime.bind(_this);
+      _this.hoverTime = _this.hoverTime.bind(_this);
+      _this.validateTime = _this.validateTime.bind(_this);
+      _this.openMenu = _this.openMenu.bind(_this);
+      _this.closeMenu = _this.closeMenu.bind(_this);
 
       // Event handlers
-      _this2.onMouseDown = _this2.onMouseDown.bind(_this2);
-      _this2.onInputBlur = _this2.onInputBlur.bind(_this2);
-      return _this2;
+      _this.onMouseDown = _this.onMouseDown.bind(_this);
+      _this.onInputBlur = _this.onInputBlur.bind(_this);
+      return _this;
     }
 
     _createClass(TimePicker, [{
       key: 'connectedCallback',
       value: function connectedCallback() {
-        var _this3 = this;
+        var _this2 = this;
 
         if (this.hours === '12') {
           this.labelState = 'Select time (HH:MM AM/PM)';
@@ -402,7 +398,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         this.list.addEventListener('keydown', this.onMouseDown);
         this.list.addEventListener('click', function (event) {
           event.stopImmediatePropagation();
-          _this3.selectTime(event.target, _this3.list);
+          _this2.selectTime(event.target, _this2.list);
         });
 
         this.addEventListener('focusout', this.closeMenu);
@@ -416,7 +412,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     }, {
       key: 'attributeChangedCallback',
       value: function attributeChangedCallback(name, oldValue, newValue) {
-        var _this4 = this;
+        var _this3 = this;
 
         this.timesToRender = calculate(this.increment);
         this.format = format(this.hours);
@@ -433,9 +429,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
           if (oldValue !== newValue) {
             if (newValue === 'true') {
               this.timesToRender.forEach(function (time, index) {
-                var text = time.format(_this4.format);
+                var text = time.format(_this3.format);
                 var li = buildTimes(text, index);
-                _this4.list.appendChild(li);
+                _this3.list.appendChild(li);
               });
               this.container.appendChild(this.dropdown);
               var selectedNode = this.dropdown.querySelector('[data-time=\'' + this.selected + '\']');
