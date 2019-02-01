@@ -117,6 +117,7 @@
       timeEl = li.querySelector('.time');
     item.setAttribute('data-time', time);
     item.setAttribute('data-index', index);
+    item.id = 'time-' + index;
     timeEl.innerHTML = time;
     return li;
   }
