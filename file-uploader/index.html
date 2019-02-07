@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Pearson Web Component</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<!-- load pearson and global styles -->
+	<link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+	<!-- loads web component polyfills -->
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+	<!-- load pearson and global styles -->
+	<!--<link rel="stylesheet" href="css/style.css" media="all" />-->
+
+<style>
+	html {
+		font-size:14px;
+	}
+	.target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
+</style>
+</head>
+
+<body>
+<main id="main">
+	<section class="container target">
+		<button id="trigger-modal" class="pe-btn pe-btn--btn_large">Attach files</button>
+	</section>
+</main>
+<pearson-uploader
+	apiUrl="https://pearson-file-upload.s3.amazonaws.com/"
+	apikey=""
+	maxByteFileSize="10000000"
+	maxNumberOfFiles="5"
+	triggerId="trigger-modal"
+>
+</pearson-uploader>
+
+<!-- Import componnet modules -->
+<script src="components/alert/js/dist/pearson-alert.js"></script>
+<script src="components/upload-modal/js/dist/uploadModal.js"></script>
+<script src="js/dist/pearson-file-upload.js"></script>
+
+<script>
+	const uploader = document.querySelector('pearson-uploader');
+	const modal = uploader.shadowRoot.querySelector('upload-modal');
+
+	modal.addEventListener('success', function() {
+	  console.log('SUCCESS')
+	})
+
+    modal.addEventListener('cancel', function() {
+      console.log('CANCEL')
+    })
+</script>
+</body>
+</html>

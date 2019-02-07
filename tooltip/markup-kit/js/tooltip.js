@@ -3,398 +3,94 @@
 
 
 !function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-01")
+  const buttons = document.querySelectorAll(".tooltip-trigger");
 
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
+  function showTooltip (tooltip, btn) {     //Paste it outside of the forEach...
+    tooltip.style.visibility = 'visible';
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  function hideTooltip (tooltip, btn) {
+    tooltip.style.visibility = 'hidden';
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  Array.prototype.forEach.call(buttons, button => {    //buttons is my constant
+    const tooltip = button.nextElementSibling;  
     button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-01')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-01').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-01').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-01').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'true');
+      event.preventDefault(); //Anne added this
 
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-01').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-01').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-01').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'false');
-    })
+      if(button.getAttribute('aria-expanded') === 'true'){
+        hideTooltip(tooltip, button);
+      } else { 
+        showTooltip(tooltip, button);
+        };
+      })
+
+      button.addEventListener('mouseover', function(event) {
+        showTooltip(tooltip, button);
+      })
+      button.addEventListener('mouseout', function(event) {
+        hideTooltip(tooltip, button);
+      })
+      button.addEventListener("focus", function(event){
+        showTooltip(tooltip, button);
+      })
+      button.addEventListener("blur", function(event){
+        hideTooltip(tooltip, button);
+      })
 
     button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-01').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-01').setAttribute('aria-expanded', 'false');};
+      if(event.keyCode === 27) {
+        hideTooltip(tooltip, button);
+      }
     })
 
   })
 }()
 
-
-
 !function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-02")
+  const links = document.querySelectorAll(".tooltip-trigger-url");
 
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-02')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-02').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'false');
+  function urlshowTooltip (tooltip, url) {     //Paste it outside of the forEach...
+    tooltip.style.visibility = 'visible';
+    url.setAttribute('aria-expanded', 'true');
+  }
+
+  function urlhideTooltip (tooltip, url) {
+    tooltip.style.visibility = 'hidden';
+    url.setAttribute('aria-expanded', 'false');
+  }
+
+  Array.prototype.forEach.call(links, link => {    //buttons is my constant
+    const tooltip = link.nextElementSibling;  
+    link.addEventListener("click", function(event){
+      event.preventDefault(); //Anne added this
+
+      if(link.getAttribute('aria-expanded') === 'true'){
+        urlhideTooltip(tooltip, link);
       } else { 
-        document.getElementById('trigger-tt-02').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-02').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'true');
+        urlshowTooltip(tooltip, link);
+        };
+      })
 
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-02').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-02').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-02').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'false');
-    })
+      link.addEventListener('mouseover', function(event) {
+        urlshowTooltip(tooltip, link);
+      })
+      link.addEventListener('mouseout', function(event) {
+        urlhideTooltip(tooltip, link);
+      })
+      link.addEventListener("focus", function(event){
+        urlshowTooltip(tooltip, link);
+      })
+      link.addEventListener("blur", function(event){
+        urlhideTooltip(tooltip, link);
+      })
 
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-02').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-02').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-03")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-03')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-03').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-03').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-03').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-03').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-03').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-03').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-03').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-03').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-04")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-04')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-04').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-04').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-04').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-04').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-04').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-04').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-04').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-04').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-05")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-05')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-05').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-05').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-05').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-05').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-05').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-05').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-05').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-05').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-06")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-06')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-06').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-06').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-06').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-06').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-06').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-06').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-06').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-06').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-07")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-07')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-07').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-07').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-07').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-07').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-07').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-07').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-07').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-07').setAttribute('aria-expanded', 'false');};
-    })
-
-  })
-}()
-
-
-
-
-!function(){
-  const buttons = document.querySelectorAll(".tooltip-trigger-08")
-
-  buttons.forEach(function(button){
-    // button is the DOM object tooltip trigger
-    
-    button.addEventListener("click", function(event){
-      // do your stuff here
-      if(document.getElementById('trigger-btn-08')
-      .getAttribute('aria-expanded')=='true'){
-        document.getElementById('trigger-tt-08').style.visibility = 'hidden';
-        document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'false');
-      } else { 
-        document.getElementById('trigger-tt-08').style.visibility = 'visible'; 
-        document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'true');
-      };
-      
-    })
-    button.addEventListener("mouseover", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-08').style.visibility = 'visible'; 
-      document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'true');
-
-    })
-    button.addEventListener("mouseout", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-08').style.visibility = 'hidden'; 
-      document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'false');
-    })
-    button.addEventListener("focus", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-08').style.visibility = 'visible'; 
-	    document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'true');
-    })
-    button.addEventListener("blur", function(event){
-      // do your stuff here
-      document.getElementById('trigger-tt-08').style.visibility = 'hidden'; 
-	    document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'false');
-    })
-
-    button.addEventListener("keydown", function(event){
-      if(event.keyCode==27){document.getElementById('trigger-tt-08').style.visibility = 'hidden'; 
-	document.getElementById('trigger-btn-08').setAttribute('aria-expanded', 'false');};
+    link.addEventListener("keydown", function(event){
+      if(event.keyCode === 27) {
+        urlhideTooltip(tooltip, link);
+      }
     })
 
   })

@@ -1,0 +1,153 @@
+// only import the necessary modules outlined in the spec you are working on, do not load all of elements
+// These are the base modules necessary for loading the rest of the component styles
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/functions";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/normalize";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/variables";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/color";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/html-tags";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/icons/icons";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/font-face";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/type";
+
+@import 'animation';
+@import 'popper';
+
+// FOR DEMO ONLY - DO NOT BRING INTO WEB COMPONENT
+ul li {
+  list-style-type: none;
+  margin:1em;
+}
+#main {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  min-height:100vh;
+}
+.target {
+  width:45%;
+  margin:1em;
+  padding:1em;
+  border:1px solid;
+}
+// DEMO CSS END   /////////////////////////////////////////////////
+
+
+.hidden {
+  display:none !important;
+}
+// Write the CSS for your markup here!
+.coachmark-container {
+  display: flex;
+  position: absolute;
+  width:280px;
+
+}
+.coachmark {
+  position:relative;
+  background-color: #daf0ed;
+  border-radius: 2px;
+  width: 280px;
+  box-shadow: 0 3px 7px 0 rgba(0,0,0,.25);
+  &.informational {
+    .content {
+      background-color: #ffed9a
+    }
+  }
+  &.generic {
+    .content {
+      background-color: white
+    }
+    .coach-link {
+      color:#047A9C;
+    }
+  }
+  &.bottom-center {
+    &:after {
+      border-bottom: 8px solid #daf0ed;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      bottom: -8px;
+      content: "";
+      filter: drop-shadow(0 2px 5px #000);
+      height: 0;
+      left: calc(50% - 8px);
+      position: absolute;
+      transform: rotate(180deg);
+      width: 0;
+      z-index: 1;
+    }
+  }
+  &.top-right {
+    &:after {
+      border-bottom: 8px solid #daf0ed;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      content: "";
+      height: 0;
+      position: absolute;
+      right: 32px;
+      top: -8px;
+      width: 0;
+      z-index: -1;
+    }
+  }
+  &.bottom-left {
+    &:after {
+      border-bottom: 8px solid #daf0ed;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      bottom: -8px;
+      content: "";
+      filter: drop-shadow(0 2px 5px #000);
+      height: 0;
+      left: 32px;
+      position: absolute;
+      transform: rotate(180deg);
+      width: 0;
+      z-index: 1;
+
+    }
+  }
+  .content {
+    display:flex;
+    flex-direction: column;
+    background: #daf0ed;
+    border-radius: 2px;
+    color: #252525;
+    padding: 20px 24px;
+    position: relative;
+    z-index: 2;
+
+    .title-container {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: .25em;
+    }
+  }
+  .coach-link {
+    color: #252525;
+    display: flex;
+    align-self: flex-end;
+    margin-top: 1.75em;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  button {
+    background:none;
+    border: none;
+    text-decoration: underline;
+    cursor:pointer;
+    &.dismiss:not(.coach-link) {
+      right: -18px;
+      position: relative;
+      top: -14px;
+    }
+  }
+}

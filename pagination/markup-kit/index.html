@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="">
+<head>
+	<title>Pagination Markup Kit</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+
+	<!-- Styles below are for markup-kit demo only -->
+	<style>
+		main {
+			padding: 50px;
+		}
+		section {
+			margin: 50px 0;
+		}
+		h2 {
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body class="">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
+	<symbol id="chevron-back-sm-18" viewBox="0 0 18 18">
+		<path d="M12.7052617,14.7060005 C13.0987465,14.3160005 13.0967441,13.6830005 12.7072642,13.2920005 L8.41597679,8.99900048 L12.7072642,4.70600048 C13.0977453,4.31500048 13.0977453,3.68300048 12.706263,3.29200048 C12.3137794,2.90200048 11.6809997,2.90300048 11.2895174,3.29300048 L6.29236022,8.29200048 C6.09711966,8.48800048 6,8.74300048 6,8.99900048 C6,9.25500048 6.09711966,9.51000048 6.29236022,9.70600048 L11.2895174,14.7050005 C11.6809997,15.0960005 12.3137794,15.0960005 12.7052617,14.7060005 Z"/>
+	</symbol>
+	<symbol id="chevron-next-sm-18" viewBox="0 0 18 18">
+		<path d="M6.29473827,14.7060005 C5.90125345,14.3160005 5.90325592,13.6830005 6.29273581,13.2920005 L10.5840232,8.99900048 L6.29273581,4.70600048 C5.90225469,4.31500048 5.90225469,3.68300048 6.29373704,3.29200048 C6.68622063,2.90200048 7.31900029,2.90300048 7.71048265,3.29300048 L12.7076398,8.29200048 C12.9028803,8.48800048 13,8.74300048 13,8.99900048 C13,9.25500048 12.9028803,9.51000048 12.7076398,9.70600048 L7.71048265,14.7050005 C7.31900029,15.0960005 6.68622063,15.0960005 6.29473827,14.7060005 Z"/>
+	</symbol>
+	<symbol id="ellipsis-18" viewBox="0 0 18 18">
+		<circle cx="4" cy="9" r="1"/>
+		<circle cx="9" cy="9" r="1"/>
+		<circle cx="14" cy="9" r="1"/>
+	</symbol>
+</svg>
+
+<main id="main" aria-hidden="false">
+	<h1>Pagination</h1>
+	<section>
+		<h2>Normal Pagination</h2>
+		<nav aria-label="pagination" class="pagination" data-pages-total="10" data-max-buttons="5" data-active-page="1" data-label="page" data-label-plural="pages">
+		  <button type="button" aria-label="Previous page" disabled>
+				<span class="pagination-prev">
+					<svg focusable="false" aria-hidden="true">
+						<use xlink:href="#chevron-back-sm-18"></use>
+					</svg>
+				</span>
+			</button>
+		  <a href="#" aria-current="page"><span>1</span></a>
+	    <a href="#"><span>2</span></a>
+	    <a href="#"><span>3</span></a>
+	    <a href="#"><span>4</span></a>
+	    <a href="#"><span>5</span></a>
+	    <a href="#" class="ellipsis" disabled="">
+	      <svg focusable="false" aria-hidden="true">
+	        <use xlink:href="#ellipsis-18"></use>
+	      </svg>
+	    </a>
+	    <a href="#"><span>100</span></a>
+	    <button type="button" aria-label="Next page">
+				<span class="pagination-next">
+					<svg focusable="false" aria-hidden="true">
+						<use xlink:href="#chevron-next-sm-18"></use>
+					</svg>
+				</span>
+			</button>
+		</nav>
+	</section>
+	<section>
+		<h2>Compact Pagination</h2>
+		<nav aria-label="pagination" class="pagination" data-pages-total="10" data-type="compact" data-active-page="1" data-label="page" data-label-plural="pages">
+		  <button type="button" aria-label="previous" disabled>
+				<span class="pagination-prev">
+					<svg focusable="false" aria-hidden="true">
+						<use xlink:href="#chevron-back-sm-18"></use>
+					</svg>
+				</span>
+			</button>
+			<span class="compact-text">
+				Page <span class="current-page">xx</span> of <span class="total-pages">xx</span>
+			</span>
+	    <button type="button" aria-label="next">
+				<span class="pagination-next">
+					<svg focusable="false" aria-hidden="true">
+						<use xlink:href="#chevron-next-sm-18"></use>
+					</svg>
+				</span>
+			</button>
+		</nav>
+	</section>
+</main>
+
+<script src="js/dist/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+// only import the necessary modules outlined in the spec you are working on, do not load all of elements
+// These are the base modules necessary for loading the rest of the component styles
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/functions";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/normalize";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/variables";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/color";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/html-tags";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/font-face";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/type";
+
+
+/*Tooltip Setup*/
+h1 {
+	margin-left: 120px;
+}
+a {
+	margin-left: 80px;
+}
+ul {
+	list-style: none;
+	li {
+		margin-bottom: 15px;
+	}
+}
+
+.container-tooltip {
+    width: 280px;
+    height: 200px;
+    margin: 25px 0 25px 140px;
+    & h4 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+}
+
+.pe-icon--calendar-24 {
+	color: #252525;
+}
+
+/*TOOLTIP OVER TEXT*/
+
+/*Text Button Setup*/
+.tooltip-text-btn {
+    background-color: #d9d9d9;
+    border-radius: 2px;
+}
+
+.tooltip-icon-btn {
+	background: none;
+	border: 0;
+	
+	.date-picker-icon {
+	background-image: url(icons/calendar-18.svg), none;
+	}
+}
+
+.tooltip-text-url {
+
+}
+
+/*Tooltip Text*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    
+    + .tooltiptext {
+    	visibility: hidden;
+    	width: 120px;
+    	background-color: #4a4a4a;
+    	color: $primary-three;
+    	text-align: center;
+    	padding: 5px 0;
+    	position: absolute;
+    	z-index: 1;
+    	
+    	&.right {
+    		top: 108px;
+    		left: 196px;
+		}
+		
+		&.right::after {
+  			content: "";
+  			position: absolute;
+  			top: 50%;
+  			right: 100%;
+  			margin-top: -5px;
+  			border-width: 5px;
+  			border-style: solid;
+  			border-color: transparent #4a4a4a transparent transparent;
+		}
+		
+		&.left {
+    		top: 330px;
+    		left: 8px;
+		}
+		
+		&.left::after {
+    		content: "";
+    		position: absolute;
+    		top: 50%;
+    		left: 100%;
+    		margin-top: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent transparent #4a4a4a;
+		}
+		
+		&.top {
+    		top: 520px;
+    		left: 100px;
+		}
+		
+		&.top::after {
+    		content: "";
+    		position: absolute;
+    		top: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: #4a4a4a transparent transparent transparent;
+		}
+		
+		&.bottom {
+    		top: 816px;
+    		left: 100px;
+		}
+		
+		&.bottom::after {
+    		content: "";
+    		position: absolute;
+    		bottom: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent #4a4a4a transparent;
+		}
+		
+	}
+	
+	:hover .tooltiptext {
+    	visibility: visible;
+	}
+	
+	
+	+ .tooltiptext-icon {
+    	visibility: hidden;
+    	width: 120px;
+    	background-color: #4a4a4a;
+    	color: $primary-three;
+    	text-align: center;
+    	padding: 5px 0;
+    	position: absolute;
+    	z-index: 1;
+    	
+    	&.right {
+    		top: 132px;
+    		left: 185px;
+		}
+		
+		&.right::after {
+  			content: "";
+  			position: absolute;
+  			top: 50%;
+  			right: 100%;
+  			margin-top: -5px;
+  			border-width: 5px;
+  			border-style: solid;
+  			border-color: transparent #4a4a4a transparent transparent;
+		}
+		
+		&.left {
+    		top: 355px;
+    		left: 8px;
+		}
+		
+		&.left::after {
+    		content: "";
+    		position: absolute;
+    		top: 50%;
+    		left: 100%;
+    		margin-top: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent transparent #4a4a4a;
+		}
+		
+		&.top {
+    		top: 545px;
+    		left: 96px;
+		}
+		
+		&.top::after {
+    		content: "";
+    		position: absolute;
+    		top: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: #4a4a4a transparent transparent transparent;
+		}
+		
+		&.bottom {
+    		top: 844px;
+    		left: 96px;
+		}
+		
+		&.bottom::after {
+    		content: "";
+    		position: absolute;
+    		bottom: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent #4a4a4a transparent;
+		}
+		
+	}
+	
+	:hover .tooltiptext-icon {
+    	visibility: visible;
+	}
+	
+
+	+ .tooltiptext-url {
+		visibility: hidden;
+    	width: 120px;
+    	background-color: #4a4a4a;
+    	color: $primary-three;
+    	text-align: center;
+    	padding: 5px 0;
+    	position: absolute;
+    	z-index: 1;
+    	
+    	&.right {
+    		top: 128px;
+    		left: 353px;
+		}
+		
+		&.right::after {
+  			content: "";
+  			position: absolute;
+  			top: 50%;
+  			right: 100%;
+  			margin-top: -5px;
+  			border-width: 5px;
+  			border-style: solid;
+  			border-color: transparent #4a4a4a transparent transparent;
+		}
+		
+		&.left {
+    		top: 354px;
+    		left: 88px;
+		}
+		
+		&.left::after {
+    		content: "";
+    		position: absolute;
+    		top: 50%;
+    		left: 100%;
+    		margin-top: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent transparent #4a4a4a;
+		}
+		
+		&.top {
+    		top: 544px;
+    		left: 220px;
+		}
+		
+		&.top::after {
+    		content: "";
+    		position: absolute;
+    		top: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: #4a4a4a transparent transparent transparent;
+		}
+		
+		&.bottom {
+    		top: 838px;
+    		left: 220px;
+		}
+		
+		&.bottom::after {
+    		content: "";
+    		position: absolute;
+    		bottom: 100%;
+    		left: 50%;
+    		margin-left: -5px;
+    		border-width: 5px;
+    		border-style: solid;
+    		border-color: transparent transparent #4a4a4a transparent;
+		}
+	}
+	
+	:hover .tooltiptext-url {
+    	visibility: visible;
+	}
+	
+	
+	
+}

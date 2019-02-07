@@ -1,0 +1,44 @@
+:host {
+  width:322px;
+}
+.datepicker-container {
+  position:relative;
+  min-width:150px;
+  width:322px;
+  font-family: 'Open Sans', Calibri, Tahoma, sans-serif;
+  @media all and (-ms-high-contrast:none) {
+    max-width:350px;
+  }
+
+  .datepicker {
+    position:relative;
+
+    .pe-icon-wrapper {
+      bottom: calc(50% - 11px);
+      color: #6a7070;
+      position: absolute;
+      right: 14px;
+      button img {
+        top: 2px;
+        position: relative;
+      }
+    }
+  }
+  .calendar-container {
+    margin-top:2px;
+  }
+}
+
+#inputAriaId {
+  display: none;
+}
+.error #inputAriaId {
+  display:flex;
+  align-items: center;
+}
+.error input {
+  border:1px solid #db0020;
+}
+.error .pe-textLabelInput__label {
+  color:#db0020;
+}

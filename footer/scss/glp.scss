@@ -1,0 +1,22 @@
+.pe-footer--glp {
+    max-width: 1240px;
+    padding: 24px 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    @media (max-width: 800px) {
+      justify-content: center;
+      flex-direction: column;
+      ul {
+        margin-bottom: 1em;
+      }
+    }
+    li:last-child:after {
+      content: "";
+      margin: 0;
+    }
+    li a {
+      color: #252525;
+    }
+}

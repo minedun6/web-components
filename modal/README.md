@@ -11,28 +11,35 @@ https://pearson-ux.github.io/web-components/modal/
 Before you install, make sure you have all the appropriate polyfills from the main README.md in place.
 https://github.com/pearson-ux/web-components/blob/master/README.md
 
-    cd my-app
-    npm install --save @pearson-ux/modal
+``` bash
+cd my-app
+npm install --save @pearson-ux/modal
+```
 
 ## Usage
 
 Import the web component onto the page, inbetween the `<head>` tags
 
-```html
+``` html
 <head>
-  <!-- polyfills and other stuff... -->
+  <!-- Font stack -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+   
+   <!-- Polyfills -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
 
-  <!-- import web components -->
-  <link rel="import" href="/path/to/modal/index.html" />
+  <!-- Web component script -->
+  <script src="/path-to-datepicker/js/dist/pearson-modal.js" />
 </head>
 ```
 
-**Important Note:**
 
-> The import path will be in the **node_modules** folder, which is
-> usually held outside the applicaiton source. If you publish your
-> application to a **./public** or **./dist** folder you will want to
-> write a script to copy this dependency to a desired location.
+**Important Notes:**
+1. The Google Fonts link is necessary to ensure that the components render properly. You must include it, **or** be sure that Open Sans is loaded in your app some other way.
+2. The import path will be in the **node_modules** folder, which is usually held outside the application source. If you publish your application to a **./public** or **./dist** folder you will want to write a script to copy this dependency to a desired location.
+
 
 **To Use**
 Add the `<pearson-modal> </pearson-modal>` tags to the page, passing in a `triggerId`, the unuque ID of the button you want to open the modal. You can add any content you like between the tags as normal HTML5 markup, and it will render in the body of the modal.

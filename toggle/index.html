@@ -4,38 +4,48 @@
 		<title>Pearson Web Component</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width" />
-
+		<!-- load pearson and global styles -->
+		<link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
 		<!-- loads web component polyfills -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
-		<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+		<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+		  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+		  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
 
 		<script src="./js/dist/pearson-toggle.js"></script>
-	</head>
+
+		<!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+		<!-- DO NOT DELETE -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
 	<style>
 	* {
 		box-sizing: border-box;
 	}
 
 	html {
-		font: 100%/1.25 sans-serif;
+		font: 14px/18px 'Open Sans', 'Calibri', 'Tahoma', sans-serif;
 	}
 	pearson-toggle, label {
 		display: inline-block;
 		vertical-align: middle;
 	}
+	.target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
+
 	</style>
+	</head>
 	<body>
 
 		<main id="main">
-			<h2>Toggle unchecked by default</h2>
-			<pearson-toggle
-				id="pe-toggle"
-				name="emailNotifs"
-			>
-			</pearson-toggle>
-			<label for="pe-toggle">Text notifications</label>
-			<h2>Toggle checked by default</h2>
+			<div class="target">
+				<h6>Toggle unchecked by default</h6>
+				<pearson-toggle
+					id="pe-toggle"
+					name="emailNotifs"
+				>
+				</pearson-toggle>
+				<label for="pe-toggle">Text notifications</label>
+			</div>
+			<div class="target">
+			<h6>Toggle checked by default</h6>
 			<pearson-toggle
 				id="checked-toggle"
 				name="textNotifs"
@@ -43,21 +53,16 @@
 			>
 			</pearson-toggle>
 			<label for="checked-toggle">Email notifications</label>
-			<h2>Toggle wrapped by label</h2>
+			</div>
+			<div class="target">
+			<h6>Toggle wrapped by label</h6>
 			<label>
 				<pearson-toggle id="wrapped-toggle" name="wrapped"></pearson-toggle>
 				The wrapped one
 			</label>
-			<h2>Toggle disabled default</h2>
-			<pearson-toggle
-				id="pe-toggle__disabled"
-				name="disabledToggle"
-				on
-				disabled
-			>
-			</pearson-toggle>
-			<label for="pe-toggle__disabled">The disabled one</label>
-			<h2>The one with hidden internal text</h2>
+			</div>
+			<div class="target">
+			<h6>The one with hidden internal text</h6>
 			<pearson-toggle
 				id="pe-toggle__noText"
 				name="noTextToggle"
@@ -66,7 +71,21 @@
 			>
 			</pearson-toggle>
 			<label for="pe-toggle__noText">I have hidden text</label>
+			</div>
+			<div class="target">
+			<h6>Toggle disabled default</h6>
+			<pearson-toggle
+				id="pe-toggle__disabled"
+				name="disabledToggle"
+				on
+				disabled
+			>
+			</pearson-toggle>
+			<label for="pe-toggle__disabled">The disabled one</label>
+			</div>
+			<div class="target">
 			<div id="toggleMsg" style="margin-top: 30px; font-size: 20px;">Click on a toggle to test it</div>
+			</div>
 		</main>
 		<script>
 			const toggles = document.querySelectorAll('pearson-toggle');

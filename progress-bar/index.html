@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pearson Web Component</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+    <!-- DO NOT DELETE -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+    <!-- load pearson and global styles -->
+    <link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+    <!-- loads web component polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+		<!-- load the web component script -->
+		<!-- RENAME THIS FILE DURING DEVELOPMENT -->
+		<!-- e.g., 'pearson-alert' -->
+    <script src="js/dist/progress-bar.js"></script>
+    <style>
+      .target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
+    </style>
+  </head>
+  <body>
+
+  <div class="target">
+    <pearson-progress-bar type="standard" progress="50" max="100" alignment="center" text="Question 2 of 4"></pearson-progress-bar>
+  </div>
+
+  <div class="target">
+    <pearson-progress-bar id="loading" progress="0" type="loading" max="100" alignment="center" text="donuts being made"></pearson-progress-bar>
+    <button style="margin-top:1rem">Start progress bar</button>
+  </div>
+
+
+  <script>
+    const loader = document.querySelector('#loading');
+    const startBtn = document.querySelector('button');
+    let progress = loader.getAttribute('progress');
+    let count = parseInt(progress);
+
+    startBtn.addEventListener('click', function (e) {
+      setInterval( function (event) {
+      if (count < 100) {
+        count++;
+        loader.progress = count;
+      } else {
+        return
+      }
+    },200)
+    })
+
+  </script>
+  </body>
+</html>

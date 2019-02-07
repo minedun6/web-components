@@ -1,0 +1,89 @@
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -150%, 0);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.slideInDown,
+.fadeIn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slideOutDown,
+.fadeOut {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated.slideInDown {
+  animation: 0.3s ease-in-out 0s slideInDown;
+}
+
+.animated.slideOutDown {
+  animation: 0.2s ease-in 0s slideOutDown;
+}
+
+.animated.fadeIn {
+  animation: 0.3s linear 0s fadeIn;
+}
+
+.animated.fadeOut {
+  animation: 0.2s linear 0s fadeOut;
+}
+
+@media (prefers-reduced-motion) {
+  .animated {
+    animation: unset !important;
+    transition: none !important;
+  }
+}
+
+html[data-prefers-reduced-motion] .animated {
+  animation: unset !important;
+  transition: none !important;
+}

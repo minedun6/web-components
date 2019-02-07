@@ -1,0 +1,22 @@
+.datepicker-container {
+  position:relative;
+  min-width:150px;
+  max-width:322px;
+  @media all and (-ms-high-contrast:none) {
+    max-width:350px;
+  }
+  .datepicker {
+    position:relative;
+
+    .pe-icon-wrapper {
+      bottom: calc(50% - 9px);
+      color: #6a7070;
+      position: absolute;
+      right: 14px;
+    }
+  }
+  .calendar-container {
+    display:none;
+    margin-top:2px;
+  }
+}

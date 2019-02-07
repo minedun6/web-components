@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="">
+
+<head>
+	<title>Web Component Markup Kit</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+</head>
+
+<body class="">
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
+		<!-- place only the symbols belonging to that component here -->
+		<symbol id="remove-sm-24" viewBox="0 0 24 24">
+			<path d="M13.4092,11.9999 L17.7082,7.7009 C18.0972,7.3119 18.0972,6.6809 17.7082,6.2919 C17.3192,5.9029 16.6882,5.9029 16.2992,6.2919 L12.0002,10.5909 L7.7012,6.2919 C7.3122,5.9029 6.6812,5.9029 6.2922,6.2919 C5.9022,6.6809 5.9022,7.3119 6.2922,7.7009 L10.5912,11.9999 L6.2922,16.2989 C5.9022,16.6879 5.9022,17.3189 6.2922,17.7079 C6.4862,17.9029 6.7412,17.9999 6.9962,17.9999 C7.2512,17.9999 7.5062,17.9029 7.7012,17.7079 L12.0002,13.4089 L16.2992,17.7079 C16.4932,17.9029 16.7482,17.9999 17.0032,17.9999 C17.2582,17.9999 17.5132,17.9029 17.7082,17.7079 C18.0972,17.3189 18.0972,16.6879 17.7082,16.2989 L13.4092,11.9999 Z"
+			/>
+		</symbol>
+	</svg>
+
+	<div class="pe-alert animated" data-alert data-alert-type="global" data-important role="dialog" aria-labelledby="alertTitle"
+	 aria-describedby="alertText">
+		<div class="pe-alert-box info">
+			<div class="close-title">
+				<button data-action="close-alert" class="pe-icon--btn" aria-label="Close Lorem ipsom dolor sit amet.">
+					<svg focusable="false" class="pe-icon--remove-sm-24">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#remove-sm-24"></use>
+					</svg>
+				</button>
+			</div>
+			<div class="alert-content-container" role="alert" aria-live="assertive">
+				<div class="alert-content" data-alert-content>
+					<h2 id="alertTitle" class="pe-label alert-title">
+						<strong>Lorem ipsom dolor sit amet.</strong>
+					</h2>
+					<p id="alertText" class="pe-paragraph alert-text">Ronsectetuer adipiscing elit. Aene eoo rjgieo roi an commodo ligula
+						eget dolor enean massa.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button" data-action="trigger-alert" style="margin-top: 10rem;">Trigger important alert</button>
+
+
+	<script src="js/dist/main.js"></script>
+</body>
+
+</html>

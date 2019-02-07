@@ -10,9 +10,9 @@ You will need to add the following 3 polyfills, in order for your project to be 
 
        <!-- loads web component polyfills -->
        <head>
-           <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
-           <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
-           <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+           <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+           <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+           <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
        </head>
        
 **Additionally** 
@@ -20,7 +20,7 @@ If you prefer not to use a CDN, you can download these polyfills locally with NP
 
 ## Contributing
 
-> **Important note:**  Anyone can contribute.  All code must be subject to a througough accessibility review.  All code must be submitted through a pull request.  All code must go through proper code review before it can be merged into master.  If you have any questions about the process, please email david.odey@pearson.com 
+> **Important note:**  Anyone can contribute.  All code must be subject to a througough accessibility review.  All code must be submitted through a pull request.  All code must go through proper code review before it can be merged into master.  If you have any questions about the process, please email david.odey@pearson.com  
 
 **To get started assign yourself an open issue in GitHub.**  
 https://github.com/pearson-ux/web-components/issues
@@ -59,4 +59,3 @@ https://github.com/pearson-ux/web-components/projects
 > any superfluous code not pertaining to the component.  For more information on web components please visit: https://www.webcomponents.org/introduction
 
 To view an existing modal component and review its structure you can visit: https://github.com/pearson-ux/web-components/tree/master/modal
- 

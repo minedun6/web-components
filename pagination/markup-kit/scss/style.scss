@@ -1,0 +1,126 @@
+// only import the necessary modules outlined in the spec you are working on, do not load all of elements
+// These are the base modules necessary for loading the rest of the component styles
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/functions";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/normalize";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/variables";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/color";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/html-tags";
+
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/font-face";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/type";
+
+
+
+.pagination {
+  button,
+  a {
+    padding: 0;
+    color: $pe-color-medium-gray;
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    display: inline-block;
+    min-width: 44px;
+    text-align: center;
+    text-decoration: none;
+    &:not([disabled]) {
+      cursor: pointer;
+    }
+
+    &.ellipsis {
+      min-width: 32px;
+    }
+    &:focus {
+      outline: none;
+      &:after {
+        border: 2px solid $pe-color-digital-pearson-blue;
+        content: "";
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        border-radius: 3px;
+      }
+    }
+    &:hover span,
+    &:focus span {
+      border-bottom: 2px solid $pe-color-medium-gray;
+    }
+    &[aria-current] span {
+      color: $pe-color-charcoal;
+      border-bottom: 2px solid $pe-color-charcoal;
+      font-weight: bold;
+    }
+  }
+  a {
+    padding: 14px 0;
+  }
+  button:first-child,
+  button:last-child {
+    min-width: 28px;
+    min-height: 28px;
+    border: 1px solid $pe-color-concrete;
+    border-radius: 50%;
+    transition: background-color .2s;
+    position: relative;
+
+    &:hover,
+    &:focus {
+      background-color: $pe-color-moonlight;
+      outline: none;
+    }
+    &:focus {
+      &:after {
+        border: 2px solid $pe-color-digital-pearson-blue;
+        content: "";
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        border-radius: 100%;
+      }
+    }
+
+    &:hover span,
+    &:focus span {
+      border-bottom: 0;
+    }
+    &:disabled {
+      color: $pe-color-concrete;
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
+  }
+  button:first-child {
+    span.pagination-prev {
+      position: relative;
+      left: -1px;
+    }
+  }
+  button:last-child {
+    span.pagination-next {
+      position: relative;
+      right: -1px;
+    }
+  }
+
+  .compact-text {
+    margin: 0 17px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: top;
+    fill: currentColor;
+  }
+}

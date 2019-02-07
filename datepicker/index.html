@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pearson Web Component</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <!-- load pearson and global styles -->
+    <link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+    <!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+    <!-- DO NOT DELETE -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+
+    <!-- loads web component polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+		<!-- load the web component script -->
+		<!-- RENAME THIS FILE DURING DEVELOPMENT -->
+		<!-- e.g., 'pearson-alert' -->
+    <script src="js/dist/pearson-datepicker.js"></script>
+    <style>
+      pearson-datepicker {
+        display:flex;
+        margin: 2em auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <pearson-datepicker></pearson-datepicker>
+    <pearson-datepicker value="10/17/1978"></pearson-datepicker>
+
+
+  </body>
+
+</html>

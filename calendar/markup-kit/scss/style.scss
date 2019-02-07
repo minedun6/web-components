@@ -1,0 +1,12 @@
+// only import the necessary modules outlined in the spec you are working on, do not load all of elements
+// These are the base modules necessary for loading the rest of the component styles
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/normalize";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/variables";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/functions";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/typography/type";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/base/html-tags";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/icons/icons";
+@import "../node_modules/@pearson-components/elements-sdk/src/styles/elements/icons/icons";
+
+@import "calendar";

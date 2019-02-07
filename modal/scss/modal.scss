@@ -1,3 +1,6 @@
+pearson-modal {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
 /* line 10, ./scss/style.scss */
 .hidden, [hidden] {
   display: none !important;
@@ -14,6 +17,7 @@
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
+
 
 
 /* line 25, ./scss/style.scss */
@@ -41,6 +45,7 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+
 }
 
 /* line 63, ./scss/style.scss */
@@ -70,19 +75,7 @@ button.close[aria-label="Close Dialog"] {
     height:24px;
     margin:0;
   }
-  &:focus {
-    &:after {
-      border: 2px solid #0b73da;
-      border-radius: 22px;
-      content: "";
-      height: calc(100% + -2px);
-      left: 2px;
-      position: absolute;
-      top: 0;
-      width: calc(100% + -6px);
-      z-index: 1;
-    }
-  }
+
 }
 
 /* line 86, ./scss/style.scss */

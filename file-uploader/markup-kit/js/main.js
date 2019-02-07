@@ -8,13 +8,9 @@
     target = document.querySelector('#progressContainer'),
     uploadTitle = document.querySelector('#uploadTitle');
 
-  let status = {
-    'done': 0,
-    'progress': 0
-  };
+
 
   function buildMarkup (file, progressEvent, total) {
-
     if (total === 100) {
       status.done = status.done + 1;
       if (status.progress > 0){
@@ -73,75 +69,74 @@
     `
   }
 
-  function renderProgressItems (data, target, xhr) {
-
-    if (modal.footer !== true) {
-      modal.footer = true;
-      uploadInfo.style.display = 'block';
-    }
-    const div = document.createElement('DIV');
-    div.classList.add('progress');
-    target.appendChild(div);
-
-    xhr(function(event) {
-      let percentLoaded = Math.round((event.loaded / event.total) * 100);
-      div.innerHTML = buildMarkup(data, event, percentLoaded)
-
-    });
-  }
+  // function renderProgressItems (data, target, xhr) {
+  //   if (modal.footer !== true) {
+  //     modal.footer = true;
+  //     uploadInfo.style.display = 'block';
+  //   }
+  //   const div = document.createElement('DIV');
+  //   div.classList.add('progress');
+  //   target.appendChild(div);
+  //
+  //   xhr(function(event) {
+  //     let percentLoaded = Math.round((event.loaded / event.total) * 100);
+  //     div.innerHTML = buildMarkup(data, event, percentLoaded)
+  //
+  //   });
+  // }
 
   // highlight function to outline drop area when a file is over area
-  function highlight(event) {
-    preventDefaults(event);
-    dropArea.classList.add('highlight')
-  }
+  // function highlight(event) {
+  //   preventDefaults(event);
+  //   dropArea.classList.add('highlight')
+  // }
 
   // removes highlight from drop area when file has left area
-  function unhighlight(event) {
-    preventDefaults(event);
-    dropArea.classList.remove('highlight');
-  }
+  // function unhighlight(event) {
+  //   preventDefaults(event);
+  //   dropArea.classList.remove('highlight');
+  // }
 
   // prevents the file from opening in the browser
-  function preventDefaults (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
+  // function preventDefaults (event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  // }
 
   // adds functionality when item is dropped over target
-  function handleDrop(event) {
-    unhighlight(event);
-    let dt = event.dataTransfer;
-    let files = dt.files;
-    handleFiles(files);
-  }
+  // function handleDrop(event) {
+  //   unhighlight(event);
+  //   let dt = event.dataTransfer;
+  //   let files = dt.files;
+  //   handleFiles(files);
+  // }
 
   // takes the files, loops over them, and uploads them
-  function handleFiles(files) {
-    ([...files]).forEach(uploadFile);
-  }
+  // function handleFiles(files) {
+  //   ([...files]).forEach(uploadFile);
+  // }
 
   // processes and uploads files
-  function uploadFile(file) {
-    const url = 'https://pearson-file-upload.s3.amazonaws.com/',
-          xhr = new XMLHttpRequest(),
-          formData = new FormData();
-
-    function uploadProgress (callback) {
-      status.progress = status.progress + 1
-      xhr.upload.onprogress = function(event) {
-        if (event.lengthComputable) {
-          callback(event)
-        }
-      };
-    }
-
-    renderProgressItems(file, target, uploadProgress);
-    xhr.open('POST', url, true);
-    formData.append('key', file.name);
-    formData.append('file', file);
-    xhr.send(formData);
-  }
+  // function uploadFile(file) {
+  //   const url = 'https://pearson-file-upload.s3.amazonaws.com/',
+  //         xhr = new XMLHttpRequest(),
+  //         formData = new FormData();
+  //
+  //   function uploadProgress (callback) {
+  //     status.progress = status.progress + 1
+  //     xhr.upload.onprogress = function(event) {
+  //       if (event.lengthComputable) {
+  //         callback(event)
+  //       }
+  //     };
+  //   }
+  //
+  //   renderProgressItems(file, target, uploadProgress);
+  //   xhr.open('POST', url, true);
+  //   formData.append('key', file.name);
+  //   formData.append('file', file);
+  //   xhr.send(formData);
+  // }
 
   // remove item
   target.addEventListener('click', event => {
@@ -157,33 +152,33 @@
     }
   });
 
-  attachBtn.addEventListener('click', event => {
-    realUploadInput.click();
-  });
+  // attachBtn.addEventListener('click', event => {
+  //   realUploadInput.click();
+  // });
 
-  realUploadInput.addEventListener('change', event=> {
-    handleFiles(event.srcElement.files)
-    attachBtn.focus();
-  });
+  // realUploadInput.addEventListener('change', event=> {
+  //   handleFiles(event.srcElement.files)
+  //   attachBtn.focus();
+  // });
 
   // setup drag and drop area
-  let dropArea = document.querySelector('#drop');
-
-  dropArea.addEventListener('dragenter', event => {
-   highlight(event)
-  });
-
-  dropArea.addEventListener('dragover', event => {
-    highlight(event)
-  });
-
-  dropArea.addEventListener('dragleave', event => {
-    unhighlight(event)
-  });
-
-  dropArea.addEventListener('drop', event => {
-    handleDrop(event);
-  });
+  // let dropArea = document.querySelector('#drop');
+  //
+  // dropArea.addEventListener('dragenter', event => {
+  //  highlight(event)
+  // });
+  //
+  // dropArea.addEventListener('dragover', event => {
+  //   highlight(event)
+  // });
+  //
+  // dropArea.addEventListener('dragleave', event => {
+  //   unhighlight(event)
+  // });
+  //
+  // dropArea.addEventListener('drop', event => {
+  //   handleDrop(event);
+  // });
 
 })();
 

@@ -1,9 +1,9 @@
 {
-  "name": "@pearson-ux/example",
-  "author": "Your Name | your.email@pearson.com",
+  "name": "@pearson-ux/toggle",
+  "author": "Elias Mason | ej.mason@pearson.com",
   "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
-  "version": "0.1.0",
-  "description": "Example web component",
+  "version": "1.0.1",
+  "description": "Toggle web component",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

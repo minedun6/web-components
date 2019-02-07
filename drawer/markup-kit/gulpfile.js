@@ -1,34 +1,70 @@
-const gulp = require('gulp'),
-  sass = require('gulp-sass'),
+const autoprefixer = require('autoprefixer'),
+  babel = require('gulp-babel'),
+  server = require('browser-sync').create(),
+  concat = require('gulp-concat'),
+  cssnano = require('cssnano'),
+  gulp = require('gulp'),
   postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  cssnano = require('cssnano');
+  sass = require('gulp-sass');
 
-gulp.task('styles', function () {
-  return gulp.src('scss/style.scss')
-  .pipe(sass()).on('error', sass.logError)
-  .pipe(postcss([
-    autoprefixer({
-      browsers: ['last 2 version', 'safari > 6', 'ie 11', 'opera 12.1', 'ios 6', 'android > 3','Firefox > 47'],
-      cascade: false
-    }),
-    cssnano()
-  ]))
-  .pipe(gulp.dest('./css'))
-});
+// Make a collection of paths used by the various
+// build steps
+const paths = {
+  html: './*.html',
+  scripts: 'js/**/*.js',
+  styles: 'scss/**/*.scss',
+  dist: 'dist/'
+};
 
+function styles(done) {
+   gulp
+    .src(paths.styles)
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(postcss([autoprefixer({ cascade: false }), cssnano()]))
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest(paths.dist + '/css'))
+    .pipe(server.stream());
+  done();
+}
 
-const babel = require('gulp-babel');
-gulp.task('babel', () =>
-  gulp.src('js/main.js')
-  .pipe(babel({
-    presets: ['es2015']
-  }))
-  .pipe(gulp.dest('js/dist'))
-);
+function scripts(done) {
+  gulp
+    .src(paths.scripts)
+    .pipe(
+      babel({
+        presets: [['env', { modules: false }]]
+      })
+    )
+    .pipe(gulp.dest(paths.dist + '/js'));
+  done();
+}
 
+function reload(done) {
+  server.reload();
+  done();
+}
 
-gulp.task('watch', ()=> {
-  gulp.watch('js/*.js', ['babel']);
-  gulp.watch('scss/**/*.scss', ['styles']);
-});
+function serve(done) {
+  server.init({
+    server: {
+      baseDir: './'
+    },
+    notify: false
+  });
+  done();
+}
+
+function watch() {
+  gulp.watch(paths.styles, styles);
+  gulp.watch(paths.scripts, gulp.series(scripts, reload));
+  gulp.watch(paths.html, reload);
+}
+
+const build = gulp.series(styles, scripts);
+
+exports.build = build;
+exports.serve = serve;
+exports.watch = watch;
+
+exports.default = gulp.series(build, serve, watch);

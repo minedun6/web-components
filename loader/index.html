@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>Pearson Loading Indicator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+    <!-- load pearson and global styles -->
+    <link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+  <link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300"
+  rel="stylesheet"
+  />
+
+  <!-- loads web component polyfills -->
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+  <script src="js/dist/pearson-loader.js"></script>
+    <style>
+      .target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
+
+    </style>
+  </head>
+
+  <body>
+
+  <div class="target">
+    <button type="button" id="content-loader">Load content</button>
+  </div>
+  <div class="target">
+    <button type="button" id="content-copier">Copy content</button>
+  </div>
+
+  <div id="output" class="output"></div>
+    <script>
+    const loadBtn = document.querySelector('#content-loader');
+    const copyBtn = document.querySelector('#content-copier');
+    const outputRegion = document.querySelector('#output');
+    const MOCK_SERVER_DATA = '<h1>Loaded Content</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+
+    function pseudoLoadData(){
+      const loadingIndicator = document.createElement('pearson-loader');
+
+      outputRegion.innerHTML = '';
+
+      outputRegion.appendChild(loadingIndicator);
+      setTimeout(function() {
+        loadingIndicator.loaded = true;
+        setTimeout(function() {
+          outputRegion.innerHTML = MOCK_SERVER_DATA
+        }, 250);
+      }, 1500);
+    }
+
+    function pseudoCopyData(){
+      const copyIndicator = document.createElement('pearson-loader');
+      copyIndicator.loadingStateLabel = 'Copying...';
+      copyIndicator.finishedStateLabel = 'Copied!';
+
+      outputRegion.innerHTML = '';
+
+      outputRegion.appendChild(copyIndicator);
+      setTimeout(function() {
+        copyIndicator.loaded = true;
+      }, 1500);
+    }
+
+    loadBtn.addEventListener('click', pseudoLoadData);
+    copyBtn.addEventListener('click', pseudoCopyData);
+
+    </script>
+  </body>
+</html>

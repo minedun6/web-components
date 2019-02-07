@@ -1,0 +1,19 @@
+@keyframes bouncedelay {
+  0%, 25%, 100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+  12.5% {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

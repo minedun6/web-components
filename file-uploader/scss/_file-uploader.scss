@@ -1,0 +1,199 @@
+button > * {
+  pointer-events: none;
+}
+  .pe-modal-container {
+    width:475px;
+      > .pe-title {
+
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+      }
+    }
+
+  .pe-file-upload-container {
+    display:flex;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif; //mobile safari 10 bug
+
+    @media (max-width:768px) {
+      flex-direction: column;
+
+    }
+    .file-upload {
+      height: 362px;
+      border-radius: 6px;
+      border: dashed 2px #6a7070;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('./icons/drag.svg');
+      background-repeat: no-repeat;
+      background-position: center 30px;
+      background-size: 100px;
+      margin:40px 0;
+
+
+      &.highlight {
+        border:2px dashed #047a9c;
+        background-color: #e9f9fe;
+        background-image: url('./icons/drag-target.svg');
+      }
+      .drop-area {
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-self: flex-end;
+        width: 390px;
+        .pe-title {
+          margin-top:6em;
+        }
+        button {
+          width: 154px;
+          align-self: center;
+          margin-bottom: 35px;
+        }
+        .info {
+          color: #6a7070;
+          font-size: 12px;
+          margin: 0;
+        }
+        .text {
+          margin-bottom: 16px;
+        }
+      }
+    }
+    .file-upload-info {
+      display:none;
+      margin-left:2.5em;
+      width:373px;
+      border-left: 1px solid #c7c7c7;
+      padding:40px 1.5em 0 2.5em;
+      padding-right:0;
+      max-height: 410px;
+      overflow: scroll;
+      @media(max-width:768px) {
+        border-left:0;
+        padding:0;
+        margin:0;
+        max-height: 100%;
+        width:100%;
+      }
+      .text {
+        max-width:260px;
+        word-break: break-word;
+        strong {
+          line-height:1.5;
+        }
+      }
+    }
+    .progress {
+      display:flex;
+      justify-content: space-between;
+      border-bottom: solid 1px #f5f5f5;
+      padding-bottom:1em;
+      margin-bottom:1em;
+      padding-right:10px;
+      .group {
+        display:flex;
+        align-items: center;
+      }
+    }
+    .indicator {
+      margin-right:1em;
+      position:relative;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      height:50px;
+      width:50px;
+      span {
+        position:absolute;
+        font-weight:bold;
+        color:#047a9c;
+        font-size:.7em;
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          position:relative;
+        }
+      }
+      img {
+        width:18px;
+      }
+
+    }
+    .text {
+
+      .info {
+        color: #6a7070;
+        font-size: 12px;
+        margin:0;
+
+
+      }
+    }
+    .upload-actions {
+      display:flex;
+      align-items: center;
+      margin-right:4px;
+      button {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        svg {
+          fill: #6a7070
+        }
+      }
+    }
+    .upload-title {
+      font-weight:normal;
+    }
+    .pe-progress-container {
+      margin-top:1em;
+    }
+    input[type=file] {
+      display:none;
+    }
+    progress-ring {
+      display:flex;
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        display:none;
+      }
+    }
+  }
+
+  body, html {
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      &:focus {
+        outline:none;
+      }
+    }
+  }
+
+  .pe-icon--btn:focus:after {
+    //top:-4px !important;
+    //left:-4px !important;
+    //border: 2px solid #0b73da;
+    //content: "";
+    //position: absolute;
+    //border-radius: 4px;
+    //width: calc(100% + 4px);
+    //height: calc(100% + 4px);
+    //z-index: 1;
+  }
+
+  .pe-heading-level3, .pe-heading-level4, .pe-title, h3, h4, header h2+.subtitle, header h3+.subtitle {
+    font-size: 1.42857rem;
+    line-height: 1.85714rem;
+    font-weight: 400;
+  }
+
+  :host {
+    font-family: "Open Sans" ,"Calibri","Tahoma","sans-serif";
+    font-size:.875em;
+    color: $pe-color-charcoal;
+  }
+
+
+

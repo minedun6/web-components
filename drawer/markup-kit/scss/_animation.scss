@@ -1,28 +1,31 @@
 @keyframes slideInRight {
-  from {
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
+  0% {
+    right: -320px;
   }
-
-  to {
-    transform: translate3d(0, 0, 0);
+  
+  100% {
+    right: 0px;
+    // TODO: create separate animation for visibility!  
+    visibility: visible;
   }
 }
 
 
 @keyframes slideOutRight {
-  from {
-    transform: translate3d(0, 0, 0);
+  0% {
+    right: 0;
   }
-
-  to {
+  
+  100% {
+    right: -320px;
     visibility: hidden;
-    transform: translate3d(100%, 0, 0);
   }
 }
 
 .slideInRight {
   animation-name: slideInRight;
+  // display: flex;
+
 }
 
 .slideOutRight {
@@ -30,8 +33,9 @@
 }
 
 .animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+
 }
 
 @media (prefers-reduced-motion) {

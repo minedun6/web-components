@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+	<title>Pearson Web Components: Tooltip</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+	
+	<!-- loads web component polyfills -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
+	<!-- place only the symbols belonging to that component here -->
+</svg>
+
+<main id="main" aria-hidden="false">
+	<h1>Pearson Web Components: Tooltip</h1>
+	
+	<div class="container-set">
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Button Positioned Right</h4>
+			
+				<button id="trigger-btn-01" aria-label="65%" class="tooltip tooltip-text-btn tooltip-trigger" aria-expanded="false" aria-labelledby="trigger-btn-01 trigger-tt-01">65%</button>
+				<div role="tooltip" id="trigger-tt-01" class="tooltiptext right">View report</div>
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Button Positioned Left</h4>
+				<button id="trigger-btn-02" aria-label="65%" class="tooltip tooltip-text-btn tooltip-trigger" aria-expanded="false" aria-labelledby="trigger-btn-02 trigger-tt-02">65%</button>
+				<div role="tooltip" id="trigger-tt-02" class="tooltiptext left">View report</div>
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Button Positioned Top</h4>
+				<button id="trigger-btn-03" aria-label="65%" class="tooltip tooltip-text-btn tooltip-trigger" aria-expanded="false" aria-labelledby="trigger-btn-03 trigger-tt-03">65%</button>
+					<div role="tooltip" id="trigger-tt-03" class="tooltiptext top">View report</div>
+				
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Button Positioned Bottom</h4>
+				<button id="trigger-btn-04" aria-label="65%" class="tooltip tooltip-text-btn tooltip-trigger" aria-expanded="false" aria-labelledby="trigger-btn-04 trigger-tt-04">65%</button>
+					<div role="tooltip" id="trigger-tt-04" class="tooltiptext bottom">View report</div>
+				</button>
+		</div>
+
+	</div><!--container-set-->
+</main>
+
+<script src="js/dist/main.js"></script>
+<script src="js/tooltip.js"></script>
+</body>
+</html>
+

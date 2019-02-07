@@ -7,34 +7,46 @@
 	<meta name="viewport" content="width=device-width" />
 
 	<!-- loads web component polyfills -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
 
 	<!-- load pearson and global styles -->
-
+	<link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
 
 	<!-- import web components -->
-	<link rel="import" href="alert.html" />
 
 <style>
 .output {
 	margin-top: 5rem;
 }
+.target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
 </style>
 </head>
 
 <body>
-	<button id="trigger-0" data-trigger="alert" data-type="error" data-level="global">
-		Trigger global error alert
-	</button>
-	<button id="trigger-1" data-trigger="alert" data-type="success" data-level="inline">
-		Trigger inline success alert
-	</button>
-	<button id="trigger-2" data-trigger="alert" data-type="important" data-level="global">
-		Trigger global important alert
-	</button>
-	<div id="output" class="output" aria-live="polite" aria-atomic="true"></div>
+	<div class="target">
+		<button id="trigger-0" data-trigger="alert" data-type="error" data-level="global" data-animated>
+			Trigger global error alert
+		</button>
+	</div>
+
+	<div class="target">
+		<button id="trigger-1" data-trigger="alert" data-type="success" data-level="inline" data-animated>
+			Trigger inline success alert
+		</button>
+	</div>
+
+	<div class="target">
+		<button id="trigger-2" data-trigger="alert" data-type="important" data-level="global" data-animated data-focus-on-open>
+			Trigger global important alert
+		</button>
+	</div>
+
+	<div class="target">
+		<div id="output" class="output" aria-live="polite" aria-atomic="true"></div>
+	</div>
+	<script src="js/dist/pearson-alert.js"></script>
 	<script>
 			(function (w, doc) {
 				const forEach = Array.prototype.forEach;
@@ -55,12 +67,24 @@
 					const type = e.target.dataset.type;
 					const level = e.target.dataset.level;
 
-					const alert = generateAlert({
+					const animated = e.target.dataset.animated !== undefined;
+					const focusOnOpen = e.target.dataset.focusOnOpen !== undefined;
+
+					const opts = {
 						returnNode: returnNode,
 						type: type,
-						level: level,
-						animated: true
-					})
+						level: level
+					}
+
+					if (animated) {
+						opts.animated = true;
+					}
+
+					if (focusOnOpen) {
+						opts.focusOnOpen = true;
+					}
+
+					const alert = generateAlert(opts);
 
 					alert.innerHTML = (
 						'   <h2 id="alertTitle" class="pe-label alert-title">  ' +
@@ -72,7 +96,7 @@
 					);
 
 					if (level === 'inline') {
-						doc.body.insertBefore(alert, e.target.nextSibling)
+						doc.body.insertBefore(alert, e.target.parentNode)
 					} else {
 						doc.body.appendChild(alert)
 					}

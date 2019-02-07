@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pearson Web Component</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <!-- load pearson and global styles -->
+    <link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+    <!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+    <!-- DO NOT DELETE -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+
+    <!-- loads web component polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+    <script src="js/dist/pearson-coachmark.js"></script>
+    <style>
+      #main {display:flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column}
+      .target {margin:4em; width:50%; border:1px solid gray; margin:2em auto; padding:1em;}
+    </style>
+  </head>
+  <body>
+  <main id="main">
+    <div id="reference" class="target" style="">
+      <button id="openTop">Start Joyride</button>
+    </div>
+
+    <div id="reference2" class="target" style="">
+      <button id="info">Show Informational</button>
+    </div>
+
+    <div id="reference3" class="target" style="">
+      <button id="generic">Show Generic</button>
+    </div>
+
+    <div id="reference4" class="target" style="">
+      <button id="special">Show Special</button>
+    </div>
+
+  </main>
+  <script>
+    (function (win,doc) {
+      const trigger = doc.querySelector('#openTop'),
+        infoTrigger = doc.querySelector('#info'),
+        genericTrigger = doc.querySelector('#generic'),
+        specialTrigger = doc.querySelector('#special'),
+        target = doc.querySelector('#main'),
+        coachMark = doc.createElement('pearson-coachmark');
+
+        function generateCoach (opts) {
+          for (let attrName in opts) {
+            coachMark.setAttribute(attrName, opts[attrName])
+          }
+          target.appendChild(coachMark)
+        }
+
+      trigger.addEventListener('click', function (event) {
+        coachOne();
+        event.stopImmediatePropagation()
+      });
+
+      infoTrigger.addEventListener('click', function (event) {
+        coachInfo();
+        event.stopImmediatePropagation()
+      });
+
+      genericTrigger.addEventListener('click', function (event) {
+        event.stopImmediatePropagation()
+        coachGeneric();
+      });
+
+     specialTrigger.addEventListener('click', function (event) {
+       event.stopImmediatePropagation()
+        coachSpecial();
+      });
+
+      const coachOne = function (event) {
+        generateCoach({
+            position: 'top-start',
+            trigger: '#openTop',
+            reference: '#reference',
+            title: 'This is 1/12',
+            content: 'Content for your enjoyment',
+            type: 'default',
+            arrow: true,
+            gotIt: "Next Coachmark"
+          });
+          coachMark.addEventListener('proceed', coachTwo, false);
+      };
+
+      const coachTwo = function (event) {
+        coachMark.removeEventListener('proceed', coachTwo, false);
+        generateCoach({
+          position: 'top',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 2/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+
+        });
+        coachMark.addEventListener('proceed', coachThree, false);
+      };
+
+      const coachThree = function (event) {
+        coachMark.removeEventListener('proceed', coachThree, false);
+        generateCoach({
+          position: 'top-end',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 3/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachFour, false);
+      };
+
+      const coachFour = function (event) {
+        coachMark.removeEventListener('proceed', coachFour, false);
+        generateCoach({
+          position: 'right-end',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 4/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachFive, false);
+      };
+
+      const coachFive = function (event) {
+        coachMark.removeEventListener('proceed', coachFive, false);
+        generateCoach({
+          position: 'right',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 5/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachSix, false);
+      };
+
+      const coachSix = function (event) {
+        coachMark.removeEventListener('proceed', coachSix, false);
+        generateCoach({
+          position: 'right-start',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 6/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachSeven, false);
+      };
+
+      const coachSeven = function (event) {
+        coachMark.removeEventListener('proceed', coachSeven, false);
+        generateCoach({
+          position: 'bottom-end',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 7/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachEight, false);
+      };
+
+      const coachEight = function (event) {
+        coachMark.removeEventListener('proceed', coachEight, false);
+        generateCoach({
+          position: 'bottom',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 8/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachNine, false);
+      };
+
+
+      const coachNine = function (event) {
+        coachMark.removeEventListener('proceed', coachNine, false);
+        generateCoach({
+          position: 'bottom-start',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 9/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachTen, false);
+      };
+
+      const coachTen = function (event) {
+        coachMark.removeEventListener('proceed', coachTen, false);
+        generateCoach({
+          position: 'left-start',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 10/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachEleven, false);
+      };
+
+      const coachEleven = function (event) {
+        coachMark.removeEventListener('proceed', coachEleven, false);
+        generateCoach({
+          position: 'left',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 11/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "Next Coachmark"
+        });
+        coachMark.addEventListener('proceed', coachTwelve, false);
+      };
+
+      const coachTwelve = function (event) {
+        coachMark.removeEventListener('proceed', coachTwelve, false);
+        generateCoach({
+          position: 'left-end',
+          trigger: '#openTop',
+          reference: '#reference',
+          title: 'This is 12/12',
+          content: 'Content for your enjoyment',
+          type: 'default',
+          arrow: true,
+          gotIt: "All Finished - Close",
+          dismiss: true
+        });
+      };
+
+      const coachInfo = function (event) {
+        generateCoach({
+          position: 'top',
+          trigger: '#info',
+          reference: '#reference2',
+          title: 'This is informational ',
+          content: 'Content for your enjoyment',
+          type: 'informational',
+          arrow: true,
+          gotIt: "Got it",
+          dismiss: true
+        });
+      };
+
+      const coachGeneric = function (event) {
+        generateCoach({
+          position: 'top',
+          trigger: '#generic',
+          reference: '#reference3',
+          title: 'This is generic',
+          content: 'Content for your enjoyment',
+          type: 'generic',
+          arrow: true,
+          gotIt: "Got it",
+          dismiss: true
+        });
+      };
+
+      const coachSpecial = function (event) {
+        generateCoach({
+          position: 'bottom',
+          trigger: '#special',
+          reference: '#reference4',
+          type: 'default',
+          title: 'This is special',
+          content: 'Content for your enjoyment',
+          dismiss: true
+        });
+      };
+
+    })(window, document);
+  </script>
+
+  </body>
+</html>

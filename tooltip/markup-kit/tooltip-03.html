@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+	<title>Pearson Web Components: Tooltip</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+	
+	<!-- loads web component polyfills -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/webcomponents-loader.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.2.0/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
+	<!-- place only the symbols belonging to that component here -->
+</svg>
+
+<main id="main" aria-hidden="false">
+	<h1>Pearson Web Components: Tooltip</h1>
+	
+	<div class="container-set">
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Text Example Positioned Right</h4>
+			
+				<a href="https://www.pearson.com/us/" id="trigger-link-09" class="tooltip tooltip-text-url tooltip-trigger-url" aria-expanded="false" aria-labelledby="trigger-link-09 trigger-tt-09">www.pearson.com</a>
+				<div role="tooltip" id="trigger-tt-09" class="tooltiptext-url right">View report</div>
+				
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Text Example Positioned Left</h4>
+				<a href="https://www.pearson.com/us/" id="trigger-link-10" class="tooltip tooltip-text-url tooltip-trigger-url" aria-expanded="false" aria-labelledby="trigger-tt-10">www.pearson.com</a>
+				<div role="tooltip" id="trigger-tt-10" class="tooltiptext-url left">View report</div>	
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Text Example Positioned Top</h4>
+				<a href="https://www.pearson.com/us/" id="trigger-link-11" class="tooltip tooltip-text-url tooltip-trigger-url" aria-expanded="false" aria-labelledby="trigger-tt-11">www.pearson.com</a>
+				<div role="tooltip" id="trigger-tt-11" class="tooltiptext-url top">View report</div>
+				
+		</div>
+
+		<div class="container-tooltip">
+			<h4>&#8226; Tooltip Over Text Example Positioned Bottom</h4>
+				<a href="https://www.pearson.com/us/" id="trigger-link-12" class="tooltip tooltip-text-url tooltip-trigger-url" aria-expanded="false" aria-labelledby="trigger-tt-12">www.pearson.com</a>
+				<div role="tooltip" id="trigger-tt-12" class="tooltiptext-url bottom">View report</div>
+		</div>
+
+	</div><!--container-set-->
+	
+</main>
+
+<script src="js/dist/main.js"></script>
+<script src="js/tooltip.js"></script>
+</body>
+</html>
+

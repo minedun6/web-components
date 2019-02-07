@@ -4,9 +4,8 @@
   const template = doc.createElement('template');
 
   template.innerHTML = `
-	<style>
-@font-face{font-family:Open Sans;font-style:normal;font-weight:400;src:url(../node_modules/@pearson-components/elements-sdk/src/styles/assets/fonts/opensans-regular.woff2) format("woff2"),url(../node_modules/@pearson-components/elements-sdk/src/styles/assets/fonts/opensans-regular.woff) format("woff")}*,* :after,* :before,:host:after,:host:before{-webkit-box-sizing:border-box;box-sizing:border-box}:host{-webkit-transition:background .3s;background:#6a7070;border:1px solid #c7c7c7;border-radius:100px;color:#fff;cursor:pointer;display:inline-block;font-family:Open Sans,Arial,Helvetica,sans-serif;font-size:0x;height:23px;line-height:18px;overflow:visible;position:relative;text-transform:uppercase;transition:background .3s;vertical-align:middle;width:55px}:host(:focus){outline:0}:host(:focus):after{-webkit-transform:translate(-50%,-50%);border:2px solid #0b73da;border-radius:22px;content:"";height:-webkit-calc(100% + 10px);height:calc(100% + 10px);left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:-webkit-calc(100% + 10px);width:calc(100% + 10px);z-index:1}:host::-moz-focus-inner{border:0}:host([on]){background:#047a9c}:host([disabled]){color:#f2f2f2;cursor:not-allowed}:host([on]:focus){background-color:#005a70;border:1px solid #005a70}:host([on]):before{left:32px}:host([disabled]):before{background:#f2f2f2}:host:before{-webkit-transition:left .3s;background:#fff;border:1px solid #6a7070;border-radius:100%;content:"";display:block;height:20px;left:1px;transition:left .3s;width:20px}:host:before,:host>span{-webkit-transform:translateY(-50%);position:absolute;top:50%;transform:translateY(-50%)}:host>span{font-size:11.2px;pointer-events:none}:host([hidelabels])>span{display:none}:host .toggle-on{right:27px}:host .toggle-off{right:5px}:host(:not([on]))>span.toggle-on,:host([on])>span.toggle-off{display:none}@media screen and (prefers-reduced-motion:reduced){:host,:host:before{-webkit-transition:none!important;transition:none!important}}
-
+  <style>
+  *,* :after,* :before,:host:after,:host:before{-webkit-box-sizing:border-box;box-sizing:border-box}:host{-webkit-transition:background .3s;background:#6a7070;border:1px solid #c7c7c7;border-radius:100px;color:#fff;cursor:pointer;display:inline-block;font-family:Open Sans,Calibri,Tahoma,sans-serif;font-size:0;height:23px;overflow:visible;position:relative;text-transform:uppercase;transition:background .3s;vertical-align:middle;width:55px}:host(:focus){outline:0!important}:host(:focus):after{-webkit-transform:translate(-50%,-50%);border:2px solid #0b73da;border-radius:22px;content:"";height:-webkit-calc(100% + 10px);height:calc(100% + 10px);left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:-webkit-calc(100% + 10px);width:calc(100% + 10px);z-index:1}:host::-moz-focus-inner{border:0}:host([on]){background:#047a9c}:host([disabled]){color:#f2f2f2;cursor:not-allowed}:host([on]:focus){background-color:#005a70;border:1px solid #005a70}:host([on]):before{left:32px}:host([disabled]):before{background:#f2f2f2}:host:before,:host>span{line-height:23px;position:absolute}:host:before{-webkit-transition:left .3s;background:#fff;border:1px solid #6a7070;border-radius:100%;content:"";display:block;height:20px;left:1px;transition:left .3s;width:20px}:host>span{font-size:11.2px;pointer-events:none;top:-1px}:host([hidelabels])>span{display:none}:host .toggle-on{right:27px}:host .toggle-off{right:5px}:host(:not([on]))>span.toggle-on,:host([on])>span.toggle-off{display:none}@media screen and (prefers-reduced-motion:reduced){:host,:host:before{-webkit-transition:none!important;transition:none!important}}
 	</style>
 	<span class="toggle-on">On</span>
 	<span class="toggle-off">Off</span>
@@ -37,6 +36,8 @@
       this._onToggleKeyUp = this._onToggleKeyUp.bind(this);
 
       this._onLabelClick = this._onLabelClick.bind(this);
+
+      this._onDOMLoaded = this._onDOMLoaded.bind(this);
     }
 
     connectedCallback() {
@@ -58,19 +59,9 @@
       this.addEventListener('keyup', this._onToggleKeyUp);
 
       // If the consumer did not set an `aria-label`,
-      // We need to find an external one
       if (!this.hasAttribute('aria-label')) {
-        this.labelNode = this._findLabelNode();
-
-        // If the external label does not have an ID, we must
-        // ensure that it has one
-        if (!this.labelNode.id) this.labelNode.id = this.id + '_label';
-
-        // This toggle must be labelled by the external label node
-        this.setAttribute('aria-labelledby', this.labelNode.id);
-
-        // We listen for the external label to be clicked
-        this.labelNode.addEventListener('click', this._onLabelClick);
+        // We need to find an external one
+        doc.addEventListener('DOMContentLoaded', this._onDOMLoaded, true);
       }
     }
 
@@ -135,6 +126,20 @@
       this.focus();
     }
 
+    _onDOMLoaded() {
+      this.labelNode = this._findLabelNode();
+
+      // If the external label does not have an ID, we must
+      // ensure that it has one
+      if (!this.labelNode.id) this.labelNode.id = this.id + '_label';
+
+      // This toggle must be labelled by the external label node
+      this.setAttribute('aria-labelledby', this.labelNode.id);
+
+      // We listen for the external label to be clicked
+      this.labelNode.addEventListener('click', this._onLabelClick);
+    }
+
     get on() {
       return this.hasAttribute('on');
     }
@@ -188,6 +193,8 @@
     disconnectedCallback() {
       this.removeEventListener('click', this._onToggleClick);
       this.removeEventListener('keyup', this._onToggleKeyUp);
+
+      doc.removeEventListener('DOMContentLoaded', this._onDOMLoaded);
 
       if (this.labelNode) {
         this.labelNode.removeEventListener('click', this._onLabelClick);

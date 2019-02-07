@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="">
+
+<head>
+	<title>Web Component Markup Kit</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet" href="css/style.css" media="all" />
+</head>
+
+<body class="">
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
+		<!-- place only the symbols belonging to that component here -->
+		<symbol id="remove-sm-24" viewBox="0 0 24 24">
+			<path d="M13.4092,11.9999 L17.7082,7.7009 C18.0972,7.3119 18.0972,6.6809 17.7082,6.2919 C17.3192,5.9029 16.6882,5.9029 16.2992,6.2919 L12.0002,10.5909 L7.7012,6.2919 C7.3122,5.9029 6.6812,5.9029 6.2922,6.2919 C5.9022,6.6809 5.9022,7.3119 6.2922,7.7009 L10.5912,11.9999 L6.2922,16.2989 C5.9022,16.6879 5.9022,17.3189 6.2922,17.7079 C6.4862,17.9029 6.7412,17.9999 6.9962,17.9999 C7.2512,17.9999 7.5062,17.9029 7.7012,17.7079 L12.0002,13.4089 L16.2992,17.7079 C16.4932,17.9029 16.7482,17.9999 17.0032,17.9999 C17.2582,17.9999 17.5132,17.9029 17.7082,17.7079 C18.0972,17.3189 18.0972,16.6879 17.7082,16.2989 L13.4092,11.9999 Z"
+			/>
+		</symbol>
+		<symbol id="warning-18" viewBox="0 0 18 18">
+			<path d="M9.9999375,12.4775 C9.9999375,12.7525 9.7749375,12.9775 9.4999375,12.9775 L8.4999375,12.9775 C8.2249375,12.9775 7.9999375,12.7525 7.9999375,12.4775 L7.9999375,7.4775 C7.9999375,7.2025 8.2249375,6.9775 8.4999375,6.9775 L9.4999375,6.9775 C9.7749375,6.9775 9.9999375,7.2025 9.9999375,7.4775 L9.9999375,12.4775 Z M9.9999375,15.4775 C9.9999375,15.7525 9.7749375,15.9775 9.4999375,15.9775 L8.4999375,15.9775 C8.2249375,15.9775 7.9999375,15.7525 7.9999375,15.4775 L7.9999375,14.4775 C7.9999375,14.2025 8.2249375,13.9775 8.4999375,13.9775 L9.4999375,13.9775 C9.7749375,13.9775 9.9999375,14.2025 9.9999375,14.4775 L9.9999375,15.4775 Z M17.9469375,17.2535 L9.4469375,0.2535 C9.2769375,-0.0845 8.7229375,-0.0845 8.5529375,0.2535 L0.0529375,17.2535 C-0.0240625,17.4095 -0.0170625,17.5925 0.0739375,17.7405 C0.1659375,17.8875 0.3269375,17.9775 0.4999375,17.9775 L17.4999375,17.9775 C17.6729375,17.9775 17.8339375,17.8875 17.9259375,17.7405 C18.0169375,17.5925 18.0239375,17.4095 17.9469375,17.2535 L17.9469375,17.2535 Z"
+			/>
+		</symbol>
+	</svg>
+
+	<div class="pe-alert animated" data-alert data-alert-type="global" role="dialog" aria-labelledby="alertTitle" aria-describedby="alertText">
+		<div class="pe-alert-box error">
+			<div class="close-title">
+				<button data-action="close-alert" class="pe-icon--btn" aria-label="Close Lorem ipsum dolor sit amet.">
+					<svg focusable="false" class="pe-icon--remove-sm-24">
+						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#remove-sm-24"></use>
+					</svg>
+				</button>
+			</div>
+			<div class="alert-content-container" role="alert" aria-live="assertive">
+				<svg focusable="false" class="pe-icon--warning-18" aria-hidden>
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#warning-18"></use>
+				</svg>
+				<div class="alert-content" data-alert-content>
+					<h2 id="alertTitle" class="pe-label alert-title">
+						<strong>Lorem ipsom dolor sit amet.</strong>
+					</h2>
+					<p id="alertText" class="pe-paragraph alert-text">Ronsectetuer adipiscing elit. Aene eoo rjgieo roi an commodo ligula
+						eget dolor enean massa.
+					</p>
+					<a href="#">This is an error link</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button" data-action="trigger-alert" style="margin-top: 10rem;">Trigger error alert</button>
+
+	<script src="js/dist/main.js"></script>
+</body>
+
+</html>

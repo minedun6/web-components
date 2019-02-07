@@ -1,0 +1,40 @@
+{
+  "name": "@pearson-ux/file-uploader",
+  "author": "David O'Dey | david.odey@pearson.com",
+  "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
+  "version": "0.1.0",
+  "description": "File upload component built with web components",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pearson-ux/web-components.git"
+  },
+  "keywords": [
+    "file upload",
+    "pearson-components",
+    "web components"
+  ],
+  "bugs": {
+    "url": "https://github.com/pearson-ux/web-components/issues"
+  },
+  "homepage": "https://github.com/pearson-ux/web-components/blob/master/example/README.md",
+  "dependencies": {
+    "@pearson-components/elements-sdk": "git+https://github.com/Pearson-Higher-Ed/elements-sdk.git#unstable-2.0-GLP",
+    "dotenv": "^6.1.0",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "cssnano": "^4.0.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "7.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^4.0.1"
+  }
+}

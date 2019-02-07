@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pearson Web Component</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- THESE IMPORTS ARE NECESSARY FOR PROPER RENDERING DURING DEVELOPMENT -->
+    <!-- DO NOT DELETE -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+    <!-- load pearson and global styles -->
+    <link href="https://unpkg.com/@pearson-components/elements-sdk@1.15.3/build/css/elements.css#unstable-2.0-GLP" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+
+    <style>
+      pearson-tabs {
+        max-width: 40rem;
+        margin: auto;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+
+    <!-- loads web component polyfills -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+		<!-- load the web component script -->
+		<!-- RENAME THIS FILE DURING DEVELOPMENT -->
+		<!-- e.g., 'pearson-alert' -->
+    <script src="js/dist/pearson-tabs.js"></script>
+  </head>
+
+  <body>
+    <h2>Light theme</h2>
+    <pearson-tabs>
+        <ul class="tabs" slot="tabs">
+          <li>Tab one</li>
+          <li>Tab two</li>
+          <li>Tab three</li>
+        </ul>
+        <div class="panels" slot="panels">
+          <div data-panel>
+            <p>Content one!</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+          </div>
+          <div data-panel>
+            <p>Content two!</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+          </div>
+          <div data-panel>
+            <p>Content three!</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+          </div>
+        </div>
+      </pearson-tabs>
+    <h2>Dark theme</h2>
+    <pearson-tabs class="dark">
+      <ul class="tabs" slot="tabs">
+        <li>Tab one</li>
+        <li>Tab two</li>
+        <li>Tab three</li>
+      </ul>
+      <div class="panels" slot="panels">
+        <div data-panel>
+          <p>Content one!</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+        </div>
+        <div data-panel>
+          <p>Content two!</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+        </div>
+        <div data-panel>
+          <p>Content three!</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptatum ullam possimus atque maiores placeat minus reprehenderit illum dignissimos aperiam, provident eveniet tempora similique harum porro aspernatur asperiores. Soluta, cupiditate!</p>
+        </div>
+      </div>
+    </pearson-tabs>
+  </body>
+</html>

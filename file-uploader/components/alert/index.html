@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="" lang="EN">
+
+<head>
+	<title>Pearson Web Component</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- loads web component polyfills -->
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-loader.js"></script>
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/custom-elements-es5-adapter.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+
+	<!-- load pearson and global styles -->
+
+
+	<!-- import web components -->
+
+<style>
+.output {
+	margin-top: 5rem;
+}
+</style>
+</head>
+
+<body>
+	<button id="trigger-0" data-trigger="alert" data-type="error" data-level="global" data-animated>
+		Trigger global error alert
+	</button>
+	<button id="trigger-1" data-trigger="alert" data-type="success" data-level="inline" data-animated>
+		Trigger inline success alert
+	</button>
+	<button id="trigger-2" data-trigger="alert" data-type="important" data-level="global" data-animated data-focus-on-open>
+		Trigger global important alert
+	</button>
+	<div id="output" class="output" aria-live="polite" aria-atomic="true"></div>
+	<script src="js/dist/pearson-alert.js"></script>
+	<script>
+			(function (w, doc) {
+				const forEach = Array.prototype.forEach;
+				const triggers = doc
+					.querySelectorAll('button[data-trigger="alert"]');
+				const statusRegion = doc.querySelector('#output');
+
+				function generateAlert(opts) {
+					const alert = doc.createElement('pearson-alert');
+					for (let attrName in opts) {
+						alert.setAttribute(attrName, opts[attrName])
+					}
+					return alert;
+				}
+
+				function triggerAlert(e) {
+					const returnNode = '#' + e.target.id;
+					const type = e.target.dataset.type;
+					const level = e.target.dataset.level;
+
+					const animated = e.target.dataset.animated !== undefined;
+					const focusOnOpen = e.target.dataset.focusOnOpen !== undefined;
+					
+					const opts = {
+						returnNode: returnNode,
+						type: type,
+						level: level
+					}
+
+					if (animated) {
+						opts.animated = true;
+					}
+
+					if (focusOnOpen) {
+						opts.focusOnOpen = true;
+					}
+
+					const alert = generateAlert(opts);
+
+					alert.innerHTML = (
+						'   <h2 id="alertTitle" class="pe-label alert-title">  ' +
+						'     <strong>Heads up!</strong>  ' +
+						'   </h2>  ' +
+						'   <p id="alertText" class="pe-paragraph alert-text">  ' +
+						'     <a href="#">Something has happened!</a>  ' +
+						'  </p>  '
+					);
+
+					if (level === 'inline') {
+						doc.body.insertBefore(alert, e.target.nextSibling)
+					} else {
+						doc.body.appendChild(alert)
+					}
+				}
+
+				function renderMessage(alertElem) {
+					statusRegion.innerHTML = 'Closed ' + alertElem.type + ' alert';
+				}
+
+				forEach.call(triggers, function (trigger) {
+					trigger.addEventListener('click', triggerAlert);
+				})
+
+				w.addEventListener('dismiss', function (e) {
+					renderMessage(e.target);
+				});
+
+			})(window, document);
+		</script>
+
+</body>
+</html>

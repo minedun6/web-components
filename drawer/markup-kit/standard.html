@@ -1,46 +1,105 @@
 <!DOCTYPE html>
-<html class="">
-<head>
-	<title>Web Component Markup Kit</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" href="css/style.css" media="all" />
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-</head>
-<body class="">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="pe-icons-sprite" style="display:none">
-	<symbol id="remove-sm-24" viewBox="0 0 24 24">
-		<path d="M13.4092,11.9999 L17.7082,7.7009 C18.0972,7.3119 18.0972,6.6809 17.7082,6.2919 C17.3192,5.9029 16.6882,5.9029 16.2992,6.2919 L12.0002,10.5909 L7.7012,6.2919 C7.3122,5.9029 6.6812,5.9029 6.2922,6.2919 C5.9022,6.6809 5.9022,7.3119 6.2922,7.7009 L10.5912,11.9999 L6.2922,16.2989 C5.9022,16.6879 5.9022,17.3189 6.2922,17.7079 C6.4862,17.9029 6.7412,17.9999 6.9962,17.9999 C7.2512,17.9999 7.5062,17.9029 7.7012,17.7079 L12.0002,13.4089 L16.2992,17.7079 C16.4932,17.9029 16.7482,17.9999 17.0032,17.9999 C17.2582,17.9999 17.5132,17.9029 17.7082,17.7079 C18.0972,17.3189 18.0972,16.6879 17.7082,16.2989 L13.4092,11.9999 Z"/>
-	</symbol>
-	<symbol id="chevron-back-18" viewBox="0 0 18 18">
-		<path d="M13.749,17.6606035 C14.112,17.2486035 14.076,16.6116035 13.662,16.2436035 L5.509,8.9996035 L13.662,1.7566035 C14.077,1.3896035 14.113,0.752603504 13.749,0.339603504 C13.383,-0.0763964961 12.751,-0.115396496 12.338,0.252603504 L3.338,8.2476035 C3.123,8.4376035 3,8.7126035 3,8.9996035 C3,9.2876035 3.123,9.5616035 3.338,9.7526035 L12.338,17.7476035 C12.751,18.1156035 13.383,18.0766035 13.749,17.6606035"/>
-	</symbol>
-</svg>
-<!-- main content goes here -->
-<main id="main" aria-hidden="false">
-	<button id="openDrawer">Open Drawer</button>
-</main>
-<!-- drawer component loads after the main content to support aria-hidden -->
-<div id="drawer" class="drawer-container" aria-hidden="true" data-current-panel="1">
-	<div tabindex="0"></div>
-	<!-- first panel -->
-	<div class="panel closed animated" data-panel="1" aria-hidden="true">
-		<div class="drawer-header" tabindex="0">
-			<h3 class="pe-title">Help Topics</h3>
-			<button type="button" class="pe-icon--btn close" aria-label="close drawer">
-				<svg class="pe-icon--remove-sm-24" aria-hidden="true" focusable="false">
-					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#remove-sm-24"></use>
-				</svg>
-			</button>
-		</div>
-		<div class="divider"></div>
-		<div class="drawer-content">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet dui vitae fringilla tristique. Donec faucibus fringilla scelerisque. Sed maximus non nisl sit amet dapibus. Nullam enim lorem, pretium sollicitudin nisi vitae, pulvinar sodales sapien. Suspendisse dapibus ante id quam luctus hendrerit. Cras tempor sodales tempus. Pellentesque ligula augue, ornare efficitur ullamcorper non, fringilla at mauris. Sed sit amet mauris nec nisl tempus fringilla. Curabitur nec dui sit amet ipsum fermentum pellentesque sit amet eu metus. Aenean vel pharetra magna. Nunc convallis vestibulum eros sed tempus. Praesent nisi erat, sollicitudin nec est non, faucibus ullamcorper purus. Mauris eros lectus, rutrum nec orci et, gravida ullamcorper dui. Vestibulum eget ex feugiat, auctor neque sed, dictum urna. Ut a ipsum tristique, sagittis neque ac, dignissim lorem. Nulla congue tellus in tincidunt poop.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet dui vitae fringilla tristique. Donec faucibus fringilla scelerisque. Sed maximus non nisl sit amet dapibus. Nullam enim lorem, pretium sollicitudin nisi vitae, pulvinar sodales sapien. Suspendisse dapibus ante id quam luctus hendrerit. Cras tempor sodales tempus. Pellentesque ligula augue, ornare efficitur ullamcorper non, fringilla at mauris. Sed sit amet mauris nec nisl tempus fringilla. Curabitur nec dui sit amet ipsum fermentum pellentesque sit amet eu metus. Aenean vel pharetra magna. Nunc convallis vestibulum eros sed tempus. Praesent nisi erat, sollicitudin nec est non, faucibus ullamcorper purus. Mauris eros lectus, rutrum nec orci et, gravida ullamcorper dui. Vestibulum eget ex feugiat, auctor neque sed, dictum urna. Ut a ipsum tristique, sagittis neque ac, dignissim lorem. Nulla congue tellus in tincidunt poop.</p>
-		</div>
-	</div>
-	<div tabindex="0"></div>
-</div>
-<script src="js/dist/main.js"></script>
-</body>
+<html lang="en" class="">
+  <head>
+    <title>Standard Drawer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="dist/css/style.css" media="all" />
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?rum=0"></script>
+  </head>
+  <body class="">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      id="pe-icons-sprite"
+      style="display:none"
+    >
+      <symbol id="remove-sm-24" viewBox="0 0 24 24">
+        <path
+          d="M13.4092,11.9999 L17.7082,7.7009 C18.0972,7.3119 18.0972,6.6809 17.7082,6.2919 C17.3192,5.9029 16.6882,5.9029 16.2992,6.2919 L12.0002,10.5909 L7.7012,6.2919 C7.3122,5.9029 6.6812,5.9029 6.2922,6.2919 C5.9022,6.6809 5.9022,7.3119 6.2922,7.7009 L10.5912,11.9999 L6.2922,16.2989 C5.9022,16.6879 5.9022,17.3189 6.2922,17.7079 C6.4862,17.9029 6.7412,17.9999 6.9962,17.9999 C7.2512,17.9999 7.5062,17.9029 7.7012,17.7079 L12.0002,13.4089 L16.2992,17.7079 C16.4932,17.9029 16.7482,17.9999 17.0032,17.9999 C17.2582,17.9999 17.5132,17.9029 17.7082,17.7079 C18.0972,17.3189 18.0972,16.6879 17.7082,16.2989 L13.4092,11.9999 Z"
+        />
+      </symbol>
+      <symbol id="chevron-back-18" viewBox="0 0 18 18">
+        <path
+          d="M13.749,17.6606035 C14.112,17.2486035 14.076,16.6116035 13.662,16.2436035 L5.509,8.9996035 L13.662,1.7566035 C14.077,1.3896035 14.113,0.752603504 13.749,0.339603504 C13.383,-0.0763964961 12.751,-0.115396496 12.338,0.252603504 L3.338,8.2476035 C3.123,8.4376035 3,8.7126035 3,8.9996035 C3,9.2876035 3.123,9.5616035 3.338,9.7526035 L12.338,17.7476035 C12.751,18.1156035 13.383,18.0766035 13.749,17.6606035"
+        />
+      </symbol>
+    </svg>
+    <!-- main content goes here -->
+    <main id="main" aria-hidden="false">
+      <button id="openDrawer">Open Drawer</button>
+    </main>
+    <!--
+      drawer component loads after the main content to support aria-hidden
+    -->
+    <div
+      id="drawer"
+      class="drawer animated"
+      aria-hidden="true"
+      data-current-panel="1"
+    >
+      <!-- first panel -->
+      <div class="panel" data-panel="1">
+        <div class="drawer-header">
+          <h3 class="pe-title" tabindex="-1">Help Topics</h3>
+        </div>
+        <div class="divider"></div>
+        <div class="drawer-content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+            imperdiet dui vitae fringilla tristique. Donec faucibus fringilla
+            scelerisque. Sed maximus non nisl sit amet dapibus. Nullam enim
+            lorem, pretium sollicitudin nisi vitae, pulvinar sodales sapien.
+            Suspendisse dapibus ante id quam luctus hendrerit. Cras tempor
+            sodales tempus. Pellentesque ligula augue, ornare efficitur
+            ullamcorper non, fringilla at mauris. Sed sit amet mauris nec nisl
+            tempus fringilla. Curabitur nec dui sit amet ipsum fermentum
+            pellentesque sit amet eu metus. Aenean vel pharetra magna. Nunc
+            convallis vestibulum eros sed tempus. Praesent nisi erat,
+            sollicitudin nec est non, faucibus ullamcorper purus. Mauris eros
+            lectus, rutrum nec orci et, gravida ullamcorper dui. Vestibulum eget
+            ex feugiat, auctor neque sed, dictum urna. Ut a ipsum tristique,
+            sagittis neque ac, dignissim lorem. Nulla congue tellus in tincidunt
+            poop.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+            imperdiet dui vitae fringilla tristique. Donec faucibus fringilla
+            scelerisque. Sed maximus non nisl sit amet dapibus. Nullam enim
+            lorem, pretium sollicitudin nisi vitae, pulvinar sodales sapien.
+            Suspendisse dapibus ante id quam luctus hendrerit. Cras tempor
+            sodales tempus. Pellentesque ligula augue, ornare efficitur
+            ullamcorper non, fringilla at mauris. Sed sit amet mauris nec nisl
+            tempus fringilla. Curabitur nec dui sit amet ipsum fermentum
+            pellentesque sit amet eu metus. Aenean vel pharetra magna. Nunc
+            convallis vestibulum eros sed tempus. Praesent nisi erat,
+            sollicitudin nec est non, faucibus ullamcorper purus. Mauris eros
+            lectus, rutrum nec orci et, gravida ullamcorper dui. Vestibulum eget
+            ex feugiat, auctor neque sed, dictum urna. Ut a ipsum tristique,
+            sagittis neque ac, dignissim lorem. Nulla congue tellus in tincidunt
+            poop.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="pe-icon--btn close"
+          data-action="close"
+          aria-label="Close Help Topics"
+        >
+          <svg
+            class="pe-icon--remove-sm-24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <use
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xlink:href="#remove-sm-24"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="dist/js/pearson-drawer.js"></script>
+  </body>
 </html>

@@ -1,18 +1,30 @@
-
-.panel {
-  display:flex;
-  flex-direction: column;
-  width:320px;
-  height:100vh;
-  border:1px solid #d9d9d9;
-  box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
+.drawer {
+  visibility: hidden;
   position:fixed;
   top:0;
-
-  &[data-panel] {
-    right:-320px
-  }
+  bottom: 0;
+  right:-320px;
+  width:320px;
+  border:1px solid #d9d9d9;
+  box-shadow: 0px 0px 5px 0px rgba(199,199,199,1);
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
 }
+
+.drawer.open {
+  visibility: visible;
+  right: 0;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .drawer-header {
   display:flex;
@@ -27,26 +39,6 @@
   .pe-title {
     margin-bottom:0;
   }
-
-  button {
-    border:0;
-    cursor:pointer;
-    background:none;
-    height:44px;
-    width:44px;
-
-    &.back {
-      display:flex;
-      align-items: center;
-      width:auto;
-      svg {
-        margin-right:.5em;
-      }
-      h3 {
-        margin:0;
-      }
-    }
-  }
 }
 
 .divider {
@@ -59,35 +51,61 @@
   padding:25px 30px 30px 30px;
   position:relative;
   height:100%;
-  overflow-y:scroll;
-  -webkit-overflow-scrolling: touch;
   &:focus {
     outline: none;
   }
-
-  ul {
-    margin:0;
-    padding:0;
-  }
-  li {
-    list-style-type: none;
-    margin-bottom:25px;
-
-    button {
-      cursor:pointer;
-      text-align: left;
-      background:none;
-      border:0;
-      position:relative;
-      &.pe-link--btn {
-        text-decoration: none;
-      }
+  
+  button {
+    color: inherit;
+    cursor:pointer;
+    text-align: left;
+    background:none;
+    padding: 0;
+    border:0;
+    position:relative;
+    &.pe-link--btn {
+      text-decoration: none;
     }
+  }
+
+
+  dd {
+    margin-left: 0;
+    margin-bottom:25px;
   }
 }
 
-button > * {
+.panel button > * {
   pointer-events: none;
 }
 
+.panel button.back {
+  border:0;
+  cursor:pointer;
+  background:none;
+  height:25px;
+  width:44px;
+  display:flex;
+  align-items: center;
+  width:auto;
+}
 
+  .panel button.back svg {
+    margin-right: 0.5em;
+  }
+
+  .panel button.back h3 {
+    margin:0;
+  }
+
+
+.panel button.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 0;
+  cursor: pointer;
+  background: none;
+  height: 44px;
+  width: 44px;
+}
